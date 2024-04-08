@@ -1,20 +1,12 @@
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Entertainment_Web_API.DataAccess;
 using Microsoft.AspNetCore.Identity;
-using Entertainment_Web_API.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
-options.SignIn.RequireConfirmedAccount = true)
-.AddEntityFrameworkStores<ApplicationDbContext>()
-.AddDefaultTokenProviders()
-.AddDefaultUI();
+
 
 builder.Services.AddRazorPages();
 

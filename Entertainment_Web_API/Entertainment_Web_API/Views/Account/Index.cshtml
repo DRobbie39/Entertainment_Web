@@ -1,8 +1,6 @@
-﻿@using Entertainment_Web_API.Models
+﻿
 @using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<AppUser> SignInManager
-@inject UserManager<AppUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -21,18 +19,17 @@
                 <div class="col-lg-9">
                     <div class="login__form">
                         <h3>Thông tin cá nhân</h3>
-						@if (SignInManager.IsSignedIn(User))
-						{
+						
 							var user = await UserManager.GetUserAsync(User);
 							var fullName = user?.FullName;
 							var email = user?.Email;
 							<form action="#">
 								<div class="input__item">
-									<input type="text" placeholder="@fullName">
+									<input type="text" placeholder="fullName">
 									<span><i class="fa fa-user" aria-hidden="true"></i></span>
 								</div>
 								<div class="input__item">
-									<input type="text" placeholder="@email">
+									<input type="text" placeholder="email">
 									<span >
 										<i class="fa fa-envelope" aria-hidden="true"></i>
 									</span>
@@ -51,7 +48,7 @@
 
 								<button type="submit" class="site-btn">Lưu thông tin</button>
 							</form>
-						}
+						
 					</div>
                 </div>
             </div>

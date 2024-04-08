@@ -4792,11 +4792,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj",
+      "projectUniqueName": "D:\\Study\\HK2 2023-2024\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj",
       "projectName": "BackEnd",
-      "projectPath": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj",
+      "projectPath": "D:\\Study\\HK2 2023-2024\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj",
       "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-      "outputPath": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\obj\\",
+      "outputPath": "D:\\Study\\HK2 2023-2024\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
