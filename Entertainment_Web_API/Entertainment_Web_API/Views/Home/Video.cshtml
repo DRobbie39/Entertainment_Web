@@ -1,0 +1,67 @@
+﻿@model BackEnd.Models.Video
+
+@{
+    ViewData["Title"] = "Video";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+<iframe style="margin-top:100px;" width="560" height="315" src="@Model.VideoUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen allow="autoplay"></iframe>
+
+<div class="row" style="margin-top:50px;">
+    <div class="col-6">
+        <h5 style="color:#6c7293">
+            Lượt xem: @Model.VideoViews
+        </h5>
+        <p>@Model.Title</p>
+        <h3 style="color:#dbc9c9">
+            Bình luận
+        </h3>
+    </div>
+    <div class="col-3">
+        <i class="fa fa-thumbs-up" aria-hidden="true">@Model.Likes</i>
+        <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;">@Model.Dislikes</i>
+    </div>
+    <div class="col-3">
+        <i class="fa fa-download" aria-hidden="true">Tải xuống</i>
+    </div>
+    <div class="comment-box">
+        <textarea class="comment-input" placeholder="Nhập bình luận của bạn..."></textarea>
+        <button class="submit-button">Gửi</button>
+    </div>
+</div>
+<style>
+    .comment-box {
+        width: 100%;
+        height: 70px;
+        position: relative;
+    }
+
+    .comment-input {
+        width: calc(100% - 100px);
+        height: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .submit-button {
+        position: absolute; 
+        right: 0;
+        bottom: 0;
+        width: 90px; 
+        height: 40px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff; 
+        color: #fff; 
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom:17px;
+    }
+    .submit-button:hover {
+        background-color: #0056b3; 
+    }
+</style>
