@@ -17,63 +17,63 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Entertainment_Web_API
 build_property.RootNamespace = Entertainment_Web_API
-build_property.ProjectDir = D:\Study\HK2 2023-2024\Entertainment_Web\Entertainment_Web_API\Entertainment_Web_API\
+build_property.ProjectDir = D:\Study\HK2 2023-2024\API\Entertainment_Web\Entertainment_Web_API\Entertainment_Web_API\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Study\HK2 2023-2024\Entertainment_Web\Entertainment_Web_API\Entertainment_Web_API
+build_property.MSBuildProjectDirectory = D:\Study\HK2 2023-2024\API\Entertainment_Web\Entertainment_Web_API\Entertainment_Web_API
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Account/Index.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Account/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Account/SignIn.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Account/SignIn.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduSW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Account/SignUp.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Account/SignUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/Index.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/Library.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/Library.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMaWJyYXJ5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/Music.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/Music.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNdXNpYy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/MusicDetail.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/MusicDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNdXNpY0RldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/NoAccount.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/NoAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOb0FjY291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/Video.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/Video.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWRlby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/_ViewImports.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/_ViewStart.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Shared/_Layout.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-obowy0e43f
 
-[D:/Study/HK2 2023-2024/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Shared/_LayoutAccount.cshtml]
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Shared/_LayoutAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRBY2NvdW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = b-ozz2omtnx9

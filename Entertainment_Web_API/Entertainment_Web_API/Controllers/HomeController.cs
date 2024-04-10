@@ -1,6 +1,9 @@
 ﻿using BackEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace Entertainment_Web_API.Controllers
 {
@@ -57,7 +60,7 @@ namespace Entertainment_Web_API.Controllers
             return View(video);
         }
 
-        //[Authorize]
+        [Authorize]
         public IActionResult Music()
         {
             return View();
@@ -69,7 +72,7 @@ namespace Entertainment_Web_API.Controllers
             return View();
         }
 
-        //[Authorize]
+        [Authorize]
         //[Authorize(Roles = "Admin, User")]
         //[Authorize(Roles = "Admin")]
         public IActionResult Library()

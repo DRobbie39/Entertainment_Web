@@ -1,8 +1,12 @@
+﻿using BackEnd.Data;
 using BackEnd.Models;
+using Google;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddRazorPages();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -11,9 +15,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<EntertainmentContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+builder.Services.AddIdentity<AppUser,IdentityRole>(options =>
+options.SignIn.RequireConfirmedAccount = true)
+.AddEntityFrameworkStores<EntertainmentContext>()
+.AddDefaultTokenProviders()
+.AddDefaultUI();
+
+builder.Services.AddScoped<IFileService, FileService>();
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -26,7 +39,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
+
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapRazorPages();
 
 app.MapControllers();
 

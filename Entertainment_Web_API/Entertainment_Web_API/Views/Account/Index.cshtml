@@ -1,6 +1,5 @@
-﻿
+﻿@using BackEnd.Models
 @using Microsoft.AspNetCore.Identity
-
 
 @{
     ViewData["Title"] = "Index";
@@ -12,17 +11,17 @@
         <div class="anime__details__content">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="anime__details__pic set-bg" >
-                        <img src="~/lib/mtp.jpg" style="width:280px;height:390px;border-radius:15px;"/>
-                    </div>
+					
+						<div class="anime__details__pic set-bg">
+							<img src="/uploads/avt" style="width:280px;height:390px;border-radius:15px;" />
+						</div>
+					
                 </div>
                 <div class="col-lg-9">
                     <div class="login__form">
                         <h3>Thông tin cá nhân</h3>
 						
-							var user = await UserManager.GetUserAsync(User);
-							var fullName = user?.FullName;
-							var email = user?.Email;
+							
 							<form action="#">
 								<div class="input__item">
 									<input type="text" placeholder="fullName">
@@ -38,15 +37,10 @@
 									<input type="text" placeholder="Password">
 									<span><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
 								</div>
-
-								<div class="upload-container">
-									<label for="avatar-upload" class="upload-label">
-										<i class="fas fa-upload"></i> Chọn ảnh avt cần upload
-									</label>
-									<input type="file" id="avatar-upload" class="upload-input" accept="image/*">
+								<div class="input__item">
+									<input type="text" placeholder="phone">
+									<span><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
 								</div>
-
-								<button type="submit" class="site-btn">Lưu thông tin</button>
 							</form>
 						
 					</div>

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BackEnd.Models;
-
-public partial class MusicCategory
+﻿namespace BackEnd.Models
 {
-    public int MusicCategoryId { get; set; }
+    public class MusicCategory
+    {
+        public string? MusicCategoryId { get; set; }
 
-    public string? MusicCategoryName { get; set; }
+        public string? MusicCategoryName { get; set; }
 
-    public virtual ICollection<Music> Musics { get; set; } = new List<Music>();
+        public virtual ICollection<Music> Musics { get; set; } = new List<Music>();
+    }
 }

@@ -29,4 +29,9 @@
     <ProjectReference Include="..\BackEnd\BackEnd.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="wwwroot\Uploads\" />
+  </ItemGroup>
+
 </Project>

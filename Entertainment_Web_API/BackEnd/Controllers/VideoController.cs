@@ -10,7 +10,7 @@ namespace BackEnd.Controllers
     [ApiController]
     public class VideoController : ControllerBase
     {
-        private readonly string apiKey = "AIzaSyC-hldqefETpVzbO8cToIsH9v5PmbP1y-0"; //api key
+        private readonly string apiKey = "AIzaSyC-hldqefETpVzbO8cToIsH9v5PmbP1y-0"; // Api key
 
         [HttpGet("{searchTerm}")]
         public async Task<IActionResult> Get(string searchTerm)
@@ -22,21 +22,34 @@ namespace BackEnd.Controllers
             });
 
             var searchRequest = youtubeService.Search.List("snippet");
-            searchRequest.Q = searchTerm; // Sử dụng từ khóa từ client
+            searchRequest.Q = searchTerm;
             searchRequest.MaxResults = 50;
-            searchRequest.Type = "video"; // Chỉ tìm kiếm video
-            searchRequest.VideoCategoryId = "10"; // Chỉ tìm kiếm video thuộc thể loại âm nhạc
-            searchRequest.EventType = SearchResource.ListRequest.EventTypeEnum.None; // Loại trừ video trực tiếp
+            searchRequest.Type = "video";
+            searchRequest.VideoCategoryId = "10";
+            searchRequest.EventType = SearchResource.ListRequest.EventTypeEnum.None;
 
             var searchResponse = await searchRequest.ExecuteAsync();
 
-            var videos = searchResponse.Items.Select(item => new Video
+            var videos = new List<Video>();
+
+            foreach (var item in searchResponse.Items)
             {
-                VideoId = item.Id.VideoId,
-                Title = item.Snippet.Title,
-                ThumbnailUrl = item.Snippet.Thumbnails.High.Url,
-                VideoUrl = $"https://www.youtube.com/watch?v={item.Id.VideoId}" // Lưu URL của video
-            }).ToList();
+                var videoRequest = youtubeService.Videos.List("snippet,statistics");
+                videoRequest.Id = item.Id.VideoId;
+
+                var videoResponse = await videoRequest.ExecuteAsync();
+                var video = videoResponse.Items[0];
+
+                videos.Add(new Video
+                {
+                    VideoId = video.Id,
+                    Title = video.Snippet.Title,
+                    ThumbnailUrl = video.Snippet.Thumbnails.High.Url,
+                    VideoUrl = $"https://www.youtube.com/watch?v={video.Id}",
+                    VideoViews = (int?)video.Statistics.ViewCount.GetValueOrDefault(),
+                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset
+                });
+            }
 
             return Ok(videos);
         }
@@ -60,7 +73,7 @@ namespace BackEnd.Controllers
                 VideoId = item.Id,
                 Title = item.Snippet.Title,
                 ThumbnailUrl = item.Snippet.Thumbnails.High.Url,
-                VideoUrl = $"https://www.youtube.com/embed/{item.Id}",
+                VideoUrl = $"https://www.youtube.com/embed/{item.Id}", // Chỉnh embed để phát được video
                 VideoViews = (int?)item.Statistics.ViewCount.GetValueOrDefault(),
                 Likes = (int?)item.Statistics.LikeCount.GetValueOrDefault(),
                 Dislikes = (int?)item.Statistics.DislikeCount.GetValueOrDefault()

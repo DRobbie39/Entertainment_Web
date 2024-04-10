@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BackEnd.Models;
-
-public partial class VideoCategory
+﻿namespace BackEnd.Models
 {
-    public string VideoCategoryId { get; set; } = null!;
+    public class VideoCategory
+    {
+        public string VideoCategoryId { get; set; } = null!;
 
-    public string? VideoCategoryName { get; set; }
+        public string? VideoCategoryName { get; set; }
 
-    public virtual ICollection<Video> Videos { get; set; } = new List<Video>();
+        public virtual ICollection<Video> Videos { get; set; } = new List<Video>();
+    }
 }

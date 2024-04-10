@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BackEnd.Models;
-
-public partial class Music
+﻿namespace BackEnd.Models
 {
-    public int MusicId { get; set; }
+    public class Music
+    {
+        public string? MusicId { get; set; }
 
-    public string? MusicName { get; set; }
+        public string? MusicName { get; set; }
 
-    public int? MusicCategoryId { get; set; }
+        public string? MusicCategoryId { get; set; }
 
-    public int? UserId { get; set; }
+        public string? Id { get; set; }
 
-    public virtual MusicCategory? MusicCategory { get; set; }
+        public virtual MusicCategory? MusicCategory { get; set; }
 
-    public virtual ICollection<MusicOwner> MusicOwners { get; set; } = new List<MusicOwner>();
+        public virtual ICollection<MusicOwner> MusicOwners { get; set; } = new List<MusicOwner>();
 
-    public virtual ICollection<MusicPlaylist> MusicPlaylists { get; set; } = new List<MusicPlaylist>();
+        public virtual ICollection<MusicPlaylist> MusicPlaylists { get; set; } = new List<MusicPlaylist>();
 
-    public virtual UserAccount? User { get; set; }
+        public virtual AppUser? AppUser { get; set; }
+    }
 }

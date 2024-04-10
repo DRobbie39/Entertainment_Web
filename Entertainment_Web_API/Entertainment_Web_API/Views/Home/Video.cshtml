@@ -18,8 +18,8 @@
         </h3>
     </div>
     <div class="col-3">
-        <i class="fa fa-thumbs-up" aria-hidden="true">@Model.Likes</i>
-        <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;">@Model.Dislikes</i>
+        <i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Likes</i>
+        <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"> @Model.Dislikes</i>
     </div>
     <div class="col-3">
         <i class="fa fa-download" aria-hidden="true">Tải xuống</i>
@@ -47,21 +47,30 @@
     }
 
     .submit-button {
-        position: absolute; 
+        position: absolute;
         right: 0;
         bottom: 0;
-        width: 90px; 
+        width: 90px;
         height: 40px;
         margin: 5px;
         border: none;
         border-radius: 5px;
-        background-color: #007bff; 
-        color: #fff; 
+        background-color: #007bff;
+        color: #fff;
         cursor: pointer;
         font-size: 16px;
-        margin-bottom:17px;
+        margin-bottom: 17px;
     }
-    .submit-button:hover {
-        background-color: #0056b3; 
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+    i.fa.fa-thumbs-up {
+        cursor: pointer;
+    }
+
+    i.fa.fa-thumbs-down {
+        cursor: pointer;
     }
 </style>
