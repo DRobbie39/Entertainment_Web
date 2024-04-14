@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "BackEnd.Controllers.UserController",
+    "Method": "Get",
+    "RelativePath": "backend/User/Get/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "BackEnd.Controllers.VideoController",
     "Method": "Get",
     "RelativePath": "backend/Video/Get/{searchTerm}",

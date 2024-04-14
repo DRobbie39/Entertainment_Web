@@ -10,7 +10,7 @@ namespace BackEnd.Controllers
     [ApiController]
     public class VideoController : ControllerBase
     {
-        private readonly string apiKey = "AIzaSyC-hldqefETpVzbO8cToIsH9v5PmbP1y-0"; // Api key
+        private readonly string apiKey = "AIzaSyB1jP3WJP2QzQgy4OQDMil-y3neNUD_sD0"; // Api key
 
         [HttpGet("{searchTerm}")]
         public async Task<IActionResult> Get(string searchTerm)
@@ -23,7 +23,7 @@ namespace BackEnd.Controllers
 
             var searchRequest = youtubeService.Search.List("snippet");
             searchRequest.Q = searchTerm;
-            searchRequest.MaxResults = 50;
+            searchRequest.MaxResults = 10;
             searchRequest.Type = "video";
             searchRequest.VideoCategoryId = "10";
             searchRequest.EventType = SearchResource.ListRequest.EventTypeEnum.None;

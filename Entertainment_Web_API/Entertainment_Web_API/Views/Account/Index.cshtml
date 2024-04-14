@@ -1,53 +1,50 @@
 ﻿@using BackEnd.Models
-@using Microsoft.AspNetCore.Identity
+@model BackEnd.Models.AppUser
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/css/elegant-icons.css" rel="stylesheet" />
 <section class="anime-details spad">
-    <div class="container">
-        <div class="anime__details__content">
-            <div class="row">
-                <div class="col-lg-3">
-					
-						<div class="anime__details__pic set-bg">
-							<img src="/uploads/avt" style="width:280px;height:390px;border-radius:15px;" />
-						</div>
-					
-                </div>
-                <div class="col-lg-9">
-                    <div class="login__form">
-                        <h3>Thông tin cá nhân</h3>
-						
-							
-							<form action="#">
-								<div class="input__item">
-									<input type="text" placeholder="fullName">
-									<span><i class="fa fa-user" aria-hidden="true"></i></span>
-								</div>
-								<div class="input__item">
-									<input type="text" placeholder="email">
-									<span >
-										<i class="fa fa-envelope" aria-hidden="true"></i>
-									</span>
-								</div>
-								<div class="input__item">
-									<input type="text" placeholder="Password">
-									<span><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
-								</div>
-								<div class="input__item">
-									<input type="text" placeholder="phone">
-									<span><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
-								</div>
-							</form>
-						
+	<div class="container">
+		<div class="anime__details__content">
+			<div class="row">
+				<div class="col-lg-3">
+
+					<div class="anime__details__pic set-bg">
+						<img src="/Uploads/@Model.Avtprofile" style="width:280px;height:390px;border-radius:15px;" />
 					</div>
-                </div>
-            </div>
-        </div>
-    </div>
+				</div>
+				<div class="col-lg-9">
+					<div class="login__form">
+						<h3>Thông tin cá nhân</h3>
+						<form action="#">
+							<div class="input__item">
+								<input type="text" placeholder="@(Model.FullName ?? "Chưa có dữ liệu")">
+								<span><i class="fa fa-user" aria-hidden="true"></i></span>
+							</div>
+							<div class="input__item">
+								<input type="text" placeholder="@(Model.UserNamee ?? "Chưa có dữ liệu")">
+								<span>
+									<i class="fa fa-envelope" aria-hidden="true"></i>
+								</span>
+							</div>
+							<div class="input__item">
+								<input type="text" placeholder="*********">
+								<span><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+							</div>
+							<div class="input__item">
+								<input type="text" placeholder="@(Model.PhoneNumber ?? "Chưa có dữ liệu")">
+								<span><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 <script src="~/js/jsacount/bootstrap.min.js"></script>
 <script src="~/js/jsacount/jquery-3.3.1.min.js"></script>
@@ -56,15 +53,16 @@
 	input[type="text"] {
 		border-radius: 25px;
 	}
+
 	.upload-container {
 		position: relative;
-		width: 100%px; 
+		width: 100%px;
 	}
 
 	.upload-label {
 		display: inline-block;
 		padding: 10px 15px;
-		background-color: #fff; 
+		background-color: #fff;
 		border: 2px solid #242424;
 		border-radius: 25px;
 		cursor: pointer;
@@ -97,13 +95,14 @@
 		text-transform: uppercase;
 		display: inline-block;
 		padding: 12px 30px;
-		justify-content:center;
+		justify-content: center;
 	}
 
-	button.site-btn{
-		margin-left:90px !important;
-		border-radius:15px !important;
+	button.site-btn {
+		margin-left: 90px !important;
+		border-radius: 15px !important;
 	}
+
 	.login__form {
 		position: relative;
 		padding-left: 145px;

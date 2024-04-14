@@ -1,15 +1,28 @@
-﻿namespace BackEnd.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace BackEnd.Models
 {
     public class MusicPlaylist
     {
-        public string? MusicId { get; set; }
+		//Trong cơ sở dữ liệu, một khóa chính tổ hợp là một khóa chính tạo thành từ hai
+		//hoặc nhiều cột trong một bảng. Các cột này khi kết hợp lại với nhau tạo ra
+		//một khóa duy nhất, giúp xác định một dòng dữ liệu cụ thể trong bảng.
+		[Key, Column(Order = 0)]
+		[ForeignKey("Music")]
+		public string? MusicId { get; set; }
+		public virtual Music Music { get; set; } = null!;
 
-        public string? PlaylistId { get; set; }
+		[Key, Column(Order = 1)]
+		[ForeignKey("Playlist")]
+		public string? PlaylistId { get; set; }
+		public virtual Playlist Playlist { get; set; } = null!;
+		public DateOnly? AddedDate { get; set; }
 
-        public DateOnly? AddedDate { get; set; }
-
-        public virtual Music Music { get; set; } = null!;
-
-        public virtual Playlist Playlist { get; set; } = null!;
-    }
+		//Lazy Loading là một kỹ thuật trong lập trình, nó cho phép trì hoãn việc
+		//tải dữ liệu cho đến khi dữ liệu đó thực sự cần thiết. Trong Entity Framework,
+		//Lazy Loading được sử dụng để trì hoãn việc tải các đối tượng liên quan cho đến
+		//khi bạn thực sự truy cập chúng. Điều này có thể giúp cải thiện hiệu suất bằng
+		//cách giảm bớt số lượng dữ liệu được tải từ cơ sở dữ liệu.
+	}
 }

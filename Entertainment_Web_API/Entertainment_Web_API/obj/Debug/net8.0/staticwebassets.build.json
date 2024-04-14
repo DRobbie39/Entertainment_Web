@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XqTHAJewtUT26ow3+M+wrqx20kKXUdErbjbe40T+qBw=",
+  "Hash": "SHia/1j/thfi1B9iNWKk6r0sjitgxFNXlPRYf0PTKrA=",
   "Source": "Entertainment_Web_API",
   "BasePath": "_content/Entertainment_Web_API",
   "Mode": "Default",
@@ -3967,6 +3967,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\4d71cc8c-fbdd-4acb-ae49-699fc7096aed.jpg"
+    },
+    {
+      "Identity": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\Uploads\\830860eb-f7b2-4418-8550-ab531a270a75.png",
+      "SourceId": "Entertainment_Web_API",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\",
+      "BasePath": "_content/Entertainment_Web_API",
+      "RelativePath": "Uploads/830860eb-f7b2-4418-8550-ab531a270a75.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\830860eb-f7b2-4418-8550-ab531a270a75.png"
     },
     {
       "Identity": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\Uploads\\9b48ff9c-0330-4281-b9ea-3553d1256b1d.png",

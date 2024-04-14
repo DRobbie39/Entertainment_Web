@@ -24,15 +24,8 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("BackEnd.Models.Comment", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("CommentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateOnly?>("CommentPostingTime")
                         .HasColumnType("date");
@@ -41,12 +34,16 @@ namespace BackEnd.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("VideoId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CommentId");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("Id");
 
                     b.HasIndex("VideoId");
 
@@ -55,24 +52,22 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("BackEnd.Models.Music", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("MusicId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AppUserId")
+                    b.Property<string>("Id")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("MusicCategoryId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("MusicId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("MusicName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("MusicId");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("Id");
 
                     b.HasIndex("MusicCategoryId");
 
@@ -95,10 +90,12 @@ namespace BackEnd.Migrations
             modelBuilder.Entity("BackEnd.Models.MusicOwner", b =>
                 {
                     b.Property<string>("MusicId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnOrder(0);
 
                     b.Property<string>("SingerId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnOrder(1);
 
                     b.Property<DateOnly?>("ReleaseDate")
                         .HasColumnType("date");
@@ -114,10 +111,12 @@ namespace BackEnd.Migrations
             modelBuilder.Entity("BackEnd.Models.MusicPlaylist", b =>
                 {
                     b.Property<string>("MusicId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnOrder(0);
 
                     b.Property<string>("PlaylistId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnOrder(1);
 
                     b.Property<DateOnly?>("AddedDate")
                         .HasColumnType("date");
@@ -132,21 +131,19 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("BackEnd.Models.Playlist", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("PlaylistId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PlaylistName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("PlaylistId");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("Id");
 
                     b.ToTable("Playlist");
                 });
@@ -166,14 +163,15 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("BackEnd.Models.Video", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AppUserId")
+                    b.Property<string>("VideoId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("Dislikes")
                         .HasColumnType("int");
+
+                    b.Property<string>("Id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("Likes")
                         .HasColumnType("int");
@@ -190,12 +188,8 @@ namespace BackEnd.Migrations
                     b.Property<string>("VideoDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("VideoId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly?>("VideoPostingTime")
-                        .HasColumnType("date");
+                    b.Property<DateTimeOffset?>("VideoPostingTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("VideoUrl")
                         .HasColumnType("nvarchar(max)");
@@ -203,9 +197,9 @@ namespace BackEnd.Migrations
                     b.Property<int?>("VideoViews")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("VideoId");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("Id");
 
                     b.HasIndex("VideoCategoryId");
 
@@ -452,7 +446,9 @@ namespace BackEnd.Migrations
                 {
                     b.HasOne("BackEnd.Models.AppUser", "AppUser")
                         .WithMany("Comments")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BackEnd.Models.Video", "Video")
                         .WithMany("Comments")
@@ -467,7 +463,9 @@ namespace BackEnd.Migrations
                 {
                     b.HasOne("BackEnd.Models.AppUser", "AppUser")
                         .WithMany("Musics")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BackEnd.Models.MusicCategory", "MusicCategory")
                         .WithMany("Musics")
@@ -520,7 +518,9 @@ namespace BackEnd.Migrations
                 {
                     b.HasOne("BackEnd.Models.AppUser", "AppUser")
                         .WithMany("Playlists")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppUser");
                 });
@@ -529,7 +529,9 @@ namespace BackEnd.Migrations
                 {
                     b.HasOne("BackEnd.Models.AppUser", "AppUser")
                         .WithMany("Videos")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BackEnd.Models.VideoCategory", "VideoCategory")
                         .WithMany("Videos")

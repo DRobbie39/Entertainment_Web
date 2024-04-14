@@ -47,8 +47,6 @@ public partial class EntertainmentContext : IdentityDbContext
     {
         base.OnModelCreating(builder);
 
-        
-
         builder.Entity<MusicPlaylist>(entity =>
         {
             entity.HasKey(e => new { e.MusicId, e.PlaylistId }).HasName("PK__MusicPla__0AC8567A7A214FA2");
@@ -82,7 +80,6 @@ public partial class EntertainmentContext : IdentityDbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__MusicOwne__Singe__6383C8BA");
         });
-
 
         OnModelCreatingPartial(builder);
     }

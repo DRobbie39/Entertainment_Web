@@ -37,6 +37,8 @@ builder.Services.AddScoped<IFileService, FileService>();
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 
 

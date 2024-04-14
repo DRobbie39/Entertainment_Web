@@ -1,6 +1,7 @@
 ﻿@using BackEnd.Models
 @using Microsoft.AspNetCore.Identity
-
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -102,10 +103,14 @@
                 <div class="navbar-nav align-items-center ms-auto" style="margin-right:20px;">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            
-                        
-                                <span class="d-none d-lg-inline-flex">fullName</span>
-                        
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                var user = await UserManager.GetUserAsync(User);
+                                var fullName = user?.FullName;
+
+                                <span class="d-none d-lg-inline-flex">@fullName</span>
+
+                            }
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="/Account/Index" class="dropdown-item">My Profile</a>
