@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SHia/1j/thfi1B9iNWKk6r0sjitgxFNXlPRYf0PTKrA=",
+  "Hash": "ayefKRyhQqDNgR6+NLfCxafaUNw4aRoE+J4qp5f3HgQ=",
   "Source": "Entertainment_Web_API",
   "BasePath": "_content/Entertainment_Web_API",
   "Mode": "Default",
@@ -3912,6 +3912,25 @@
       "OriginalItemSpec": "wwwroot\\music\\MTP.mp3"
     },
     {
+      "Identity": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\Uploads\\1229d1b5-6d05-430f-86cb-99a7c79ba180.png",
+      "SourceId": "Entertainment_Web_API",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\",
+      "BasePath": "_content/Entertainment_Web_API",
+      "RelativePath": "Uploads/1229d1b5-6d05-430f-86cb-99a7c79ba180.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\1229d1b5-6d05-430f-86cb-99a7c79ba180.png"
+    },
+    {
       "Identity": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\Uploads\\24c40ce1-11c8-43f1-a31b-9a744fe6a504.jpg",
       "SourceId": "Entertainment_Web_API",
       "SourceType": "Discovered",
@@ -4005,6 +4024,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\9b48ff9c-0330-4281-b9ea-3553d1256b1d.png"
+    },
+    {
+      "Identity": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\Uploads\\avtmacdinh.jpg",
+      "SourceId": "Entertainment_Web_API",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\",
+      "BasePath": "_content/Entertainment_Web_API",
+      "RelativePath": "Uploads/avtmacdinh.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\avtmacdinh.jpg"
     },
     {
       "Identity": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\Uploads\\e93430cd-a999-4e76-8cc6-923efbe85f1f.jpg",

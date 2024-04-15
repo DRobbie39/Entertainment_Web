@@ -64,7 +64,7 @@ namespace AspnetIdentityRoleBasedTutorial.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
-            public string Name { get; set; }
+            public string FullName { get; set; }
             public string Avtprofile { get; set; }
             public IFormFile ImageFile { get; set; }
         }
@@ -79,6 +79,7 @@ namespace AspnetIdentityRoleBasedTutorial.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
+                FullName = user.FullName,
                 Avtprofile = user.Avtprofile
             };
         }
@@ -119,7 +120,16 @@ namespace AspnetIdentityRoleBasedTutorial.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
-
+            if (Input.FullName != user.FullName)
+            {
+                user.FullName = Input.FullName;
+                var result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set phone number.";
+                    return RedirectToPage();
+                }
+            }
             if (Input.ImageFile != null)
             {
                 var result = _fileService.SaveImage(Input.ImageFile);

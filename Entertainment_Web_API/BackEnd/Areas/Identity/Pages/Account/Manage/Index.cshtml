@@ -14,7 +14,7 @@
     @if (!string.IsNullOrEmpty(Model.Input.Avtprofile))
     {
         <div class="col-md-4">
-            <img src="/uploads/@Model.Input.Avtprofile" style="width:250px;height:300px"/>
+            <img src="/uploads/@Model.Input.Avtprofile" style="width:250px;height:300px;border-radius:15px;" />
         </div>
     }
     <div class="col-md-6">
@@ -25,18 +25,18 @@
                 <label asp-for="Username" class="form-label"></label>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number."/>
+                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
                 <label asp-for="Input.PhoneNumber" class="form-label"></label>
                 <span asp-validation- for="Input.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.Name" class="form-control" placeholder="Please enter your name "/>
-                <label asp-for="Input.Name" class="form-label"></label>
-                <span asp-validation-for="Input.Name" class="text-danger"></span>
+                <input asp-for="Input.FullName" class="form-control" placeholder="Please enter your name " />
+                <label asp-for="Input.FullName" class="form-label"></label>
+                <span asp-validation-for="Input.FullName" class="text-danger"></span>
             </div>
             <div class="m-2">
                 <label class="form-label" for="ProfilePicture">Profile picture</label>
-                <input asp-for="Input.ImageFile"/>
+                <input asp-for="Input.ImageFile" />
             </div>
             <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
         </form>

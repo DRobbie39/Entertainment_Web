@@ -2,7 +2,6 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +37,7 @@
                 <div class="navbar-nav w-100">
                     <a href="/Home/Index" class="nav-item nav-link active"><i class="fa fa-university me-2"></i>Home</a>
                     <a href="/Home/Music" class="nav-item nav-link"><i class="fa fa-headphones me-2"></i>Music</a>
-                    
+
                 </div>
             </nav>
             <nav class="navbar bg-secondary navbar-dark passs" style="margin-top:10px;">
@@ -96,8 +95,8 @@
                 </a>
 
                 @* <form class="d-none d-md-flex ms-4">
-                    <i class="fa-solid fa-house"></i>
-                    <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+                <i class="fa-solid fa-house"></i>
+                <input class="form-control bg-dark border-0" type="search" placeholder="Search">
                 </form> *@
 
                 <div class="navbar-nav align-items-center ms-auto" style="margin-right:20px;">
@@ -107,10 +106,11 @@
                             {
                                 var user = await UserManager.GetUserAsync(User);
                                 var fullName = user?.FullName;
-
+                                var avtprofile = user?.Avtprofile;
+                                <img class="rounded-circle me-lg-2" src="/Uploads/@(avtprofile??"avtmacdinh.jpg")" alt="" style="width: 40px; height: 40px;">
                                 <span class="d-none d-lg-inline-flex">@fullName</span>
-
                             }
+
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="/Account/Index" class="dropdown-item">My Profile</a>
@@ -122,7 +122,7 @@
             </nav>
             <div class="container-fluid pt-4 ">
                 <div class="row g-4">
-            @RenderBody()
+                    @RenderBody()
                 </div>
             </div>
         </div>
@@ -148,7 +148,8 @@
     .content .navbar .dropdown-item {
         color: #d64141;
     }
-    .sidebar{
+
+    .sidebar {
         background: #000000 !important;
     }
 
@@ -156,14 +157,14 @@
         border-radius: 15px;
     }
 
-    nav.navbar.bg-secondary.navbar-dark.passs{
-        height:41%;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        min-height: 0;
+        nav.navbar.bg-secondary.navbar-dark.passs {
+            height: 41%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            min-height: 0;
             flex-direction: column;
             width: 100%;
             -webkit-box-flex: 1;
@@ -173,59 +174,65 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            padding-bottom:0px;
-            padding-right:8px;
-    }
-    .nutpam{
-        color:#fff;
-        font-weight:700px;
-        margin-top:7px;
-        margin-left:26px;
+            padding-bottom: 0px;
+            padding-right: 8px;
+        }
+
+    .nutpam {
+        color: #fff;
+        font-weight: 700px;
+        margin-top: 7px;
+        margin-left: 26px;
         background: #242424;
-        border-radius:25px;
-        width:140px;
-        padding:8px;
+        border-radius: 25px;
+        width: 140px;
+        padding: 8px;
     }
 
-    .thuvien{
-        display:flex;
+    .thuvien {
+        display: flex;
     }
-    .thuvien i{
+
+        .thuvien i {
             align-content: space-between;
             width: 40px;
             height: 60px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .thuvien a {
+            color: #6c7293;
+        }
+
+    .danhsach li {
+        list-style-type: none;
+        font-size: 14px;
     }
 
-    .thuvien a{
-            color: #6c7293;
-    }
-    .danhsach li{
-        list-style-type: none;
-        font-size:14px;
-    }
-    .thuvienanh{
-        display:flex;
+    .thuvienanh {
+        display: flex;
         padding: 10px 20px 0px 10px;
-        margin-left:15px;
+        margin-left: 15px;
         background: #242424;
-        border-radius:6px;
-        height:65px;
-        margin-bottom:10px;
-        margin-right:5px;
+        border-radius: 6px;
+        height: 65px;
+        margin-bottom: 10px;
+        margin-right: 5px;
     }
-    .danhsach{
-        padding-left:15px;
+
+    .danhsach {
+        padding-left: 15px;
     }
 
     .sidebar.pb-3 {
         padding-bottom: 3px !important;
     }
-    span.d-none.d-lg-inline-flex{
+
+    span.d-none.d-lg-inline-flex {
         color: #6c7293 !important;
-        font-weight:700;
+        font-weight: 700;
     }
 </style>
 </html>

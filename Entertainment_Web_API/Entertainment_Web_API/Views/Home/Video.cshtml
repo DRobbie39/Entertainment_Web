@@ -5,30 +5,94 @@
     Layout = "~/Views/Shared/_LayoutAccount.cshtml";
 }
 
-<iframe style="margin-top:100px;" width="560" height="315" src="@Model.VideoUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen allow="autoplay"></iframe>
+<div class="row g-0">
+    <div class="col-sm-6 col-md-8">
+        <iframe style="margin-top:50px;margin-left:8px;" width="97%" height="415" src="@Model.VideoUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen allow="autoplay"></iframe>
 
-<div class="row" style="margin-top:50px;">
-    <div class="col-6">
-        <h5 style="color:#6c7293">
-            Lượt xem: @Model.VideoViews
-        </h5>
-        <p>@Model.Title</p>
-        <h3 style="color:#dbc9c9">
-            Bình luận
-        </h3>
+        <div class="row" style="margin-top:50px;margin-left:8px;">
+            <div class="col-6">
+                <h5 style="color:#6c7293">
+                    Lượt xem: @Model.VideoViews
+                </h5>
+                <p>@Model.Title</p>
+                <h3 style="color:#dbc9c9">
+                    Bình luận
+                </h3>
+            </div>
+            <div class="col-3">
+                <i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Likes</i>
+                <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"> @Model.Dislikes</i>
+            </div>
+            <div class="col-3">
+                <i class="fa fa-download" aria-hidden="true">Tải xuống</i>
+            </div>
+            <div class="comment-box">
+                <textarea class="comment-input" placeholder="Nhập bình luận của bạn..."></textarea>
+                <button class="submit-button">Gửi</button>
+            </div>
+        </div>
     </div>
-    <div class="col-3">
-        <i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Likes</i>
-        <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"> @Model.Dislikes</i>
-    </div>
-    <div class="col-3">
-        <i class="fa fa-download" aria-hidden="true">Tải xuống</i>
-    </div>
-    <div class="comment-box">
-        <textarea class="comment-input" placeholder="Nhập bình luận của bạn..."></textarea>
-        <button class="submit-button">Gửi</button>
+    <div class="col-6 col-md-4">
+        <div class="product__sidebar__comment">
+            <div class="section-title" style="margin-top:30px;">
+                <h5>Danh sách kết hợp</h5>
+            </div>
+            <div class="product__sidebar__comment__item">
+                <div class="product__sidebar__comment__item__pic">
+                    <img style="width:90px;height:100px;border-radius:15px;" src="/lib/mtp.jpg" alt="">
+                </div>
+                <div class="product__sidebar__comment__item__text">
+                    <ul>
+                        <li>Active</li>
+                        <li>Movie</li>
+                    </ul>
+                    <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
+                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+                </div>
+            </div>
+            <div class="product__sidebar__comment__item">
+                <div class="product__sidebar__comment__item__pic">
+                    <img style="width:90px;height:100px;border-radius:15px;" src="/lib/mtp.jpg" alt="">
+                </div>
+                <div class="product__sidebar__comment__item__text">
+                    <ul>
+                        <li>Active</li>
+                        <li>Movie</li>
+                    </ul>
+                    <h5><a href="#">Shirogane Tamashii hen Kouhan sen</a></h5>
+                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+                </div>
+            </div>
+            <div class="product__sidebar__comment__item">
+                <div class="product__sidebar__comment__item__pic">
+                    <img style="width:90px;height:100px;border-radius:15px;" src="/lib/mtp.jpg" alt="">
+                </div>
+                <div class="product__sidebar__comment__item__text">
+                    <ul>
+                        <li>Active</li>
+                        <li>Movie</li>
+                    </ul>
+                    <h5><a href="#">Kizumonogatari III: Reiket su-hen</a></h5>
+                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+                </div>
+            </div>
+            <div class="product__sidebar__comment__item">
+                <div class="product__sidebar__comment__item__pic">
+                    <img style="width:90px;height:100px;border-radius:15px;" src="/lib/mtp.jpg" alt="">
+                </div>
+                <div class="product__sidebar__comment__item__text">
+                    <ul>
+                        <li>Active</li>
+                        <li>Movie</li>
+                    </ul>
+                    <h5><a href="#">Monogatari Series: Second Season</a></h5>
+                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 <style>
     .comment-box {
         width: 100%;
@@ -73,4 +137,53 @@
     i.fa.fa-thumbs-down {
         cursor: pointer;
     }
+
+    .product__sidebar__comment {
+        margin-bottom: 35px;
+    }
+
+    .product__sidebar__comment__item {
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .product__sidebar__comment__item__pic {
+        float: left;
+        margin-right: 15px;
+    }
+
+    .product__sidebar__comment__item__text {
+        overflow: hidden;
+    }
+
+        .product__sidebar__comment__item__text ul {
+            margin-bottom: 10px;
+        }
+
+            .product__sidebar__comment__item__text ul li {
+                list-style: none;
+                font-size: 10px;
+                color: #ffffff;
+                font-weight: 700;
+                padding: 1px 10px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 50px;
+                display: inline-block;
+            }
+
+        .product__sidebar__comment__item__text h5 {
+            margin-bottom: 10px;
+        }
+
+            .product__sidebar__comment__item__text h5 a {
+                color: #ffffff;
+                font-weight: 700;
+                line-height: 26px;
+            }
+
+        .product__sidebar__comment__item__text span {
+            display: block;
+            font-size: 13px;
+            color: #b7b7b7;
+        }
 </style>
