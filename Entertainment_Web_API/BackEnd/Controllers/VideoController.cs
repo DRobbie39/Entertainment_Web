@@ -81,5 +81,43 @@ namespace BackEnd.Controllers
 
             return Ok(video);
         }
+
+        [HttpGet("{videoId}")]
+        public async Task<IActionResult> GetRelatedVideos(string videoId)
+        {
+            var youtubeService = new YouTubeService(new BaseClientService.Initializer()
+            {
+                ApiKey = apiKey,
+                ApplicationName = this.GetType().ToString()
+            });
+
+            // Get the current video's details
+            var videoRequest = youtubeService.Videos.List("snippet");
+            videoRequest.Id = videoId;
+            var videoResponse = await videoRequest.ExecuteAsync();
+            var currentVideo = videoResponse.Items[0];
+
+            // Search for related videos
+            var searchRequest = youtubeService.Search.List("snippet");
+            searchRequest.Q = currentVideo.Snippet.Title; // Use the current video's title as the search term
+            searchRequest.MaxResults = 5;
+            searchRequest.Type = "video"; // Only search for videos
+
+            var searchResponse = await searchRequest.ExecuteAsync();
+
+            var relatedVideos = new List<Video>();
+
+            foreach (var searchResult in searchResponse.Items)
+            {
+                relatedVideos.Add(new Video
+                {
+                    VideoId = searchResult.Id.VideoId,
+                    Title = searchResult.Snippet.Title,
+                    ThumbnailUrl = searchResult.Snippet.Thumbnails.Default__.Url,
+                });
+            }
+
+            return Ok(relatedVideos);
+        }
     }
 }

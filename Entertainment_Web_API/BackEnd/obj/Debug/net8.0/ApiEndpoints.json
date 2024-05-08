@@ -46,5 +46,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.VideoController",
+    "Method": "GetRelatedVideos",
+    "RelativePath": "backend/Video/GetRelatedVideos/{videoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

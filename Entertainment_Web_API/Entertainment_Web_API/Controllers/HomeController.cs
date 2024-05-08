@@ -57,6 +57,15 @@ namespace Entertainment_Web_API.Controllers
                 string data = await response.Content.ReadAsStringAsync();
                 video = JsonConvert.DeserializeObject<Video>(data);
             }
+
+            // Get related videos
+            HttpResponseMessage relatedResponse = await _client.GetAsync(_client.BaseAddress + $"/Video/GetRelatedVideos/{id}");
+            if (relatedResponse.IsSuccessStatusCode)
+            {
+                string relatedData = await relatedResponse.Content.ReadAsStringAsync();
+                ViewBag.RelatedVideos = JsonConvert.DeserializeObject<List<Video>>(relatedData);
+            }
+
             return View(video);
         }
 
