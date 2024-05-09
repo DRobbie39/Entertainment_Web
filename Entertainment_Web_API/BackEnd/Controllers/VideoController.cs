@@ -109,12 +109,16 @@ namespace BackEnd.Controllers
 
             foreach (var searchResult in searchResponse.Items)
             {
-                relatedVideos.Add(new Video
+                // Skip if the video is the same as the current video
+                if (searchResult.Id.VideoId != videoId)
                 {
-                    VideoId = searchResult.Id.VideoId,
-                    Title = searchResult.Snippet.Title,
-                    ThumbnailUrl = searchResult.Snippet.Thumbnails.Default__.Url,
-                });
+                    relatedVideos.Add(new Video
+                    {
+                        VideoId = searchResult.Id.VideoId,
+                        Title = searchResult.Snippet.Title,
+                        ThumbnailUrl = searchResult.Snippet.Thumbnails.Default__.Url,
+                    });
+                }
             }
 
             return Ok(relatedVideos);
