@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-9" style="margin-top:30px;">
                     <h6>Playlist</h6>
-                    <h2 style="font-size:56px;font-weight:700">Danh sách phát của tôi #2</h2>
+                    <h2 style="font-size:56px;font-weight:700">Danh sách phát của tôi</h2>
                     <h6 style="color:#e8d9d9;">
                         chill beats, lofi vibes, new tracks every week...
                     </h6>
@@ -23,31 +23,24 @@
                     <h5 style="color:#bebebe;">Tên cá nhân</h5>
                 </div>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Tiêu đề</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null && Model.Count > 0)
+            <div class="d-flex flex-wrap justify-content-start">
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var playlist in Model)
                     {
-                        int counter = 1;
-                        foreach (var playlist in Model)
-                        {
-                            <tr>
-                                <th scope="row">@counter</th>
-                                <td><a href="/Home/MusicDetail"><img class="rounded-circle me-lg-2" src="/lib/mtp.jpg" alt="" style="width: 40px; height: 40px;">@playlist.PlaylistName</a></td>
-                            </tr>
-                            counter++;
-                        }
+                        <div style="width: 12rem; border: 1px solid #ccc; border-radius: 5px; padding: 10px; margin: 5px;">
+                            <a href="/Home/MusicDetail">
+                                <img src="/lib/mtp.jpg" alt="..." style="width: 100%; height: auto;">
+                                <h5>@playlist.PlaylistName</h5>
+                            </a>
+                        </div>
                     }
-                </tbody>
-            </table>
+                }
+            </div>
         </div>
     </div>
 </div>
+
 <style>
     .mee {
         color: #fff;
