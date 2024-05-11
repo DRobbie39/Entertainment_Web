@@ -48,13 +48,19 @@
                         <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                     <h6 href="#" class="nutpam">Danh sách phát</h6>
-                    <div class="thuvienanh">
-                        <img style="width:40px;height:45px;border-radius:8px;" src="/lib/mtp.jpg" alt="">
-                        <ul class="danhsach">
-                            <li style="font-weight:bold;color:#fff;">Danh sách phát của tôi</li>
-                            <li>Danh sách phát của tôi</li>
-                        </ul>
-                    </div>
+                    @* @if(Model != null)
+                    {
+                        @foreach (var playlist in Model)
+                        {
+                            <div class="thuvienanh">
+                                <img style="width:40px;height:45px;border-radius:8px;" src="/lib/mtp.jpg" alt="">
+                                <ul class="danhsach">
+                                    <li style="font-weight:bold;color:#fff;">@playlist.PlaylistName</li>
+                                    <li>@playlist.PlaylistName</li>
+                                </ul>
+                            </div>
+                        }
+                    } *@
                 </div>
             </nav>
             <nav class="navbar bg-secondary navbar-dark" style="margin-top:10px;">

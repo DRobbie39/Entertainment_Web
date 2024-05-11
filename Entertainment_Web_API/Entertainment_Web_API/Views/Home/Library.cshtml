@@ -1,4 +1,6 @@
-﻿
+﻿@using BackEnd.Models
+@model List<Playlist>
+
 @{
     ViewData["Title"] = "Library";
     Layout = "~/Views/Shared/_LayoutAccount.cshtml";
@@ -26,21 +28,21 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Tiêu đề</th>
-                        <th scope="col">Album</th>
-                        <th scope="col">Ngày thêm</th>
-                        <th scope="col"><i class="fa fa-clock me-2"></i></th>
-                        <th scope="col">Playlist</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td><a href="/Home/MusicDetail"><img class="rounded-circle me-lg-2" src="/lib/mtp.jpg" alt="" style="width: 40px; height: 40px;">John</a></td>
-                        <td>Doe</td>
-                        <td>2/12/1222</td>
-                        <td>2:99</td>
-                        <td><a href="#"><i class="fa fa-plus mee" aria-hidden="true"></i></a></td>
-                    </tr>
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        int counter = 1;
+                        foreach (var playlist in Model)
+                        {
+                            <tr>
+                                <th scope="row">@counter</th>
+                                <td><a href="/Home/MusicDetail"><img class="rounded-circle me-lg-2" src="/lib/mtp.jpg" alt="" style="width: 40px; height: 40px;">@playlist.PlaylistName</a></td>
+                            </tr>
+                            counter++;
+                        }
+                    }
                 </tbody>
             </table>
         </div>

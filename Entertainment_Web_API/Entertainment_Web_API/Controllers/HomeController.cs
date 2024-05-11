@@ -1,9 +1,12 @@
 ﻿using BackEnd.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace Entertainment_Web_API.Controllers
 {
@@ -11,12 +14,25 @@ namespace Entertainment_Web_API.Controllers
     {
         Uri baseAddress = new Uri("https://localhost:7142/backend");
         private readonly HttpClient _client;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public HomeController()
+        public HomeController(IHttpContextAccessor httpContextAccessor)
         {
             _client = new HttpClient();
+            _httpContextAccessor = httpContextAccessor;
             _client.BaseAddress = baseAddress;
 
+        }
+
+        private string GetCurrentUserId()
+        {
+            var httpContext = _httpContextAccessor.HttpContext;
+            if (httpContext.User.Identity.IsAuthenticated)
+            {
+                return httpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            }
+            // Nếu người dùng không đăng nhập, trả về null hoặc xử lý tùy theo yêu cầu
+            return null;
         }
 
         public async Task<IActionResult> NoAccount(string searchTerm = "music")
@@ -81,11 +97,27 @@ namespace Entertainment_Web_API.Controllers
             return View();
         }
 
-        [Authorize]
+        //[Authorize]
         //[Authorize(Roles = "Admin, User")]
         //[Authorize(Roles = "Admin")]
-        public IActionResult Library()
+        public async Task<IActionResult> Library()
         {
+            var userId = GetCurrentUserId();
+            if (userId == null)
+            {
+                // Xử lý trường hợp người dùng không đăng nhập
+                return RedirectToAction("Login", "Account");
+            }
+
+            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/Playlist/GetPlaylists/{userId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                var playlists = JsonConvert.DeserializeObject<List<Playlist>>(data);
+                return View(playlists);
+            }
+            
             return View();
         }
     }

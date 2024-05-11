@@ -1,14 +1,14 @@
 [
   {
-    "ContainingType": "BackEnd.Controllers.UserController",
-    "Method": "Get",
-    "RelativePath": "backend/User/Get/{Id}",
-    "HttpMethod": "GET",
+    "ContainingType": "BackEnd.Controllers.PlaylistController",
+    "Method": "CreatePlaylist",
+    "RelativePath": "backend/Playlist/CreatePlaylist",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Id",
+        "Name": "playlistName",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -16,26 +16,10 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "BackEnd.Controllers.VideoController",
-    "Method": "Get",
-    "RelativePath": "backend/Video/Get/{searchTerm}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "searchTerm",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "BackEnd.Controllers.VideoController",
-    "Method": "GetDetails",
-    "RelativePath": "backend/Video/GetDetails/{id}",
-    "HttpMethod": "GET",
+    "ContainingType": "BackEnd.Controllers.PlaylistController",
+    "Method": "DeletePlaylist",
+    "RelativePath": "backend/Playlist/DeletePlaylist/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -48,15 +32,52 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "BackEnd.Controllers.VideoController",
-    "Method": "GetRelatedVideos",
-    "RelativePath": "backend/Video/GetRelatedVideos/{videoId}",
+    "ContainingType": "BackEnd.Controllers.PlaylistController",
+    "Method": "GetPlaylists",
+    "RelativePath": "backend/Playlist/GetPlaylists/{userId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "videoId",
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.PlaylistController",
+    "Method": "UpdatePlaylist",
+    "RelativePath": "backend/Playlist/UpdatePlaylist/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "newPlaylistName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.UserController",
+    "Method": "Get",
+    "RelativePath": "backend/User/Get/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
         "Type": "System.String",
         "IsRequired": true
       }
