@@ -13,6 +13,6 @@ namespace BackEnd.Models
 		public string? Id { get; set; }
 		public virtual AppUser? AppUser { get; set; }
 
-		public virtual ICollection<MusicPlaylist> MusicPlaylists { get; set; } = new List<MusicPlaylist>();
+		public virtual ICollection<VideoPlaylist> VideoPlaylists { get; set; } = new List<VideoPlaylist>();
     }
 }

@@ -27,17 +27,7 @@ public partial class EntertainmentContext : IdentityDbContext
 
     public virtual DbSet<Playlist> Playlist { get; set; }
 
-    public virtual DbSet<Music> Musics { get; set; }
-
-    public virtual DbSet<MusicCategory> MusicCategories { get; set; }
-
-    public virtual DbSet<MusicOwner> MusicOwners { get; set; }
-
-    public virtual DbSet<MusicPlaylist> MusicPlaylists { get; set; }
-
-    public virtual DbSet<Singer> Singers { get; set; }
-
-
+    public virtual DbSet<VideoPlaylist> VideoPlaylists { get; set; }
 
     //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -47,38 +37,21 @@ public partial class EntertainmentContext : IdentityDbContext
     {
         base.OnModelCreating(builder);
 
-        builder.Entity<MusicPlaylist>(entity =>
+        builder.Entity<VideoPlaylist>(entity =>
         {
-            entity.HasKey(e => new { e.MusicId, e.PlaylistId }).HasName("PK__MusicPla__0AC8567A7A214FA2");
+            entity.HasKey(e => new { e.VideoId, e.PlaylistId }).HasName("PK__VideoPla__0AC8567A7A214FA2");
 
-            entity.ToTable("MusicPlaylist");
+            entity.ToTable("VideoPlaylist");
 
-            entity.HasOne(d => d.Music).WithMany(p => p.MusicPlaylists)
-                .HasForeignKey(d => d.MusicId)
+            entity.HasOne(d => d.Video).WithMany(p => p.VideoPlaylists)
+                .HasForeignKey(d => d.VideoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__MusicPlay__Music__6A30C649");
+                .HasConstraintName("FK__VideoPlay__Video__6A30C649");
 
-            entity.HasOne(d => d.Playlist).WithMany(p => p.MusicPlaylists)
+            entity.HasOne(d => d.Playlist).WithMany(p => p.VideoPlaylists)
                 .HasForeignKey(d => d.PlaylistId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__MusicPlay__Playl__6B24EA82");
-        });
-
-        builder.Entity<MusicOwner>(entity =>
-        {
-            entity.HasKey(e => new { e.MusicId, e.SingerId }).HasName("PK__MusicOwn__A11E3E7ACF167879");
-
-            entity.ToTable("MusicOwner");
-
-            entity.HasOne(d => d.Music).WithMany(p => p.MusicOwners)
-                .HasForeignKey(d => d.MusicId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__MusicOwne__Music__628FA481");
-
-            entity.HasOne(d => d.Singer).WithMany(p => p.MusicOwners)
-                .HasForeignKey(d => d.SingerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__MusicOwne__Singe__6383C8BA");
+                .HasConstraintName("FK__VideoPlay__Playl__6B24EA82");
         });
 
         OnModelCreatingPartial(builder);

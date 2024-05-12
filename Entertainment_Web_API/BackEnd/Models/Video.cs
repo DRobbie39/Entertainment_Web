@@ -26,5 +26,6 @@ namespace BackEnd.Models
         public virtual AppUser? AppUser { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public virtual ICollection<VideoPlaylist> VideoPlaylists { get; set; } = new List<VideoPlaylist>();
     }
 }

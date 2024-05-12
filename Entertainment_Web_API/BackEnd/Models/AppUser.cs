@@ -12,7 +12,5 @@ namespace BackEnd.Models
         public virtual ICollection<Video> Videos { get; set; } = new List<Video>();
         public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
         public virtual ICollection<Playlist> Playlists { get; set; } = new List<Playlist>();
-        public virtual ICollection<Music> Musics { get; set; } = new List<Music>();
-
     }
 }

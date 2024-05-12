@@ -50,85 +50,6 @@ namespace BackEnd.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("BackEnd.Models.Music", b =>
-                {
-                    b.Property<string>("MusicId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("MusicCategoryId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("MusicName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MusicId");
-
-                    b.HasIndex("Id");
-
-                    b.HasIndex("MusicCategoryId");
-
-                    b.ToTable("Musics");
-                });
-
-            modelBuilder.Entity("BackEnd.Models.MusicCategory", b =>
-                {
-                    b.Property<string>("MusicCategoryId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("MusicCategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MusicCategoryId");
-
-                    b.ToTable("MusicCategories");
-                });
-
-            modelBuilder.Entity("BackEnd.Models.MusicOwner", b =>
-                {
-                    b.Property<string>("MusicId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(0);
-
-                    b.Property<string>("SingerId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(1);
-
-                    b.Property<DateOnly?>("ReleaseDate")
-                        .HasColumnType("date");
-
-                    b.HasKey("MusicId", "SingerId")
-                        .HasName("PK__MusicOwn__A11E3E7ACF167879");
-
-                    b.HasIndex("SingerId");
-
-                    b.ToTable("MusicOwner", (string)null);
-                });
-
-            modelBuilder.Entity("BackEnd.Models.MusicPlaylist", b =>
-                {
-                    b.Property<string>("MusicId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(0);
-
-                    b.Property<string>("PlaylistId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(1);
-
-                    b.Property<DateOnly?>("AddedDate")
-                        .HasColumnType("date");
-
-                    b.HasKey("MusicId", "PlaylistId")
-                        .HasName("PK__MusicPla__0AC8567A7A214FA2");
-
-                    b.HasIndex("PlaylistId");
-
-                    b.ToTable("MusicPlaylist", (string)null);
-                });
-
             modelBuilder.Entity("BackEnd.Models.Playlist", b =>
                 {
                     b.Property<string>("PlaylistId")
@@ -146,19 +67,6 @@ namespace BackEnd.Migrations
                     b.HasIndex("Id");
 
                     b.ToTable("Playlist");
-                });
-
-            modelBuilder.Entity("BackEnd.Models.Singer", b =>
-                {
-                    b.Property<string>("SingerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("SingerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SingerId");
-
-                    b.ToTable("Singers");
                 });
 
             modelBuilder.Entity("BackEnd.Models.Video", b =>
@@ -217,6 +125,24 @@ namespace BackEnd.Migrations
                     b.HasKey("VideoCategoryId");
 
                     b.ToTable("VideoCategories");
+                });
+
+            modelBuilder.Entity("BackEnd.Models.VideoPlaylist", b =>
+                {
+                    b.Property<string>("VideoId")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnOrder(0);
+
+                    b.Property<string>("PlaylistId")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnOrder(1);
+
+                    b.HasKey("VideoId", "PlaylistId")
+                        .HasName("PK__VideoPla__0AC8567A7A214FA2");
+
+                    b.HasIndex("PlaylistId");
+
+                    b.ToTable("VideoPlaylist", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -459,61 +385,6 @@ namespace BackEnd.Migrations
                     b.Navigation("Video");
                 });
 
-            modelBuilder.Entity("BackEnd.Models.Music", b =>
-                {
-                    b.HasOne("BackEnd.Models.AppUser", "AppUser")
-                        .WithMany("Musics")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BackEnd.Models.MusicCategory", "MusicCategory")
-                        .WithMany("Musics")
-                        .HasForeignKey("MusicCategoryId");
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("MusicCategory");
-                });
-
-            modelBuilder.Entity("BackEnd.Models.MusicOwner", b =>
-                {
-                    b.HasOne("BackEnd.Models.Music", "Music")
-                        .WithMany("MusicOwners")
-                        .HasForeignKey("MusicId")
-                        .IsRequired()
-                        .HasConstraintName("FK__MusicOwne__Music__628FA481");
-
-                    b.HasOne("BackEnd.Models.Singer", "Singer")
-                        .WithMany("MusicOwners")
-                        .HasForeignKey("SingerId")
-                        .IsRequired()
-                        .HasConstraintName("FK__MusicOwne__Singe__6383C8BA");
-
-                    b.Navigation("Music");
-
-                    b.Navigation("Singer");
-                });
-
-            modelBuilder.Entity("BackEnd.Models.MusicPlaylist", b =>
-                {
-                    b.HasOne("BackEnd.Models.Music", "Music")
-                        .WithMany("MusicPlaylists")
-                        .HasForeignKey("MusicId")
-                        .IsRequired()
-                        .HasConstraintName("FK__MusicPlay__Music__6A30C649");
-
-                    b.HasOne("BackEnd.Models.Playlist", "Playlist")
-                        .WithMany("MusicPlaylists")
-                        .HasForeignKey("PlaylistId")
-                        .IsRequired()
-                        .HasConstraintName("FK__MusicPlay__Playl__6B24EA82");
-
-                    b.Navigation("Music");
-
-                    b.Navigation("Playlist");
-                });
-
             modelBuilder.Entity("BackEnd.Models.Playlist", b =>
                 {
                     b.HasOne("BackEnd.Models.AppUser", "AppUser")
@@ -540,6 +411,25 @@ namespace BackEnd.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("VideoCategory");
+                });
+
+            modelBuilder.Entity("BackEnd.Models.VideoPlaylist", b =>
+                {
+                    b.HasOne("BackEnd.Models.Playlist", "Playlist")
+                        .WithMany("VideoPlaylists")
+                        .HasForeignKey("PlaylistId")
+                        .IsRequired()
+                        .HasConstraintName("FK__VideoPlay__Playl__6B24EA82");
+
+                    b.HasOne("BackEnd.Models.Video", "Video")
+                        .WithMany("VideoPlaylists")
+                        .HasForeignKey("VideoId")
+                        .IsRequired()
+                        .HasConstraintName("FK__VideoPlay__Video__6A30C649");
+
+                    b.Navigation("Playlist");
+
+                    b.Navigation("Video");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -593,31 +483,16 @@ namespace BackEnd.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BackEnd.Models.Music", b =>
-                {
-                    b.Navigation("MusicOwners");
-
-                    b.Navigation("MusicPlaylists");
-                });
-
-            modelBuilder.Entity("BackEnd.Models.MusicCategory", b =>
-                {
-                    b.Navigation("Musics");
-                });
-
             modelBuilder.Entity("BackEnd.Models.Playlist", b =>
                 {
-                    b.Navigation("MusicPlaylists");
-                });
-
-            modelBuilder.Entity("BackEnd.Models.Singer", b =>
-                {
-                    b.Navigation("MusicOwners");
+                    b.Navigation("VideoPlaylists");
                 });
 
             modelBuilder.Entity("BackEnd.Models.Video", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("VideoPlaylists");
                 });
 
             modelBuilder.Entity("BackEnd.Models.VideoCategory", b =>
@@ -628,8 +503,6 @@ namespace BackEnd.Migrations
             modelBuilder.Entity("BackEnd.Models.AppUser", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Musics");
 
                     b.Navigation("Playlists");
 
