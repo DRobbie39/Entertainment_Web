@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5AFAC2F1-D562-456C-8E35-1197A0DF156A}|BackEnd\\BackEnd.csproj|d:\\study\\hk2 2023-2024\\api\\entertainment_web\\entertainment_web_api\\backend\\models\\videocategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AFAC2F1-D562-456C-8E35-1197A0DF156A}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\videocategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|d:\\study\\hk2 2023-2024\\api\\entertainment_web\\entertainment_web_api\\entertainment_web_api\\views\\home\\video.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|solutionrelative:entertainment_web_api\\views\\home\\video.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|d:\\study\\hk2 2023-2024\\api\\entertainment_web\\entertainment_web_api\\entertainment_web_api\\views\\shared\\_layoutaccount.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|solutionrelative:entertainment_web_api\\views\\shared\\_layoutaccount.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFAC2F1-D562-456C-8E35-1197A0DF156A}|BackEnd\\BackEnd.csproj|d:\\study\\hk2 2023-2024\\api\\entertainment_web\\entertainment_web_api\\backend\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFAC2F1-D562-456C-8E35-1197A0DF156A}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\entertainment_web_api\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|solutionrelative:entertainment_web_api\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFAC2F1-D562-456C-8E35-1197A0DF156A}|BackEnd\\BackEnd.csproj|D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\backend\\controllers\\videocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFAC2F1-D562-456C-8E35-1197A0DF156A}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\controllers\\videocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +30,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 13,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_LayoutAccount.cshtml",
+              "DocumentMoniker": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Shared\\_LayoutAccount.cshtml",
+              "RelativeDocumentMoniker": "Entertainment_Web_API\\Views\\Shared\\_LayoutAccount.cshtml",
+              "ToolTip": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Shared\\_LayoutAccount.cshtml",
+              "RelativeToolTip": "Entertainment_Web_API\\Views\\Shared\\_LayoutAccount.cshtml",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAAAAQAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-16T19:08:10.694Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -67,15 +96,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "VideoCategory.cs",
-              "DocumentMoniker": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\Models\\VideoCategory.cs",
-              "RelativeDocumentMoniker": "BackEnd\\Models\\VideoCategory.cs",
-              "ToolTip": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\Models\\VideoCategory.cs",
-              "RelativeToolTip": "BackEnd\\Models\\VideoCategory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T11:09:47.569Z",
+              "Title": "Video.cshtml",
+              "DocumentMoniker": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Home\\Video.cshtml",
+              "RelativeDocumentMoniker": "Entertainment_Web_API\\Views\\Home\\Video.cshtml",
+              "ToolTip": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Home\\Video.cshtml",
+              "RelativeToolTip": "Entertainment_Web_API\\Views\\Home\\Video.cshtml",
+              "ViewState": "AQIAAMUAAAAAAAAAAAAYwOEAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-12T11:36:56.915Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlaylistController.cs",
+              "DocumentMoniker": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\Controllers\\PlaylistController.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Controllers\\PlaylistController.cs",
+              "ToolTip": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\Controllers\\PlaylistController.cs",
+              "RelativeToolTip": "BackEnd\\Controllers\\PlaylistController.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAYwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T16:48:35.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Entertainment_Web_API\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Entertainment_Web_API\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAmwFwAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-12T12:30:07.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VideoController.cs",
+              "DocumentMoniker": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\Controllers\\VideoController.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Controllers\\VideoController.cs",
+              "ToolTip": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\Controllers\\VideoController.cs",
+              "RelativeToolTip": "BackEnd\\Controllers\\VideoController.cs",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAAAGkAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-12T12:12:20.212Z"
             }
           ]
         }

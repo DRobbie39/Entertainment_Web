@@ -1,4 +1,4 @@
-﻿@model BackEnd.Models.Video
+﻿@model BackEnd.Models.VideoPlaylistViewModel
 
 @{
     ViewData["Title"] = "Video";
@@ -7,24 +7,28 @@
 
 <div class="row g-0">
     <div class="col-sm-6 col-md-8">
-        <iframe style="margin-top:50px;margin-left:8px;" width="97%" height="415" src="@Model.VideoUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen allow="autoplay"></iframe>
+        <iframe style="margin-top:50px;margin-left:8px;" width="97%" height="415" src="@Model.Video.VideoUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen allow="autoplay"></iframe>
 
         <div class="row" style="margin-top:50px;margin-left:8px;">
             <div class="col-6">
                 <h5 style="color:#6c7293">
-                    Lượt xem: @Model.VideoViews
+                    Lượt xem: @Model.Video.VideoViews
                 </h5>
-                <p>@Model.Title</p>
+                <p>@Model.Video.Title</p>
                 <h3 style="color:#dbc9c9">
                     Bình luận
                 </h3>
             </div>
             <div class="col-3">
-                <i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Likes</i>
-                <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"> @Model.Dislikes</i>
+                <i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Video.Likes</i>
+                <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"> @Model.Video.Dislikes</i>
             </div>
             <div class="col-3">
                 <i class="fa fa-download" aria-hidden="true">Tải xuống</i>
+                <!-- Nút Lưu vào danh sách phát -->
+                <button type="button" class="btn btn-primary" id="saveToPlaylistButton">
+                    Lưu
+                </button>
             </div>
             <div class="comment-box">
                 <textarea class="comment-input" placeholder="Nhập bình luận của bạn..."></textarea>
@@ -57,6 +61,48 @@
                     </div>
                 }
             }
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="saveToPlaylistModal" tabindex="-1" role="dialog" aria-labelledby="saveToPlaylistModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="saveToPlaylistModalLabel">Lưu vào danh sách phát</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Danh sách các playlist hiện có -->
+                @if (Model.Playlists != null)
+                {
+                    foreach (var playlist in Model.Playlists)
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="@playlist.PlaylistId" id="@playlist.PlaylistId">
+                            <label class="form-check-label" for="@playlist.PlaylistId">
+                                @playlist.PlaylistName
+                            </label>
+                        </div>
+                    }
+                }
+
+                <!-- Form để thêm playlist mới -->
+                <form id="newPlaylistForm">
+                    <div class="form-group">
+                        <label for="newPlaylistName">Tên danh sách phát mới</label>
+                        <input type="text" class="form-control" id="newPlaylistName" placeholder="Nhập tên danh sách phát mới">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Thêm danh sách phát mới</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="saveChangesButton">Lưu thay đổi</button>
+            </div>
         </div>
     </div>
 </div>
@@ -154,4 +200,28 @@
             font-size: 13px;
             color: #b7b7b7;
         }
+
+    .mee {
+        color: #fff;
+        margin-top: 10px;
+        margin-left: 20px;
+    }
 </style>
+
+<!-- Thêm jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#saveToPlaylistButton").click(function () {
+            $("#saveToPlaylistModal").modal('show');
+        });
+    });
+
+    // Xử lý sự kiện đóng modal
+    $('#saveToPlaylistModal').on('click', '.close, .btn-secondary', function () {
+        $('#saveToPlaylistModal').modal('hide');
+    });
+</script>

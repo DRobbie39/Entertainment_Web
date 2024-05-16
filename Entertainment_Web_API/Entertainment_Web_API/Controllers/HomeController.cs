@@ -1,4 +1,5 @@
 ﻿using BackEnd.Models;
+//using Google.Apis.YouTube.v3.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -82,7 +83,27 @@ namespace Entertainment_Web_API.Controllers
                 ViewBag.RelatedVideos = JsonConvert.DeserializeObject<List<Video>>(relatedData);
             }
 
-            return View(video);
+            // Get playlists
+            var userId = GetCurrentUserId();
+            List<Playlist> playlists = new List<Playlist>(); // Khai báo biến playlists ở đây
+            if (userId != null)
+            {
+                HttpResponseMessage playlistResponse = await _client.GetAsync(_client.BaseAddress + $"/Playlist/GetPlaylists/{userId}");
+                if (playlistResponse.IsSuccessStatusCode)
+                {
+                    string playlistData = await playlistResponse.Content.ReadAsStringAsync();
+                    playlists = JsonConvert.DeserializeObject<List<Playlist>>(playlistData); // Gán giá trị cho biến playlists ở đây
+                }
+            }
+
+            // Create a new ViewModel
+            var viewModel = new VideoPlaylistViewModel
+            {
+                Video = video,
+                Playlists = playlists
+            };
+
+            return View(viewModel);
         }
 
         [Authorize]

@@ -83,5 +83,53 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.VideoController",
+    "Method": "Get",
+    "RelativePath": "backend/Video/Get/{searchTerm}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "searchTerm",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.VideoController",
+    "Method": "GetDetails",
+    "RelativePath": "backend/Video/GetDetails/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.VideoController",
+    "Method": "GetRelatedVideos",
+    "RelativePath": "backend/Video/GetRelatedVideos/{videoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
