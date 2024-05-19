@@ -118,7 +118,7 @@ namespace Entertainment_Web_API.Controllers
             return View();
         }
 
-        //[Authorize]
+        [Authorize]
         //[Authorize(Roles = "Admin, User")]
         //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Library()
@@ -140,6 +140,33 @@ namespace Entertainment_Web_API.Controllers
             }
             
             return View();
+        }
+
+        [HttpPost]        
+        public async Task<IActionResult> CreatePlaylist(string videoId, string playlistName)
+        {
+            var userId = GetCurrentUserId();
+
+            // Tạo một đối tượng chứa dữ liệu cần gửi, nó lấy theo dạng form
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("userId", userId),
+                new KeyValuePair<string, string>("videoId", videoId),
+                new KeyValuePair<string, string>("playlistName", playlistName)
+            });
+
+            // Gửi yêu cầu POST đến Web API
+            HttpResponseMessage response = await _client.PostAsync($"{_client.BaseAddress}/Playlist/CreatePlaylist/{userId}/{videoId}/{playlistName}", content);
+            if (response.IsSuccessStatusCode)
+            {
+                // Nếu thành công, trả về thông báo thành công
+                return Json(new { success = true, message = "Thêm danh sách phát mới thành công!" });
+            }
+            else
+            {
+                // Nếu không thành công, trả về thông báo lỗi
+                return Json(new { success = false, message = "Có lỗi xảy ra khi thêm danh sách phát mới." });
+            }
         }
     }
 }

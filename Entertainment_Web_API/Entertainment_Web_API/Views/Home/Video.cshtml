@@ -26,7 +26,7 @@
             <div class="col-3">
                 <i class="fa fa-download" aria-hidden="true">Tải xuống</i>
                 <!-- Nút Lưu vào danh sách phát -->
-                <button type="button" class="btn btn-primary" id="saveToPlaylistButton">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveToPlaylistModal">
                     Lưu
                 </button>
             </div>
@@ -91,11 +91,13 @@
                 }
 
                 <!-- Form để thêm playlist mới -->
-                <form id="newPlaylistForm">
+                <form id="newPlaylistForm" action="@Url.Action("CreatePlaylist", "Home")" method="post">
                     <div class="form-group">
                         <label for="newPlaylistName">Tên danh sách phát mới</label>
-                        <input type="text" class="form-control" id="newPlaylistName" placeholder="Nhập tên danh sách phát mới">
+                        <input type="text" class="form-control" id="playlistName" name="playlistName" placeholder="Nhập tên danh sách phát mới">
                     </div>
+                    <!-- Trường ẩn chứa videoId -->
+                    <input type="hidden" id="videoId" name="videoId" value="@Model.Video.VideoId">
                     <button type="submit" class="btn btn-primary">Thêm danh sách phát mới</button>
                 </form>
             </div>
@@ -140,9 +142,9 @@
         margin-bottom: 17px;
     }
 
-        .submit-button:hover {
-            background-color: #0056b3;
-        }
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
 
     i.fa.fa-thumbs-up {
         cursor: pointer;

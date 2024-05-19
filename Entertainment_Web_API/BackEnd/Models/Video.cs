@@ -7,7 +7,7 @@ namespace BackEnd.Models
     public class Video
     {
         [Key] //Set khóa chính bằng data annotations
-        public string VideoId { get; set; } = null!;
+        public string VideoId { get; set; }
         public string? Title { get; set; }
         public string? VideoDescription { get; set; }
         public int? VideoViews { get; set; }

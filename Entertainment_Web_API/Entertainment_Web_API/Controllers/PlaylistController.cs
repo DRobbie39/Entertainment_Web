@@ -32,17 +32,17 @@ namespace Entertainment_Web_API.Controllers
         }
 
         //FromBody ở đây sẽ lấy phần thân của bên HTTP gửi qua để truyền vào thuộc tính PlaylistName
-        public async Task<IActionResult> CreatePlaylist([FromBody] string playlistName)
-        {
-            var playlist = new Playlist { PlaylistName = playlistName };
-            HttpResponseMessage response = await _client.PostAsJsonAsync(_client.BaseAddress + "/Playlist/CreatePlaylist", playlist);
+        //public async Task<IActionResult> CreatePlaylist([FromBody] string playlistName)
+        //{
+        //    var playlist = new Playlist { PlaylistName = playlistName };
+        //    HttpResponseMessage response = await _client.PostAsJsonAsync(_client.BaseAddress + "/Playlist/CreatePlaylist", playlist);
 
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("GetPlaylists");
-            }
-            return View(playlist);
-        }
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        return RedirectToAction("GetPlaylists");
+        //    }
+        //    return View(playlist);
+        //}
 
         public async Task<IActionResult> UpdatePlaylist(string id, [FromBody] string newPlaylistName)
         {

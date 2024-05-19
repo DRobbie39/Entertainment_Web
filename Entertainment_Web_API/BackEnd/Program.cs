@@ -3,11 +3,18 @@ using BackEnd.Models;
 using Google;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddRazorPages();
 // Add services to the container.
+// Avoid circular reference error
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
+
+builder.Services.AddRazorPages();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -17,8 +24,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<EntertainmentContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
-builder.Services.AddIdentity<AppUser,IdentityRole>(options =>
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 options.SignIn.RequireConfirmedAccount = true)
 .AddEntityFrameworkStores<EntertainmentContext>()
 .AddDefaultTokenProviders()

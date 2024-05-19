@@ -2,11 +2,21 @@
   {
     "ContainingType": "BackEnd.Controllers.PlaylistController",
     "Method": "CreatePlaylist",
-    "RelativePath": "backend/Playlist/CreatePlaylist",
+    "RelativePath": "backend/Playlist/CreatePlaylist/{userId}/{videoId}/{playlistName}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
       {
         "Name": "playlistName",
         "Type": "System.String",
