@@ -1,6 +1,27 @@
 [
   {
     "ContainingType": "BackEnd.Controllers.PlaylistController",
+    "Method": "AddVideoToPlaylist",
+    "RelativePath": "backend/Playlist/AddVideoToPlaylist/{playlistId}/{videoId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "playlistId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.PlaylistController",
     "Method": "CreatePlaylist",
     "RelativePath": "backend/Playlist/CreatePlaylist/{userId}/{videoId}/{playlistName}",
     "HttpMethod": "POST",
@@ -27,22 +48,6 @@
   },
   {
     "ContainingType": "BackEnd.Controllers.PlaylistController",
-    "Method": "DeletePlaylist",
-    "RelativePath": "backend/Playlist/DeletePlaylist/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "BackEnd.Controllers.PlaylistController",
     "Method": "GetPlaylists",
     "RelativePath": "backend/Playlist/GetPlaylists/{userId}",
     "HttpMethod": "GET",
@@ -51,27 +56,6 @@
     "Parameters": [
       {
         "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "BackEnd.Controllers.PlaylistController",
-    "Method": "UpdatePlaylist",
-    "RelativePath": "backend/Playlist/UpdatePlaylist/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "newPlaylistName",
         "Type": "System.String",
         "IsRequired": true
       }

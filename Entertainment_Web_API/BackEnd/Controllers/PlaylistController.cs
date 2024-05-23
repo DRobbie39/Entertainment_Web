@@ -14,7 +14,7 @@ namespace BackEnd.Controllers
     public class PlaylistController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyB1jP3WJP2QzQgy4OQDMil-y3neNUD_sD0"; // Api key
+        private readonly string apiKey = "AIzaSyBl_ZIe-m8ry0ajAO3-hvchkDlTT6kkgy0"; // Api key
 
         public PlaylistController(EntertainmentContext context)
         {
@@ -98,59 +98,36 @@ namespace BackEnd.Controllers
             return Ok(newPlaylist);
         }
 
-        // PUT: api/Playlists/{id}
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePlaylist(string id, [FromBody] string newPlaylistName)
+        [HttpPost("{playlistId}/{videoId}")]
+        public async Task<IActionResult> AddVideoToPlaylist(string playlistId, string videoId)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the user's ID
-            var playlist = await _context.Playlist.FindAsync(id);
-            if (playlist == null || playlist.Id != userId)
+            // Tìm VideoPlaylist trong cơ sở dữ liệu
+            var videoPlaylist = await _context.VideoPlaylists.FindAsync(videoId, playlistId);
+
+            if (videoPlaylist != null)
             {
-                return NotFound();
+                // Nếu VideoPlaylist đã tồn tại, trả về lỗi
+                return BadRequest(new { success = false, message = "Video đã tồn tại trong danh sách phát!" });
             }
 
-            playlist.PlaylistName = newPlaylistName;
-            _context.Entry(playlist).State = EntityState.Modified;
-
-            try
+            // Tạo mới VideoPlaylist
+            var newVideoPlaylist = new VideoPlaylist
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PlaylistExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+                VideoId = videoId,
+                PlaylistId = playlistId
+            };
 
-            return NoContent();
-        }
+            // Thêm VideoPlaylist vào cơ sở dữ liệu
+            _context.VideoPlaylists.Add(newVideoPlaylist);
 
-        // DELETE: api/Playlists/{id}
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePlaylist(string id)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the user's ID
-            var playlist = await _context.Playlist.FindAsync(id);
-            if (playlist == null || playlist.Id != userId)
-            {
-                return NotFound();
-            }
-
-            _context.Playlist.Remove(playlist);
             await _context.SaveChangesAsync();
 
-            return Ok(playlist);
+            return Ok(new { success = true, message = "Thêm video vào danh sách phát thành công!" });
         }
 
-        private bool PlaylistExists(string id)
-        {
-            return _context.Playlist.Any(e => e.PlaylistId == id);
-        }
+        //private bool PlaylistExists(string id)
+        //{
+        //    return _context.Playlist.Any(e => e.PlaylistId == id);
+        //}
     }
 }

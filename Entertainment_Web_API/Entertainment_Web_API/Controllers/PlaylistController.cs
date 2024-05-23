@@ -9,62 +9,76 @@ namespace Entertainment_Web_API.Controllers
     {
         Uri baseAddress = new Uri("https://localhost:7142/backend");
         private readonly HttpClient _client;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public PlaylistController()
+        public PlaylistController(IHttpContextAccessor httpContextAccessor)
         {
             _client = new HttpClient();
+            _httpContextAccessor = httpContextAccessor;
             _client.BaseAddress = baseAddress;
 
         }
 
-        public async Task<IActionResult> GetPlaylists()
+        private string GetCurrentUserId()
         {
-            List<Playlist> playlistList = new List<Playlist>(); // Initialized as an empty list
-            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + "/Playlist/GetPlaylists");
-
-            if (response.IsSuccessStatusCode)
+            var httpContext = _httpContextAccessor.HttpContext;
+            if (httpContext.User.Identity.IsAuthenticated)
             {
-                string data = await response.Content.ReadAsStringAsync();
-                playlistList = JsonConvert.DeserializeObject<List<Playlist>>(data);
+                return httpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             }
-
-            return View(playlistList); // Will return an empty list if no playlists were found
+            // Nếu người dùng không đăng nhập, trả về null hoặc xử lý tùy theo yêu cầu
+            return null;
         }
 
-        //FromBody ở đây sẽ lấy phần thân của bên HTTP gửi qua để truyền vào thuộc tính PlaylistName
-        //public async Task<IActionResult> CreatePlaylist([FromBody] string playlistName)
-        //{
-        //    var playlist = new Playlist { PlaylistName = playlistName };
-        //    HttpResponseMessage response = await _client.PostAsJsonAsync(_client.BaseAddress + "/Playlist/CreatePlaylist", playlist);
-
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        return RedirectToAction("GetPlaylists");
-        //    }
-        //    return View(playlist);
-        //}
-
-        public async Task<IActionResult> UpdatePlaylist(string id, [FromBody] string newPlaylistName)
+        [HttpPost]
+        public async Task<IActionResult> CreatePlaylist(string videoId, string playlistName)
         {
-            var playlist = new Playlist { PlaylistId = id, PlaylistName = newPlaylistName };
-            HttpResponseMessage response = await _client.PutAsJsonAsync(_client.BaseAddress + $"/Playlist/UpdatePlaylist/{id}", playlist);
+            var userId = GetCurrentUserId();
 
+            // Tạo một đối tượng chứa dữ liệu cần gửi, nó lấy theo dạng form
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("userId", userId),
+                new KeyValuePair<string, string>("videoId", videoId),
+                new KeyValuePair<string, string>("playlistName", playlistName)
+            });
+
+            // Gửi yêu cầu POST đến Web API
+            HttpResponseMessage response = await _client.PostAsync($"{_client.BaseAddress}/Playlist/CreatePlaylist/{userId}/{videoId}/{playlistName}", content);
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("GetPlaylists");
+                // Nếu thành công, trả về thông báo thành công
+                return Json(new { success = true, message = "Thêm danh sách phát mới thành công!" });
             }
-            return View(playlist);
+            else
+            {
+                // Nếu không thành công, trả về thông báo lỗi
+                return Json(new { success = false, message = "Có lỗi xảy ra khi thêm danh sách phát mới." });
+            }
         }
 
-        public async Task<IActionResult> DeletePlaylist(string id)
+        [HttpPost]
+        public async Task<IActionResult> AddVideoToPlaylist(string playlistId, string videoId)
         {
-            HttpResponseMessage response = await _client.DeleteAsync(_client.BaseAddress + $"/Playlist/DeletePlaylist/{id}");
+            // Tạo một đối tượng chứa dữ liệu cần gửi
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("playlistId", playlistId),
+                new KeyValuePair<string, string>("videoId", videoId)
+            });
 
+            // Gửi yêu cầu POST đến Web API
+            HttpResponseMessage response = await _client.PostAsync($"{_client.BaseAddress}/Playlist/AddVideoToPlaylist/{playlistId}/{videoId}", content);
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("GetPlaylists");
+                // Nếu thành công, trả về thông báo thành công
+                return Json(new { success = true, message = "Thêm video vào danh sách phát thành công!" });
             }
-            return NotFound();
+            else
+            {
+                // Nếu không thành công, trả về thông báo lỗi
+                return Json(new { success = false, message = "Video đã tồn tại trong danh sách phát!" });
+            }
         }
     }
 }

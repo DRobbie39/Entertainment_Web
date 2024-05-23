@@ -91,7 +91,7 @@
                 }
 
                 <!-- Form để thêm playlist mới -->
-                <form id="newPlaylistForm" action="@Url.Action("CreatePlaylist", "Home")" method="post">
+                <form id="newPlaylistForm" action="@Url.Action("CreatePlaylist", "Playlist")" method="post">
                     <div class="form-group">
                         <label for="newPlaylistName">Tên danh sách phát mới</label>
                         <input type="text" class="form-control" id="playlistName" name="playlistName" placeholder="Nhập tên danh sách phát mới">
@@ -172,36 +172,36 @@
         overflow: hidden;
     }
 
-        .product__sidebar__comment__item__text ul {
-            margin-bottom: 10px;
-        }
+    .product__sidebar__comment__item__text ul {
+        margin-bottom: 10px;
+    }
 
-            .product__sidebar__comment__item__text ul li {
-                list-style: none;
-                font-size: 10px;
-                color: #ffffff;
-                font-weight: 700;
-                padding: 1px 10px;
-                background: rgba(255, 255, 255, 0.2);
-                border-radius: 50px;
-                display: inline-block;
-            }
+    .product__sidebar__comment__item__text ul li {
+        list-style: none;
+        font-size: 10px;
+        color: #ffffff;
+        font-weight: 700;
+        padding: 1px 10px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        display: inline-block;
+    }
 
-        .product__sidebar__comment__item__text h5 {
-            margin-bottom: 10px;
-        }
+    .product__sidebar__comment__item__text h5 {
+        margin-bottom: 10px;
+    }
 
-            .product__sidebar__comment__item__text h5 a {
-                color: #ffffff;
-                font-weight: 700;
-                line-height: 26px;
-            }
+    .product__sidebar__comment__item__text h5 a {
+        color: #ffffff;
+        font-weight: 700;
+        line-height: 26px;
+    }
 
-        .product__sidebar__comment__item__text span {
-            display: block;
-            font-size: 13px;
-            color: #b7b7b7;
-        }
+    .product__sidebar__comment__item__text span {
+        display: block;
+        font-size: 13px;
+        color: #b7b7b7;
+    }
 
     .mee {
         color: #fff;
@@ -225,5 +225,36 @@
     // Xử lý sự kiện đóng modal
     $('#saveToPlaylistModal').on('click', '.close, .btn-secondary', function () {
         $('#saveToPlaylistModal').modal('hide');
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Khi người dùng nhấn nút "Lưu thay đổi"
+        $('#saveChangesButton').click(function () {
+            var videoId = $('#videoId').val();
+
+            // Lấy tất cả các checkbox được chọn
+            $('.form-check-input:checked').each(function () {
+                var playlistId = $(this).val();
+
+                // Gọi action AddVideoToPlaylist với videoId và playlistId
+                $.ajax({
+                    url: '/Playlist/AddVideoToPlaylist', // URL của action trong HomeController
+                    type: 'POST',
+                    data: {
+                        playlistId: playlistId,
+                        videoId: videoId
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Thêm video vào danh sách phát thành công!');
+                        } else {
+                            alert('Video đã tồn tại trong danh sách phát!');
+                        }
+                    }
+                });
+            });
+        });
     });
 </script>
