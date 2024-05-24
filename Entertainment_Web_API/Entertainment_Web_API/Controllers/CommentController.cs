@@ -18,8 +18,8 @@ namespace Entertainment_Web_API.Controllers
                 }
                 return RedirectToAction("Video","Home", new {id = model.VideoId});
             }
-
         }
+
         [HttpGet]
         public async Task<IActionResult> DeleteComment(string commentId, string videoId)
         {
