@@ -23,7 +23,7 @@ namespace BackEnd.Controllers
 
             var searchRequest = youtubeService.Search.List("snippet");
             searchRequest.Q = searchTerm;
-            searchRequest.MaxResults = 10;
+            searchRequest.MaxResults = 8;
             searchRequest.Type = "video";
             searchRequest.VideoCategoryId = "10";
             searchRequest.EventType = SearchResource.ListRequest.EventTypeEnum.None;

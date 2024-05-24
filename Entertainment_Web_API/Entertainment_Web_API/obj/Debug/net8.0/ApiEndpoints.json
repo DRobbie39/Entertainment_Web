@@ -1,5 +1,347 @@
 [
   {
+    "ContainingType": "BackEnd.Controllers.CommentController",
+    "Method": "AddComment",
+    "RelativePath": "backend/Comment/AddComment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CommentId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Content",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CommentPostingTime",
+        "Type": "System.Nullable\u00601[[System.DateOnly, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "VideoId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.VideoId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.VideoDescription",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.VideoViews",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.Likes",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.Dislikes",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.VideoPostingTime",
+        "Type": "System.Nullable\u00601[[System.DateTimeOffset, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.VideoUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.ThumbnailUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.VideoCategoryId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.VideoCategory.VideoCategoryId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.VideoCategory.VideoCategoryName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.VideoCategory.Videos",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BackEnd.Models.Video, BackEnd, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.Id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.FullName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.UserNamee",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.Avtprofile",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.Videos",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BackEnd.Models.Video, BackEnd, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.Comments",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BackEnd.Models.Comment, BackEnd, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.Playlists",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BackEnd.Models.Playlist, BackEnd, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.Id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.NormalizedUserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.NormalizedEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.EmailConfirmed",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.PasswordHash",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.SecurityStamp",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.ConcurrencyStamp",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.PhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.PhoneNumberConfirmed",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.TwoFactorEnabled",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.LockoutEnd",
+        "Type": "System.Nullable\u00601[[System.DateTimeOffset, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.LockoutEnabled",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.AppUser.AccessFailedCount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.Comments",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BackEnd.Models.Comment, BackEnd, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Video.VideoPlaylists",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BackEnd.Models.VideoPlaylist, BackEnd, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.FullName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.UserNamee",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.Avtprofile",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.Videos",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BackEnd.Models.Video, BackEnd, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.Comments",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BackEnd.Models.Comment, BackEnd, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.Playlists",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BackEnd.Models.Playlist, BackEnd, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.Id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.NormalizedUserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.NormalizedEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.EmailConfirmed",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.PasswordHash",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.SecurityStamp",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.ConcurrencyStamp",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.PhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.PhoneNumberConfirmed",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.TwoFactorEnabled",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.LockoutEnd",
+        "Type": "System.Nullable\u00601[[System.DateTimeOffset, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.LockoutEnabled",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "AppUser.AccessFailedCount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.CommentController",
+    "Method": "DeleteComment",
+    "RelativePath": "backend/Comment/DeleteComment/{commentId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "BackEnd.Controllers.PlaylistController",
     "Method": "AddVideoToPlaylist",
     "RelativePath": "backend/Playlist/AddVideoToPlaylist/{playlistId}/{videoId}",

@@ -12,11 +12,11 @@
         <div class="row" style="margin-top:50px;margin-left:8px;">
             <div class="col-6">
                 <h5 style="color:#6c7293">
-                    Lượt xem: @Model.Video.VideoViews
+                    Views: @Model.Video.VideoViews
                 </h5>
                 <p>@Model.Video.Title</p>
                 <h3 style="color:#dbc9c9">
-                    Bình luận
+                    Comments
                 </h3>
             </div>
             <div class="col-3">
@@ -24,22 +24,22 @@
                 <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"> @Model.Video.Dislikes</i>
             </div>
             <div class="col-3">
-                <i class="fa fa-download" aria-hidden="true">Tải xuống</i>
+                <i class="fa fa-download" aria-hidden="true">Download</i>
                 <!-- Nút Lưu vào danh sách phát -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveToPlaylistModal">
-                    Lưu
+                    Add to playlist
                 </button>
             </div>
             <div class="comment-box">
-                <textarea class="comment-input" placeholder="Nhập bình luận của bạn..."></textarea>
-                <button class="submit-button">Gửi</button>
+                <textarea class="comment-input" placeholder="Enter your comment"></textarea>
+                <button class="submit-button">Send</button>
             </div>
         </div>
     </div>
     <div class="col-6 col-md-4">
         <div class="product__sidebar__comment">
             <div class="section-title" style="margin-top:30px;">
-                <h5>Danh sách kết hợp</h5>
+                <h5>Relate videos</h5>
             </div>
             @if (ViewBag.RelatedVideos != null)
             {
@@ -70,7 +70,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="saveToPlaylistModalLabel">Lưu vào danh sách phát</h5>
+                <h5 class="modal-title" id="saveToPlaylistModalLabel">Save in playlist</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -93,17 +93,17 @@
                 <!-- Form để thêm playlist mới -->
                 <form id="newPlaylistForm" action="@Url.Action("CreatePlaylist", "Playlist")" method="post">
                     <div class="form-group">
-                        <label for="newPlaylistName">Tên danh sách phát mới</label>
-                        <input type="text" class="form-control" id="playlistName" name="playlistName" placeholder="Nhập tên danh sách phát mới">
+                        <label for="newPlaylistName">New playlist name</label>
+                        <input type="text" class="form-control" id="playlistName" name="playlistName" placeholder="Enter new playlist name">
                     </div>
                     <!-- Trường ẩn chứa videoId -->
                     <input type="hidden" id="videoId" name="videoId" value="@Model.Video.VideoId">
-                    <button type="submit" class="btn btn-primary">Thêm danh sách phát mới</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 5px;">Add new playlist</button>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary" id="saveChangesButton">Lưu thay đổi</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveChangesButton">Save the chosen playlist</button>
             </div>
         </div>
     </div>
@@ -216,15 +216,18 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
+    //Xử lý sự kiện mở modal
     $(document).ready(function () {
         $("#saveToPlaylistButton").click(function () {
             $("#saveToPlaylistModal").modal('show');
         });
     });
 
-    // Xử lý sự kiện đóng modal
-    $('#saveToPlaylistModal').on('click', '.close, .btn-secondary', function () {
-        $('#saveToPlaylistModal').modal('hide');
+    //Xử lý sự kiện đóng modal
+    $(document).ready(function () {
+        $("#saveToPlaylistButton").click(function () {
+            $("#saveToPlaylistModal").modal('hide');
+        });
     });
 </script>
 
