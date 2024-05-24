@@ -32,6 +32,7 @@ namespace Entertainment_Web_API.Controllers
             {
                 return httpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             }
+
             // Nếu người dùng không đăng nhập, trả về null hoặc xử lý tùy theo yêu cầu
             return null;
         }

@@ -11,11 +11,11 @@
 
 <!-- Form tìm kiếm -->
 <form class="d-none d-md-flex ms-4" method="get" action="@Url.Action("Index", "Home")">
-    <input class="form-control bg-dark border-0" type="search" placeholder="Tìm kiếm video..." name="searchTerm">
-    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+    <input class="form-control bg-dark border-0" type="search" placeholder="Search video" name="searchTerm">
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
 <div class="container-fluid pt-5 pb-3">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3" style="background:#000000 !important;">Danh sách video</span></h2>
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3" style="background:#000000 !important;">Video list</span></h2>
     <div class="row px-xl-5">
         @foreach (var video in Model)
         {
@@ -47,27 +47,27 @@
 
         if (timeSpan <= TimeSpan.FromSeconds(60))
         {
-            return $"{timeSpan.Seconds} giây";
+            return $"{timeSpan.Seconds} second";
         }
         else if (timeSpan <= TimeSpan.FromMinutes(60))
         {
-            return $"{timeSpan.Minutes} phút";
+            return $"{timeSpan.Minutes} minute";
         }
         else if (timeSpan <= TimeSpan.FromHours(24))
         {
-            return $"{timeSpan.Hours} giờ";
+            return $"{timeSpan.Hours} hour";
         }
         else if (timeSpan <= TimeSpan.FromDays(30))
         {
-            return $"{timeSpan.Days} ngày";
+            return $"{timeSpan.Days} day";
         }
         else if (timeSpan <= TimeSpan.FromDays(365))
         {
-            return $"{Math.Round(timeSpan.Days / 30.0)} tháng";
+            return $"{Math.Round(timeSpan.Days / 30.0)} month";
         }
         else
         {
-            return $"{Math.Round(timeSpan.Days / 365.0)} năm";
+            return $"{Math.Round(timeSpan.Days / 365.0)} year";
         }
     }
 }
