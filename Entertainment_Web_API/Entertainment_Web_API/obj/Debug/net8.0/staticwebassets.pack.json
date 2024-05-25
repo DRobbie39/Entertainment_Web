@@ -445,6 +445,14 @@
       "PackagePath": "staticwebassets\\lib\\player-bg.jpg"
     },
     {
+      "Id": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\lib\\playlist.png",
+      "PackagePath": "staticwebassets\\lib\\playlist.png"
+    },
+    {
+      "Id": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\lib\\playlist_icon.jpg",
+      "PackagePath": "staticwebassets\\lib\\playlist_icon.jpg"
+    },
+    {
       "Id": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\lib\\premium.png",
       "PackagePath": "staticwebassets\\lib\\premium.png"
     },
