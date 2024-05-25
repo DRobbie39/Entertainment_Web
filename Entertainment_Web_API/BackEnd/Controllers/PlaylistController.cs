@@ -35,6 +35,33 @@ namespace BackEnd.Controllers
             return Ok(playlists);
         }
 
+        [HttpPost("{playlistId}/{videoId}")]
+        public async Task<IActionResult> AddVideoToPlaylist(string playlistId, string videoId)
+        {
+            // Tìm VideoPlaylist trong cơ sở dữ liệu
+            var videoPlaylist = await _context.VideoPlaylists.FindAsync(videoId, playlistId);
+
+            if (videoPlaylist != null)
+            {
+                // Nếu VideoPlaylist đã tồn tại, trả về lỗi
+                return BadRequest(new { success = false, message = "The video already exists in the playlist!" });
+            }
+
+            // Tạo mới VideoPlaylist
+            var newVideoPlaylist = new VideoPlaylist
+            {
+                VideoId = videoId,
+                PlaylistId = playlistId
+            };
+
+            // Thêm VideoPlaylist vào cơ sở dữ liệu
+            _context.VideoPlaylists.Add(newVideoPlaylist);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { success = true, message = "Added video to playlist successfully!" });
+        }
+
         [HttpPost("{userId}/{videoId}/{playlistName}")]
         public async Task<IActionResult> CreatePlaylist(string userId, string videoId, string playlistName)
         {
@@ -97,37 +124,5 @@ namespace BackEnd.Controllers
 
             return Ok(newPlaylist);
         }
-
-        [HttpPost("{playlistId}/{videoId}")]
-        public async Task<IActionResult> AddVideoToPlaylist(string playlistId, string videoId)
-        {
-            // Tìm VideoPlaylist trong cơ sở dữ liệu
-            var videoPlaylist = await _context.VideoPlaylists.FindAsync(videoId, playlistId);
-
-            if (videoPlaylist != null)
-            {
-                // Nếu VideoPlaylist đã tồn tại, trả về lỗi
-                return BadRequest(new { success = false, message = "Video đã tồn tại trong danh sách phát!" });
-            }
-
-            // Tạo mới VideoPlaylist
-            var newVideoPlaylist = new VideoPlaylist
-            {
-                VideoId = videoId,
-                PlaylistId = playlistId
-            };
-
-            // Thêm VideoPlaylist vào cơ sở dữ liệu
-            _context.VideoPlaylists.Add(newVideoPlaylist);
-
-            await _context.SaveChangesAsync();
-
-            return Ok(new { success = true, message = "Thêm video vào danh sách phát thành công!" });
-        }
-
-        //private bool PlaylistExists(string id)
-        //{
-        //    return _context.Playlist.Any(e => e.PlaylistId == id);
-        //}
     }
 }

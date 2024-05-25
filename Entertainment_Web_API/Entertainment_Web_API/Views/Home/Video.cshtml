@@ -125,14 +125,14 @@
                 }
 
                 <!-- Form để thêm playlist mới -->
-                <form id="newPlaylistForm" action="@Url.Action("CreatePlaylist", "Playlist")" method="post">
+                <form id="newPlaylistForm">
                     <div class="form-group">
                         <label for="newPlaylistName">New playlist name</label>
                         <input type="text" class="form-control" id="playlistName" name="playlistName" placeholder="Enter new playlist name">
                     </div>
                     <!-- Trường ẩn chứa videoId -->
                     <input type="hidden" id="videoId" name="videoId" value="@Model.Video.VideoId">
-                    <button type="submit" class="btn btn-primary" style="margin-top: 5px;">Add new playlist</button>
+                    <button type="button" class="btn btn-primary" style="margin-top: 5px;" id="addNewPlaylistButton">Add new playlist</button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -265,6 +265,7 @@
     });
 </script>
 
+<!--Nút thêm video vào ds phát-->
 <script>
     $(document).ready(function () {
         // Khi người dùng nhấn nút "Lưu thay đổi"
@@ -285,12 +286,39 @@
                     },
                     success: function (response) {
                         if (response.success) {
-                            alert('Thêm video vào danh sách phát thành công!');
+                            alert('Added video to playlist successfully!');
                         } else {
-                            alert('Video đã tồn tại trong danh sách phát!');
+                            alert('The video already exists in the playlist!');
                         }
                     }
                 });
+            });
+        });
+    });
+</script>
+
+<!--Nút thêm ds phát-->
+<script>
+    $(document).ready(function () {
+        // Khi người dùng nhấn nút "Add new playlist"
+        $('#addNewPlaylistButton').click(function () {
+            var videoId = $('#videoId').val();
+            var playlistName = $('#playlistName').val();
+
+            $.ajax({
+                url: '/Playlist/CreatePlaylist',
+                type: 'POST',
+                data: {
+                    videoId: videoId,
+                    playlistName: playlistName
+                },
+                success: function (response) {
+                    if (response.success) {
+                        alert('Playlist added successfully!');
+                    } else {
+                        alert('Adding playlist failed!');
+                    }
+                }
             });
         });
     });

@@ -31,6 +31,30 @@ namespace Entertainment_Web_API.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> AddVideoToPlaylist(string playlistId, string videoId)
+        {
+            // Tạo một đối tượng chứa dữ liệu cần gửi
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("playlistId", playlistId),
+                new KeyValuePair<string, string>("videoId", videoId)
+            });
+
+            // Gửi yêu cầu POST đến Web API
+            HttpResponseMessage response = await _client.PostAsync($"{_client.BaseAddress}/Playlist/AddVideoToPlaylist/{playlistId}/{videoId}", content);
+            if (response.IsSuccessStatusCode)
+            {
+                // Nếu thành công, trả về thông báo thành công
+                return Json(new { success = true, message = "Added video to playlist successfully!" });
+            }
+            else
+            {
+                // Nếu không thành công, trả về thông báo lỗi
+                return Json(new { success = false, message = "The video already exists in the playlist!" });
+            }
+        }
+
+        [HttpPost]
         public async Task<IActionResult> CreatePlaylist(string videoId, string playlistName)
         {
             var userId = GetCurrentUserId();
@@ -48,36 +72,12 @@ namespace Entertainment_Web_API.Controllers
             if (response.IsSuccessStatusCode)
             {
                 // Nếu thành công, trả về thông báo thành công
-                return Json(new { success = true, message = "Thêm danh sách phát mới thành công!" });
+                return Json(new { success = true, message = "Playlist added successfully!" });
             }
             else
             {
                 // Nếu không thành công, trả về thông báo lỗi
-                return Json(new { success = false, message = "Có lỗi xảy ra khi thêm danh sách phát mới." });
-            }
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddVideoToPlaylist(string playlistId, string videoId)
-        {
-            // Tạo một đối tượng chứa dữ liệu cần gửi
-            var content = new FormUrlEncodedContent(new[]
-            {
-                new KeyValuePair<string, string>("playlistId", playlistId),
-                new KeyValuePair<string, string>("videoId", videoId)
-            });
-
-            // Gửi yêu cầu POST đến Web API
-            HttpResponseMessage response = await _client.PostAsync($"{_client.BaseAddress}/Playlist/AddVideoToPlaylist/{playlistId}/{videoId}", content);
-            if (response.IsSuccessStatusCode)
-            {
-                // Nếu thành công, trả về thông báo thành công
-                return Json(new { success = true, message = "Thêm video vào danh sách phát thành công!" });
-            }
-            else
-            {
-                // Nếu không thành công, trả về thông báo lỗi
-                return Json(new { success = false, message = "Video đã tồn tại trong danh sách phát!" });
+                return Json(new { success = false, message = "Adding playlist failed!" });
             }
         }
     }
