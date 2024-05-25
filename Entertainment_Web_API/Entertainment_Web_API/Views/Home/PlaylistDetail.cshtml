@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_LayoutAccount.cshtml";
 }
 
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="~/css/owl.carousel.min.css" rel="stylesheet" />
+<link href="~/css/stylehome.css" rel="stylesheet" />
+
 <div style="margin-top:15px">
     <div class="col-sm-12">
         <div class="bg-secondary rounded h-100 p-4">
@@ -21,38 +25,108 @@
                     <h5 style="color:#bebebe;"><i class="fa fa-headphones" aria-hidden="true"></i> 5.255.931 lượt thích 750 bài hát, hơn 24 giờ</h5>
                 </div>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Tiêu đề</th>
-                        <th scope="col">Playlist</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.Videos != null)
+
+            <div class="container-fluid pt-5 pb-3">
+                <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3" style="background:#000000 !important;">Your videos</span></h2>
+                <div class="row px-xl-5">
+                    @foreach (var video in Model.Videos)
                     {
-                        int count = 1;
-                        foreach (var video in Model.Videos)
-                        {
-                            <tr>
-                                <th scope="row">@count</th>
-                                <td><a href="/Home/MusicDetail"><img class="rounded-circle me-lg-2" src="@video.ThumbnailUrl" alt="" style="width: 40px; height: 40px;">@video.Title</a></td>
-                                <td><a href="#"><i class="fa fa-plus mee" aria-hidden="true"></i></a></td>
-                            </tr>
-                            count++;
-                        }
+                        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                            <div class="product-item bg-light mb-4">
+                                <div class="product-img position-relative overflow-hidden">
+                                    <img class="img-fluid w-100" src="@video.ThumbnailUrl" alt="">
+                                    <div class="product-action">
+                                        <a class="btn btn-outline-dark btn-square" href="@Url.Action("Video", "Home", new { id = video.VideoId })"><i class="fa fa-play-circle"></i></a>
+                                    </div>
+                                </div>
+                                <div class="text-center py-4">
+                                    <a class="h6 text-decoration-none text-truncate" href="@Url.Action("Video", "Home", new { id = video.VideoId })">@video.Title</a>
+                                    <div class="ngang">
+                                        <i class="bi bi-clock"> @TimeAgo(video.VideoPostingTime.GetValueOrDefault())</i>
+                                        <i class="fa fa-eye" aria-hidden="true">  @video.VideoViews</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     }
-                </tbody>
-            </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+@functions {
+    string TimeAgo(DateTimeOffset dateTime)
+    {
+        var timeSpan = DateTimeOffset.Now - dateTime;
+
+        if (timeSpan <= TimeSpan.FromSeconds(60))
+        {
+            return $"{timeSpan.Seconds} second";
+        }
+        else if (timeSpan <= TimeSpan.FromMinutes(60))
+        {
+            return $"{timeSpan.Minutes} minute";
+        }
+        else if (timeSpan <= TimeSpan.FromHours(24))
+        {
+            return $"{timeSpan.Hours} hour";
+        }
+        else if (timeSpan <= TimeSpan.FromDays(30))
+        {
+            return $"{timeSpan.Days} day";
+        }
+        else if (timeSpan <= TimeSpan.FromDays(365))
+        {
+            return $"{Math.Round(timeSpan.Days / 30.0)} month";
+        }
+        else
+        {
+            return $"{Math.Round(timeSpan.Days / 365.0)} year";
+        }
+    }
+}
+
 <style>
+    .text-center.py-4 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .text-decoration-none {
+        text-decoration: none !important;
+        word-wrap: break-word;
+        max-height: 51px !important;
+        text-overflow: ellipsis;
+    }
+
+    .ngang {
+        display: flex;
+    }
+
+    i.fa.fa-eye {
+        margin: 11px 12px;
+    }
+
+    i.bi.bi-clock {
+        margin: 7px 15px;
+    }
+
+    .product-action {
+        border-radius: 15px 15px 0px 0px;
+    }
+
+    .product-img.position-relative.overflow-hidden {
+        border-radius: 15px 15px 0px 0px;
+    }
+
     .mee {
         color: #fff;
         margin-top: 10px;
         margin-left: 20px;
     }
 </style>
+
+<script src="~/js/home.js"></script>
+<script src="~/js/contact.js"></script>
+<script src="~/js/jqbootstrapvalidation.min.js"></script>

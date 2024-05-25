@@ -134,10 +134,10 @@ namespace Entertainment_Web_API.Controllers
         }
 
         //[Authorize]
-        public IActionResult MusicDetail()
-        {
-            return View();
-        }
+        //public IActionResult MusicDetail()
+        //{
+        //    return View();
+        //}
 
         [Authorize]
         //[Authorize(Roles = "Admin, User")]

@@ -14,7 +14,7 @@ namespace BackEnd.Controllers
     public class PlaylistController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyBl_ZIe-m8ry0ajAO3-hvchkDlTT6kkgy0"; // Api key
+        private readonly string apiKey = "AIzaSyC-hldqefETpVzbO8cToIsH9v5PmbP1y-0"; // Api key
 
         public PlaylistController(EntertainmentContext context)
         {
@@ -55,16 +55,49 @@ namespace BackEnd.Controllers
             return Ok(videos);
         }
 
-        [HttpPost("{playlistId}/{videoId}")]
-        public async Task<IActionResult> AddVideoToPlaylist(string playlistId, string videoId)
+        [HttpPost("{userId}/{playlistId}/{videoId}")]
+        public async Task<IActionResult> AddVideoToPlaylist(string userId, string playlistId, string videoId)
         {
-            // Tìm VideoPlaylist trong cơ sở dữ liệu
-            var videoPlaylist = await _context.VideoPlaylists.FindAsync(videoId, playlistId);
-
-            if (videoPlaylist != null)
+            var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
-                // Nếu VideoPlaylist đã tồn tại, trả về lỗi
-                return BadRequest(new { success = false, message = "The video already exists in the playlist!" });
+                ApiKey = apiKey,
+                ApplicationName = this.GetType().ToString()
+            });
+
+            // Lấy thông tin video từ YouTube API
+            var videoRequest = youtubeService.Videos.List("snippet,statistics");
+            videoRequest.Id = videoId;
+
+            var videoResponse = await videoRequest.ExecuteAsync();
+            var video = videoResponse.Items[0];
+
+            // Kiểm tra xem video đã tồn tại trong cơ sở dữ liệu hay chưa
+            var existingVideo = await _context.Videos.FindAsync(videoId);
+
+            if (existingVideo == null)
+            {
+                // Tạo mới Video
+                var newVideo = new Video
+                {
+                    VideoId = video.Id,
+                    Title = video.Snippet.Title,
+                    ThumbnailUrl = video.Snippet.Thumbnails.High.Url,
+                    VideoUrl = $"https://www.youtube.com/watch?v={video.Id}",
+                    VideoViews = (int?)video.Statistics.ViewCount.GetValueOrDefault(),
+                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset,
+                    Id = userId
+                };
+
+                // Thêm Video vào cơ sở dữ liệu
+                _context.Videos.Add(newVideo);
+            }
+
+            // Kiểm tra xem video đã tồn tại trong playlist chưa
+            var existingVideoInPlaylist = await _context.VideoPlaylists.FirstOrDefaultAsync(vp => vp.PlaylistId == playlistId && vp.VideoId == videoId);
+
+            if (existingVideoInPlaylist != null)
+            {
+                return BadRequest(new { success = false, message = "Video already exists in the playlist!" });
             }
 
             // Tạo mới VideoPlaylist

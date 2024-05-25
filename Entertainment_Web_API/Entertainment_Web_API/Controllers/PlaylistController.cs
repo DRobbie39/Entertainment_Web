@@ -33,15 +33,18 @@ namespace Entertainment_Web_API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddVideoToPlaylist(string playlistId, string videoId)
         {
+            var userId = GetCurrentUserId();
+
             // Tạo một đối tượng chứa dữ liệu cần gửi
             var content = new FormUrlEncodedContent(new[]
             {
+                new KeyValuePair<string, string>("userId", userId),
                 new KeyValuePair<string, string>("playlistId", playlistId),
                 new KeyValuePair<string, string>("videoId", videoId)
             });
 
             // Gửi yêu cầu POST đến Web API
-            HttpResponseMessage response = await _client.PostAsync($"{_client.BaseAddress}/Playlist/AddVideoToPlaylist/{playlistId}/{videoId}", content);
+            HttpResponseMessage response = await _client.PostAsync($"{_client.BaseAddress}/Playlist/AddVideoToPlaylist/{userId}/{playlistId}/{videoId}", content);
             if (response.IsSuccessStatusCode)
             {
                 // Nếu thành công, trả về thông báo thành công
@@ -50,7 +53,7 @@ namespace Entertainment_Web_API.Controllers
             else
             {
                 // Nếu không thành công, trả về thông báo lỗi
-                return Json(new { success = false, message = "The video already exists in the playlist!" });
+                return Json(new { success = false, message = "Video already exists in the playlist!" });
             }
         }
 
