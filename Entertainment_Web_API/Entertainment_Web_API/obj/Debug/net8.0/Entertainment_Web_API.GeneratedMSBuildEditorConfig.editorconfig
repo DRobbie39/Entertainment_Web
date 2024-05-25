@@ -46,16 +46,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMaWJyYXJ5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/Music.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNdXNpYy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/MusicDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNdXNpY0RldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/NoAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOb0FjY291bnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/PlaylistDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQbGF5bGlzdERldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Study/HK2 2023-2024/API/Entertainment_Web/Entertainment_Web_API/Entertainment_Web_API/Views/Home/Video.cshtml]

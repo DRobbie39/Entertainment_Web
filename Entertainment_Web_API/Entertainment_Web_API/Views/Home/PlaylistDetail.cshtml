@@ -1,0 +1,58 @@
+﻿@model BackEnd.Models.PlaylistViewModel
+
+@{
+    ViewData["Title"] = "PlaylistDetail";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+<div style="margin-top:15px">
+    <div class="col-sm-12">
+        <div class="bg-secondary rounded h-100 p-4">
+            <div class="row" style="background-image:linear-gradient(to bottom,#ea7272,#261515);padding:20px;border-radius:10px;">
+                <div class="col-3">
+                    <img class="img-fluid w-100" src="/lib/mtp.jpg" alt="" style="width:280px;height:280px;border-radius:10px;">
+                </div>
+                <div class="col-9" style="margin-top:30px;">
+                    <h6>Playlist</h6>
+                    <h1 style="font-size:92px;font-weight:700">Lofi beats</h1>
+                    <h6 style="color:#e8d9d9;">
+                        chill beats, lofi vibes, new tracks every week...
+                    </h6>
+                    <h5 style="color:#bebebe;"><i class="fa fa-headphones" aria-hidden="true"></i> 5.255.931 lượt thích 750 bài hát, hơn 24 giờ</h5>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tiêu đề</th>
+                        <th scope="col">Playlist</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Videos != null)
+                    {
+                        int count = 1;
+                        foreach (var video in Model.Videos)
+                        {
+                            <tr>
+                                <th scope="row">@count</th>
+                                <td><a href="/Home/MusicDetail"><img class="rounded-circle me-lg-2" src="@video.ThumbnailUrl" alt="" style="width: 40px; height: 40px;">@video.Title</a></td>
+                                <td><a href="#"><i class="fa fa-plus mee" aria-hidden="true"></i></a></td>
+                            </tr>
+                            count++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .mee {
+        color: #fff;
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+</style>

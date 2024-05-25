@@ -35,6 +35,26 @@ namespace BackEnd.Controllers
             return Ok(playlists);
         }
 
+        [HttpGet("{userId}/{playlistId}")]
+        public async Task<IActionResult> GetPlaylistVideos(string userId, string playlistId)
+        {
+            // Tìm playlist dựa trên userId và playlistId
+            var playlist = await _context.Playlist
+                .Include(p => p.VideoPlaylists) // Include VideoPlaylists để lấy các video thuộc playlist
+                .ThenInclude(vp => vp.Video) // Include Video để lấy thông tin video
+                .FirstOrDefaultAsync(p => p.Id == userId && p.PlaylistId == playlistId);
+
+            if (playlist == null)
+            {
+                return NotFound();
+            }
+
+            // Lấy danh sách video từ playlist
+            var videos = playlist.VideoPlaylists.Select(vp => vp.Video).ToList();
+
+            return Ok(videos);
+        }
+
         [HttpPost("{playlistId}/{videoId}")]
         public async Task<IActionResult> AddVideoToPlaylist(string playlistId, string videoId)
         {

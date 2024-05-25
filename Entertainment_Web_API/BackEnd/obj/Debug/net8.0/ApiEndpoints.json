@@ -105,6 +105,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "BackEnd.Controllers.PlaylistController",
+    "Method": "GetPlaylistVideos",
+    "RelativePath": "backend/Playlist/GetPlaylistVideos/{userId}/{playlistId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "playlistId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "BackEnd.Controllers.UserController",
     "Method": "Get",
     "RelativePath": "backend/User/Get/{Id}",

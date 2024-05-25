@@ -98,7 +98,7 @@ namespace Entertainment_Web_API.Controllers
             }
 
             // Create a new ViewModel
-            var viewModel = new VideoPlaylistViewModel
+            var viewModel = new VideoViewModel
             {
                 Video = video,
                 Playlists = playlists
@@ -108,9 +108,29 @@ namespace Entertainment_Web_API.Controllers
         }
 
         [Authorize]
-        public IActionResult Music()
+        public async Task<IActionResult> PlaylistDetail(string playlistId)
         {
-            return View();
+            var userId = GetCurrentUserId();
+
+            // Get videos in the playlist
+            List<Video> videos = new List<Video>(); // Declare the videos variable here
+            if (userId != null && playlistId != null)
+            {
+                HttpResponseMessage videoResponse = await _client.GetAsync(_client.BaseAddress + $"/Playlist/GetPlaylistVideos/{userId}/{playlistId}");
+                if (videoResponse.IsSuccessStatusCode)
+                {
+                    string videoData = await videoResponse.Content.ReadAsStringAsync();
+                    videos = JsonConvert.DeserializeObject<List<Video>>(videoData); // Assign value to the videos variable here
+                }
+            }
+
+            // Create a new ViewModel
+            var viewModel = new PlaylistViewModel
+            {
+                Videos = videos
+            };
+
+            return View(viewModel);
         }
 
         //[Authorize]
@@ -125,22 +145,26 @@ namespace Entertainment_Web_API.Controllers
         public async Task<IActionResult> Library()
         {
             var userId = GetCurrentUserId();
-            if (userId == null)
+
+            // Get playlists
+            List<Playlist> playlists = new List<Playlist>(); // Khai báo biến playlists ở đây
+            if (userId != null)
             {
-                // Xử lý trường hợp người dùng không đăng nhập
-                return RedirectToAction("Login", "Account");
+                HttpResponseMessage playlistResponse = await _client.GetAsync(_client.BaseAddress + $"/Playlist/GetPlaylists/{userId}");
+                if (playlistResponse.IsSuccessStatusCode)
+                {
+                    string playlistData = await playlistResponse.Content.ReadAsStringAsync();
+                    playlists = JsonConvert.DeserializeObject<List<Playlist>>(playlistData); // Gán giá trị cho biến playlists ở đây
+                }
             }
 
-            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/Playlist/GetPlaylists/{userId}");
-
-            if (response.IsSuccessStatusCode)
+            // Create a new ViewModel
+            var viewModel = new PlaylistViewModel
             {
-                string data = await response.Content.ReadAsStringAsync();
-                var playlists = JsonConvert.DeserializeObject<List<Playlist>>(data);
-                return View(playlists);
-            }
-            
-            return View();
+                Playlists = playlists
+            };
+
+            return View(viewModel);
         }
     }
 }
