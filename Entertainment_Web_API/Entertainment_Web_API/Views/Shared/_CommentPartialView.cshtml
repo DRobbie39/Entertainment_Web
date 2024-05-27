@@ -1,4 +1,5 @@
 ﻿@using BackEnd.Models
+@using System.Security.Claims
 @model Comment
 
 @{
@@ -10,7 +11,7 @@
 <!-- cop từ chỗ này-->
 <div class="comment-box">
     <form asp-controller="Comment" asp-action="AddComment" method="post" class="d-flex">
-        <div class="form-group" style="margin-left:5px;margin-right:10px">
+        <div class="form-group" style="margin-right:10px">
             @* <input asp-for="Comments." value="-1" type="hidden" class="form-control" /> *@
             <input asp-for="VideoId" value="@videoId" type="hidden" class="form-control" />
         </div>
@@ -20,35 +21,47 @@
 </div>
 
 <div class="comment">
-    <div class="row">
-
+    <div class="row g-0 margin-top:8px d-flex">
+        
         @if(comments != null)
         {
             @foreach (var comment in comments)
             {
-                <div class="col-11">
+                <div class="col-12 d-flex" style="margin-top:15px">
                     <div class="d-flex" style="width:100%;">
-                        <img class="rounded-circle flex-shrink-0" src="@comment.AppUser.Avtprofile" alt="" style="width: 40px; height: 40px;">
-                        <h5 style="margin-top:3px;margin-left:5px;">@comment.AppUser.FullName</h5>
-                    </div>
-                    <p style="margin-left:45px;">@comment.Content</p>
-                </div>
-
-                <div class="comment-box">
-                    <form asp-controller="Comment" asp-action="DeleteComment" method="post" class="d-flex">
-                        <div class="form-group" style="margin-left:5px;margin-right:10px">
-                            <input asp-for="CommentId" value="@comment.CommentId" type="hidden" class="form-control" />
-                            <input asp-for="VideoId" value="@videoId" type="hidden" class="form-control" />
+                        <img class="rounded-circle flex-shrink-0 col-1" src="@comment.AppUser.Avtprofile" alt="" style="width: 45px; height: 45px;">
+                        <div class="block col-10" style="margin-left:20px">
+                            <h5 style="margin-top:3px;margin-left:5px;">@comment.AppUser.FullName</h5>
+                            <p style="margin-left:15px;">@comment.Content</p>
                         </div>
-
-                        <button type="submit" class="submit-button">
-                            <div class="col-1 clsss">
-                                    @* <i class="bi bi-pencil-square" style="margin-top:5px;"></i> *@
-                                    <i class="fa fa-trash" aria-hidden="true" style="margin-top:5px;">delete</i>
+                        <div class="col-1 justify-content-start">
+                            <small>@comment.CommentPostingTime</small>
+                            @if(comment.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                            {
+                                <form asp-controller="Comment" asp-action="DeleteComment" method="post" class="d-flex">
+                                <div class="form-group" style="margin-left:5px;margin-right:10px">
+                                    <input asp-for="CommentId" value="@comment.CommentId" type="hidden" class="form-control" />
+                                    <input asp-for="VideoId" value="@videoId" type="hidden" class="form-control" />
                                 </div>
-                        </button
-                    </form>
+
+                                <button type="submit" class="">
+                                    <div class="d-flex clsss">
+                                        @* button update comment *@
+                                            <i class="bi bi-pencil-square" style="margin-top:5px;margin-right:8px"></i>
+                                            <i class="fa fa-trash" aria-hidden="true" style="margin-top:10px;"></i>
+                                     </div>
+                                </button
+                            </form>
+                            }
+                            
+                        </div>
+                        
+                    </div>    
                 </div>
+
+                @* <div class="comment-box col-1 d-inline">
+                    
+                </div> *@
             }
         }
 
