@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Entertainment_Web_API.csproj": {}
+    "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Entertainment_Web_API.csproj": {}
   },
   "projects": {
-    "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj": {
+    "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj",
+        "projectUniqueName": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj",
         "projectName": "BackEnd",
-        "projectPath": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj",
-        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\obj\\",
+        "projectPath": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj",
+        "packagesPath": "C:\\Users\\Nguyen Ngoc Tieu Thu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nguyen Ngoc Tieu Thu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -117,21 +117,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Entertainment_Web_API.csproj": {
+    "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Entertainment_Web_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Entertainment_Web_API.csproj",
+        "projectUniqueName": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Entertainment_Web_API.csproj",
         "projectName": "Entertainment_Web_API",
-        "projectPath": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Entertainment_Web_API.csproj",
-        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\obj\\",
+        "projectPath": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Entertainment_Web_API.csproj",
+        "packagesPath": "C:\\Users\\Nguyen Ngoc Tieu Thu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nguyen Ngoc Tieu Thu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -145,8 +145,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj": {
-                "projectPath": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj"
+              "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj": {
+                "projectPath": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj"
               }
             }
           }
@@ -230,7 +230,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
