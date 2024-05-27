@@ -80,5 +80,25 @@ namespace Entertainment_Web_API.Controllers
                 return Json(new { success = false, message = "Adding playlist failed!" });
             }
         }
+
+        [HttpPut]
+        public async Task<IActionResult> EditPlaylist(string playlistId, string playlistName)
+        {
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("playlistId", playlistId),
+                new KeyValuePair<string, string>("playlistName", playlistName)
+            });
+
+            HttpResponseMessage respone = await _client.PutAsync($"{_client.BaseAddress}/Playlist/EditPlaylist/{playlistId}/{playlistName}", content);
+            if (respone.IsSuccessStatusCode)
+            {
+                return Json(new { success = true, message = "Playlist edit successfully!" });
+            }
+            else
+            {
+                return Json(new { success = false, message = "Edit playlist failed"});
+            }
+        }
     }
 }

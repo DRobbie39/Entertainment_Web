@@ -22,7 +22,7 @@
                     <h6 style="color:#e8d9d9;">
                         chill beats, lofi vibes, new tracks every week...
                     </h6>
-                    <h5 style="color:#bebebe;"><i class="fa fa-headphones" aria-hidden="true"></i> 5.255.931 lượt thích 750 bài hát, hơn 24 giờ</h5>
+                    <h5 style="color:#bebebe;"><i class="fa fa-headphones" aria-hidden="true"></i> 5.255.931 likes 750 songs, over 24 hours</h5>
                 </div>
             </div>
 
@@ -45,11 +45,11 @@
                                         <i class="bi bi-clock"> @TimeAgo(video.VideoPostingTime.GetValueOrDefault())</i>
                                         <i class="fa fa-eye" aria-hidden="true">  @video.VideoViews</i>
                                         <div class="dropdown">
+                                            <i class="bi bi-three-dots-vertical ellipsis-icon"></i>
                                             <div class="dropdown-content">
                                                 <i class="bi bi-pencil-square" style="margin-top:5px;"></i>
                                                 <i class="fa fa-trash" aria-hidden="true" style="margin-top:5px;"></i>
                                             </div>
-                                            <i class="bi bi-three-dots-vertical" id="ellipsis-icon"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -123,24 +123,22 @@
         z-index: 0;
     }
 
-    .show {
-        display: block;
-    }
 
-    .dropdown-content:hover {
-        background-color: #f1f1f1;
-    }
 
-    .dropdown-content i {
-        display: block;
-        padding: 10px;
-        text-align: center;
-        cursor: pointer;
-    }
+        .dropdown-content:hover {
+            background-color: #f1f1f1;
+        }
 
-    .dropdown-content i:hover {
-        background-color: #ddd;
-    }
+        .dropdown-content i {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+            .dropdown-content i:hover {
+                background-color: #ddd;
+            }
 
     .text-center.py-4 {
         overflow: hidden;
@@ -180,17 +178,48 @@
         margin-left: 20px;
     }
 
-    h1{
-        color:#fff;
+    h1 {
+        color: #fff;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: -40px;
+        left: -70px; /* Adjust this value based on the width of your menu */
+        background-color: #f9f9f9;
+        min-width: 50px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+
+        .dropdown-content i {
+            padding: 8px 10px;
+            display: block;
+            text-align: center;
+        }
+
+    .show {
+        display: block;
     }
 </style>
 
 <script>
-    const kick = document.getElementById('ellipsis-icon');
-    const dropdownContent = document.querySelector('.dropdown-content');
+    const kicks = document.querySelectorAll('.ellipsis-icon');
+    kicks.forEach(kick => {
+        kick.addEventListener('click', () => {
+            const dropdownContent = kick.nextElementSibling;
 
-    kick.addEventListener('click', () => {
-        dropdownContent.classList.toggle('show');
+            if (dropdownContent) {
+                dropdownContent.classList.toggle('show');
+            }
+        });
     });
 </script>
 

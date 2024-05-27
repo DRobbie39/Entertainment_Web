@@ -127,6 +127,27 @@
   },
   {
     "ContainingType": "BackEnd.Controllers.PlaylistController",
+    "Method": "EditPlaylist",
+    "RelativePath": "backend/Playlist/EditPlaylist/{playlistId}/{playlistName}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "playlistId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "playlistName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.PlaylistController",
     "Method": "GetPlaylists",
     "RelativePath": "backend/Playlist/GetPlaylists/{userId}",
     "HttpMethod": "GET",

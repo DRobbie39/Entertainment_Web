@@ -14,7 +14,7 @@ namespace BackEnd.Controllers
     public class PlaylistController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyBl_ZIe-m8ry0ajAO3-hvchkDlTT6kkgy0"; // Api key
+        private readonly string apiKey = "AIzaSyC-hldqefETpVzbO8cToIsH9v5PmbP1y-0"; // Api key
 
         public PlaylistController(EntertainmentContext context)
         {
@@ -179,6 +179,26 @@ namespace BackEnd.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(newPlaylist);
+        }
+
+        [HttpPut("{playlistId}/{playlistName}")]
+        public async Task<IActionResult> EditPlaylist(string playlistId, string playlistName)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingPlaylist = await _context.Playlist.FirstOrDefaultAsync(p => p.PlaylistId == playlistId);
+
+                if (existingPlaylist != null)
+                {
+                    existingPlaylist.PlaylistName = playlistName;
+
+                    await _context.SaveChangesAsync();
+
+                    return Ok();
+                }
+            }
+
+            return BadRequest();
         }
     }
 }

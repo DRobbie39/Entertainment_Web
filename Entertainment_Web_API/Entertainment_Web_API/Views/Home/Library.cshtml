@@ -14,12 +14,12 @@
                 </div>
                 <div class="col-9" style="margin-top:30px;">
                     <h6>Playlist</h6>
-                    <h2 style="font-size:56px;font-weight:700">Danh sách phát của tôi</h2>
+                    <h2 style="font-size:56px;font-weight:700">My playlist(s)</h2>
                     <h6 style="color:#e8d9d9;">
                         chill beats, lofi vibes, new tracks every week...
                     </h6>
-                    <h5 style="color:#bebebe;"><i class="fa fa-headphones" aria-hidden="true"></i> 5.255.931 lượt thích 750 bài hát, hơn 24 giờ</h5>
-                    <h5 style="color:#bebebe;">Tên cá nhân</h5>
+                    <h5 style="color:#bebebe;"><i class="fa fa-headphones" aria-hidden="true"></i> 5.255.931 likes 750 songs, over 24 hours</h5>
+                    <h5 style="color:#bebebe;"></h5>
                 </div>
             </div>
             <div class="d-flex flex-wrap justify-content-start">
@@ -34,17 +34,17 @@
                                     <img src="/lib/playlist.png" alt="..." class="playlist-image">
                                 </div>
                             </a>
-                                <div class="playlist-info">
-                                    <h5>@playlist.PlaylistName</h5>
-                                    <div class="dropdown">
-                                    <i class="bi bi-three-dots-vertical" id="ellipsis-icon"></i>
-                                        <div class="dropdown-content">
-                                            <i class="bi bi-pencil-square" style="margin-top:5px;"></i>
-                                            <i class="fa fa-trash" aria-hidden="true" style="margin-top:5px;"></i>
-                                        </div>
+                            <div class="playlist-info">
+                                <h5>@playlist.PlaylistName</h5>
+                                <div class="dropdown">
+                                    <i class="bi bi-three-dots-vertical ellipsis-icon"></i>
+                                    <div class="dropdown-content">
+                                        <i class="bi bi-pencil-square" style="margin-top:5px;border-radius:15px;" data-toggle="modal" data-target="#editPlaylistModal"></i>
+                                        <i class="fa fa-trash" aria-hidden="true" style="margin-top:5px;border-radius:15px;"></i>
                                     </div>
                                 </div>
-                            
+                            </div>
+
                         </div>
                     }
                 }
@@ -53,36 +53,65 @@
     </div>
 </div>
 
+<!-- Modal for editing playlist name -->
+<div class="modal fade" id="editPlaylistModal" tabindex="-1" role="dialog" aria-labelledby="editPlaylistModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editPlaylistModalLabel" style="color: black;">Edit Playlist Name</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editPlaylistForm">
+                    <div class="form-group">
+                        <label for="newPlaylistName">New playlist name</label>
+                        <input type="hidden" id="playlistId" name="playlistId" value="@Model.Playlists[0].PlaylistId">
+                        <input type="text" class="form-control" id="newPlaylistName" name="newPlaylistName" placeholder="Enter new playlist name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="savePlaylistNameButton">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
-    i.bi-three-dots-vertical{
+    i.bi-three-dots-vertical {
         cursor: pointer;
     }
 
     .playlist-info {
         display: flex;
         align-items: center;
+        justify-content: center;
     }
 
     .dropdown {
         position: relative;
         display: inline-block;
         margin-left: 10px; /* Adjust margin as needed */
-        display:flex;
+        display: flex;
     }
 
     .dropdown-content {
         display: none;
         position: absolute;
         background-color: #f9f9f9;
-        min-width: 80px;
+        min-width: 50px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
-        margin-left:15px;
-        border-radius:15px;
+        margin-left: 15px;
+        top: -30px;
+        border-radius: 15px;
     }
 
-    .show{
-        display:block;
+    .show {
+        display: block;
     }
 
     .dropdown-content:hover {
@@ -96,21 +125,22 @@
         cursor: pointer;
     }
 
-    .dropdown-content i:hover {
-        background-color: #ddd;
+        .dropdown-content i:hover {
+            background-color: #ddd;
+        }
+
+    .sovideo {
+        position: absolute;
     }
 
-    .sovideo{
-        position:absolute;
-    }
     .mee {
         color: #fff;
         margin-top: 10px;
         margin-left: 20px;
     }
 
-    h5{
-        text-align:center;
+    h5 {
+        text-align: center;
     }
 
     .playlist-container {
@@ -126,12 +156,12 @@
 
     .sovideo {
         position: absolute;
-        bottom: 10px; 
+        bottom: 10px;
         right: 10px;
         background-color: rgba(0, 0, 0, 0.76);
         color: white;
         padding: 5px;
-        border-radius: 3px; 
+        border-radius: 3px;
     }
 
     .playlist-image {
@@ -141,11 +171,63 @@
 </style>
 
 <script>
-    const kick = document.getElementById('ellipsis-icon');
-    const dropdownContent = document.querySelector('.dropdown-content');
+    const kicks = document.querySelectorAll('.ellipsis-icon');
+    kicks.forEach(kick => {
+        kick.addEventListener('click', () => {
+            const dropdownContent = kick.nextElementSibling;
 
-    kick.addEventListener('click', () => {
-        dropdownContent.classList.toggle('show');
+            if (dropdownContent) {
+                dropdownContent.classList.toggle('show');
+            }
+        });
     });
 </script>
 
+<!-- Thêm jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!--Nút xử lý sự kiện đóng/mở modal-->
+<script>
+    //Xử lý sự kiện mở modal
+    $(document).ready(function () {
+        $("#editPlaylistModal").on('show.bs.modal', function () {
+            $("#editPlaylistModal").modal('show');
+        });
+    });
+
+    //Xử lý sự kiện đóng modal
+    $(document).ready(function () {
+        $("#editPlaylistModal").on('hide.bs.modal', function () {
+            $("#editPlaylistModal").modal('hide');
+        });
+    });
+</script>
+
+<!--Nút sửa ds phát-->
+<script>
+    $(document).ready(function () {
+        // Khi người dùng nhấn nút "Add new playlist"
+        $('#savePlaylistNameButton').click(function () {
+            var playlistId = $('#playlistId').val();
+            var newPlaylistName = $('#newPlaylistName').val();
+
+            $.ajax({
+                url: '/Playlist/EditPlaylist',
+                type: 'PUT',
+                data: {
+                    playlistId: playlistId,
+                    playlistName: newPlaylistName
+                },
+                success: function (response) {
+                    if (response.success) {
+                        alert('Playlist edit successfully!');
+                    } else {
+                        alert('Edit playlist failed!');
+                    }
+                }
+            });
+        });
+    });
+</script>

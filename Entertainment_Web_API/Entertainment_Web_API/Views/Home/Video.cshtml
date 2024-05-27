@@ -35,11 +35,12 @@
                 <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"> @Model.Video.Dislikes</i>
             </div>
             <div class="col-3">
-                <i class="fa fa-download" aria-hidden="true">Download</i>
+                @* <i class="fa fa-download" aria-hidden="true">Download</i> *@
+                <i class="fa fa-play-circle" aria-hidden="true" data-toggle="modal" data-target="#saveToPlaylistModal"> Add to playlist</i>
                 <!-- Nút Lưu vào danh sách phát -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveToPlaylistModal">
+                @* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveToPlaylistModal">
                     Add to playlist
-                </button>
+                </button> *@
             </div>
 
             <!-- cop từ chỗ này-->
@@ -162,6 +163,10 @@
         cursor: pointer;
     }
 
+    i.fa.fa-play-circle{
+        cursor: pointer;
+    }
+
     .product__sidebar__comment {
         margin-bottom: 35px;
     }
@@ -227,14 +232,14 @@
 <script>
     //Xử lý sự kiện mở modal
     $(document).ready(function () {
-        $("#saveToPlaylistButton").click(function () {
+        $("#saveToPlaylistButton").on('show.bs.modal', function () {
             $("#saveToPlaylistModal").modal('show');
         });
     });
 
     //Xử lý sự kiện đóng modal
     $(document).ready(function () {
-        $("#saveToPlaylistButton").click(function () {
+        $("#saveToPlaylistButton").on('show.bs.modal', function () {
             $("#saveToPlaylistModal").modal('hide');
         });
     });
