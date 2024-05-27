@@ -3,6 +3,17 @@
 @{
     ViewData["Title"] = "Video";
     Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+
+    Comment comment = new Comment();
+
+    var r = Model;
+
+
+    var partialViewData = new ViewDataDictionary(ViewData)
+    {
+        { "commentList", ViewBag.comments as List<BackEnd.Models.Comment> },
+        { "videoId", Model.Video.VideoId },
+    };
 }
 
 <div class="row g-0">
@@ -30,44 +41,11 @@
                     Add to playlist
                 </button>
             </div>
-            @* <div class="comment-box">
-                <form asp-controller="Comment" asp-action="AddComment" method="post" class="d-flex">
-                    <div class="form-group" style="margin-left:5px;margin-right:10px">
-                    <input asp-for="Comments." value="-1" type="hidden" class="form-control" />
-                    <input asp-for="VideoId" value="@video.VideoId" type="hidden" class="form-control" />
-            </div>
-                    <textarea asp-for="Content" class="comment-input"></textarea>
-                    <button type="submit" class="submit-button">Gửi</button>
-                </form>
-            </div> *@
-            <div class="comment">
-                <div class="row">
-                    @* <div class="col-11">
-                        <div class="d-flex" style="width:100%;">
-                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <h5 style="margin-top:3px;margin-left:5px;">Nguyễn Ngọc Tiểu Thư</h5>
-                        </div>
-                        <p style="margin-left:45px;">Nhạc như cái qq</p>
-                    </div>
-                    <div class="col-1 clsss">
-                        <i class="bi bi-pencil-square" style="margin-top:5px;"></i>
-                        <i class="fa fa-trash" aria-hidden="true" style="margin-top:5px;"></i>
-                    </div> *@
-                    <div class="w-100 ms-3">
-                        @if (Model.Comments != null)
-                        {
-                            foreach (var comment in Model.Comments)
-                            {
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">@comment.AppUser.FullName</h6>
-                                    <small>@comment.CommentPostingTime</small>
-                                </div>
-                                <span>@comment.Content</span>
-                            }
-                        }
-                    </div>
-                </div>
-            </div>
+
+            <!-- cop từ chỗ này-->
+            @await Html.PartialAsync("_CommentPartialView", comment, partialViewData);
+            <!-- đến đây là kết thúc comment-->
+
         </div>
     </div>
     <div class="col-6 col-md-4">

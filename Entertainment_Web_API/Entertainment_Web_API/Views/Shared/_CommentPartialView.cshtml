@@ -1,0 +1,57 @@
+﻿@using BackEnd.Models
+@model Comment
+
+@{
+    var model = Model;
+    var videoId = ViewData["videoId"] as string;
+    var comments = ViewData["commentList"] as List<Comment>;
+}
+
+<!-- cop từ chỗ này-->
+<div class="comment-box">
+    <form asp-controller="Comment" asp-action="AddComment" method="post" class="d-flex">
+        <div class="form-group" style="margin-left:5px;margin-right:10px">
+            @* <input asp-for="Comments." value="-1" type="hidden" class="form-control" /> *@
+            <input asp-for="VideoId" value="@videoId" type="hidden" class="form-control" />
+        </div>
+        <textarea asp-for="Content" class="comment-input"></textarea>
+        <button type="submit" class="submit-button">Gửi</button>
+    </form>
+</div>
+
+<div class="comment">
+    <div class="row">
+
+        @if(comments != null)
+        {
+            @foreach (var comment in comments)
+            {
+                <div class="col-11">
+                    <div class="d-flex" style="width:100%;">
+                        <img class="rounded-circle flex-shrink-0" src="@comment.AppUser.Avtprofile" alt="" style="width: 40px; height: 40px;">
+                        <h5 style="margin-top:3px;margin-left:5px;">@comment.AppUser.FullName</h5>
+                    </div>
+                    <p style="margin-left:45px;">@comment.Content</p>
+                </div>
+
+                <div class="comment-box">
+                    <form asp-controller="Comment" asp-action="DeleteComment" method="post" class="d-flex">
+                        <div class="form-group" style="margin-left:5px;margin-right:10px">
+                            <input asp-for="CommentId" value="@comment.CommentId" type="hidden" class="form-control" />
+                            <input asp-for="VideoId" value="@videoId" type="hidden" class="form-control" />
+                        </div>
+
+                        <button type="submit" class="submit-button">
+                            <div class="col-1 clsss">
+                                    @* <i class="bi bi-pencil-square" style="margin-top:5px;"></i> *@
+                                    <i class="fa fa-trash" aria-hidden="true" style="margin-top:5px;">delete</i>
+                                </div>
+                        </button
+                    </form>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+<!-- đến đây là kết thúc comment-->

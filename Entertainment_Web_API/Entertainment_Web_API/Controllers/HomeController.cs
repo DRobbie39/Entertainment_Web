@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Security.Claims;
 
+using CommentModel = BackEnd.Models.Comment;
+
 namespace Entertainment_Web_API.Controllers
 {
     public class HomeController : Controller
@@ -95,6 +97,14 @@ namespace Entertainment_Web_API.Controllers
                     string playlistData = await playlistResponse.Content.ReadAsStringAsync();
                     playlists = JsonConvert.DeserializeObject<List<Playlist>>(playlistData); // Gán giá trị cho biến playlists ở đây
                 }
+            }
+
+            var respone = await _client.GetAsync("https://localhost:7142/backend/Comment/GetComment/" + id);
+            if (respone.IsSuccessStatusCode)
+            {
+                var jsonstring = await respone.Content.ReadAsStringAsync();
+                var comments = JsonConvert.DeserializeObject<List<CommentModel>>(jsonstring);
+                ViewBag.comments = comments;
             }
 
             // Create a new ViewModel
