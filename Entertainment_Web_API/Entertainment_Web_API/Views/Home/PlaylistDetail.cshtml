@@ -12,7 +12,7 @@
 <div style="margin-top:15px">
     <div class="col-sm-12">
         <div class="bg-secondary rounded h-100 p-4">
-            <div class="row" style="background-image:linear-gradient(to bottom,#ea7272,#261515);padding:20px;border-radius:10px;">
+            <div class="row" style="background-image: linear-gradient(to bottom, #5c5858, #261515);padding:20px;border-radius:10px;">
                 <div class="col-3">
                     <img class="img-fluid w-100" src="/lib/mtp.jpg" alt="" style="width:280px;height:280px;border-radius:10px;">
                 </div>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="container-fluid pt-5 pb-3">
-                <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3" style="background:#000000 !important;">Your videos</span></h2>
+                <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Your videos</span></h2>
                 <div class="row px-xl-5">
                     @foreach (var video in Model.Videos)
                     {
@@ -44,6 +44,13 @@
                                     <div class="ngang">
                                         <i class="bi bi-clock"> @TimeAgo(video.VideoPostingTime.GetValueOrDefault())</i>
                                         <i class="fa fa-eye" aria-hidden="true">  @video.VideoViews</i>
+                                        <div class="dropdown">
+                                            <div class="dropdown-content">
+                                                <i class="bi bi-pencil-square" style="margin-top:5px;"></i>
+                                                <i class="fa fa-trash" aria-hidden="true" style="margin-top:5px;"></i>
+                                            </div>
+                                            <i class="bi bi-three-dots-vertical" id="ellipsis-icon"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -88,6 +95,53 @@
 }
 
 <style>
+    i.bi-three-dots-vertical {
+        cursor: pointer;
+    }
+
+    .playlist-info {
+        display: flex;
+        align-items: center;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        margin-left: 10px; /* Adjust margin as needed */
+        display: flex;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 80px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        margin-left: 15px;
+        border-radius: 15px;
+        z-index: 0;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .dropdown-content:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown-content i {
+        display: block;
+        padding: 10px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .dropdown-content i:hover {
+        background-color: #ddd;
+    }
+
     .text-center.py-4 {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -109,7 +163,7 @@
     }
 
     i.bi.bi-clock {
-        margin: 7px 15px;
+        margin: 7px 7px;
     }
 
     .product-action {
@@ -125,7 +179,20 @@
         margin-top: 10px;
         margin-left: 20px;
     }
+
+    h1{
+        color:#fff;
+    }
 </style>
+
+<script>
+    const kick = document.getElementById('ellipsis-icon');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    kick.addEventListener('click', () => {
+        dropdownContent.classList.toggle('show');
+    });
+</script>
 
 <script src="~/js/home.js"></script>
 <script src="~/js/contact.js"></script>

@@ -44,23 +44,26 @@
                 <div class="navbar-nav w-100">
                     <div class="thuvien">
                         <a href="/Home/Library" class="nav-item nav-link"><i class="fa fa-list me-2"></i>Playlist</a>
-                        @* <a href="#"><i class="fa fa-plus" aria-hidden="true" style="margin-left:80px;"></i></a>
-                        <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a> *@
+                        <a href="#"><i class="fa fa-plus" aria-hidden="true" style="margin-left:80px;"></i></a>
+                        <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
-                    @* <h6 href="#" class="nutpam">Danh sách phát</h6> *@
-                    @* @if(Model != null)
-                    {
-                        @foreach (var playlist in Model)
-                        {
-                            <div class="thuvienanh">
-                                <img style="width:40px;height:45px;border-radius:8px;" src="/lib/mtp.jpg" alt="">
-                                <ul class="danhsach">
-                                    <li style="font-weight:bold;color:#fff;">@playlist.PlaylistName</li>
-                                    <li>@playlist.PlaylistName</li>
-                                </ul>
-                            </div>
-                        }
-                    } *@
+                    <h6 href="#" class="nutpam">Danh sách phát</h6>
+                    <div class="thuvienanh">
+                        <img style="width:40px;height:45px;border-radius:8px;" src="/lib/playlist.png" alt="">
+                        <ul class="danhsach">
+                            <li style="font-weight:bold;color:#fff;">Danh sách phát của tôi #2</li>
+                            <li>Danh sách phát của tôi #1</li>
+                        </ul>
+                        <i class="fa fa-volume-up" style="color:#16d414; margin-left:30px;margin-top:15px;"></i>
+                    </div>
+                    <div class="thuvienanh">
+                        <img style="width:40px;height:45px;border-radius:8px;" src="/lib/playlist.png" alt="">
+                        <ul class="danhsach">
+                            <li style="font-weight:bold;color:#16d414;">Danh sách phát của tôi #2</li>
+                            <li>Danh sách phát của tôi #2</li>
+                        </ul>
+                        
+                    </div>
                 </div>
             </nav>
             <nav class="navbar bg-secondary navbar-dark" style="margin-top:10px;">

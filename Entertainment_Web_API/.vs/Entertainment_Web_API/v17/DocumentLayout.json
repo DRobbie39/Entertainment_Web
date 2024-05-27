@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web\\Entertainment_Web_API\\",
   "Documents": [
     {
@@ -21,6 +22,21 @@
     {
       "AbsoluteMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|c:\\users\\nguyen ngoc tieu thu\\desktop\\entertainment_web\\entertainment_web\\entertainment_web_api\\entertainment_web_api\\views\\home\\video.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|solutionrelative:entertainment_web_api\\views\\home\\video.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+=======
+  "WorkspaceRootPath": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|c:\\users\\nguyen ngoc tieu thu\\desktop\\entertainment_web\\entertainment_web_api\\entertainment_web_api\\views\\home\\library.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|solutionrelative:entertainment_web_api\\views\\home\\library.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|c:\\users\\nguyen ngoc tieu thu\\desktop\\entertainment_web\\entertainment_web_api\\entertainment_web_api\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|solutionrelative:entertainment_web_api\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|c:\\users\\nguyen ngoc tieu thu\\desktop\\entertainment_web\\entertainment_web_api\\entertainment_web_api\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|solutionrelative:entertainment_web_api\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+>>>>>>> ea98768b571055c60b2f65b71fd0a7fb6a042a05
     }
   ],
   "DocumentGroupContainers": [
@@ -42,6 +58,13 @@
             },
             {
               "$type": "Bookmark",
+<<<<<<< HEAD
+=======
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+>>>>>>> ea98768b571055c60b2f65b71fd0a7fb6a042a05
               "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
             },
             {
@@ -82,6 +105,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 1,
               "Title": "CommentController.cs",
               "DocumentMoniker": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\Controllers\\CommentController.cs",
@@ -104,10 +128,35 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-26T18:04:48.614Z",
               "EditorCaption": ""
+=======
+              "DocumentIndex": 0,
+              "Title": "Library.cshtml",
+              "DocumentMoniker": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Home\\Library.cshtml",
+              "RelativeDocumentMoniker": "Entertainment_Web_API\\Views\\Home\\Library.cshtml",
+              "ToolTip": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Home\\Library.cshtml",
+              "RelativeToolTip": "Entertainment_Web_API\\Views\\Home\\Library.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGMAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-25T15:54:47.592Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Entertainment_Web_API\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Entertainment_Web_API\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAADUAAAAAAAAAAAAgwEMAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-25T09:54:22.459Z"
+>>>>>>> ea98768b571055c60b2f65b71fd0a7fb6a042a05
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+<<<<<<< HEAD
               "Title": "CommentController.cs",
               "DocumentMoniker": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Controllers\\CommentController.cs",
               "RelativeDocumentMoniker": "Entertainment_Web_API\\Controllers\\CommentController.cs",
@@ -144,6 +193,16 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{131369f2-062d-44a2-8671-91ff31efb4f4}"
+=======
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Entertainment_Web_API\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Nguyen Ngoc Tieu Thu\\Desktop\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Entertainment_Web_API\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-25T09:54:31.229Z"
+>>>>>>> ea98768b571055c60b2f65b71fd0a7fb6a042a05
             }
           ]
         }

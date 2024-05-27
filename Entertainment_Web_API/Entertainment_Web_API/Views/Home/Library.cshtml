@@ -27,11 +27,24 @@
                 {
                     foreach (var playlist in Model.Playlists)
                     {
-                        <div style="width: 12rem; border: 1px solid #ccc; border-radius: 5px; padding: 10px; margin: 5px;">
+                        <div class="playlist-container">
                             <a href="@Url.Action("PlaylistDetail", "Home", new { playlistId = playlist.PlaylistId })">
-                                <img src="/lib/mtp.jpg" alt="..." style="width: 100%; height: auto;">
-                                <h5>@playlist.PlaylistName</h5>
+                                <div class="overlay">
+                                    <p class="sovideo">Số video</p>
+                                    <img src="/lib/playlist.png" alt="..." class="playlist-image">
+                                </div>
                             </a>
+                                <div class="playlist-info">
+                                    <h5>@playlist.PlaylistName</h5>
+                                    <div class="dropdown">
+                                    <i class="bi bi-three-dots-vertical" id="ellipsis-icon"></i>
+                                        <div class="dropdown-content">
+                                            <i class="bi bi-pencil-square" style="margin-top:5px;"></i>
+                                            <i class="fa fa-trash" aria-hidden="true" style="margin-top:5px;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            
                         </div>
                     }
                 }
@@ -41,10 +54,98 @@
 </div>
 
 <style>
+    i.bi-three-dots-vertical{
+        cursor: pointer;
+    }
+
+    .playlist-info {
+        display: flex;
+        align-items: center;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        margin-left: 10px; /* Adjust margin as needed */
+        display:flex;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 80px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        margin-left:15px;
+        border-radius:15px;
+    }
+
+    .show{
+        display:block;
+    }
+
+    .dropdown-content:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown-content i {
+        display: block;
+        padding: 10px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .dropdown-content i:hover {
+        background-color: #ddd;
+    }
+
+    .sovideo{
+        position:absolute;
+    }
     .mee {
         color: #fff;
         margin-top: 10px;
         margin-left: 20px;
     }
+
+    h5{
+        text-align:center;
+    }
+
+    .playlist-container {
+        position: relative;
+        width: 12rem;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .overlay {
+        position: relative;
+    }
+
+    .sovideo {
+        position: absolute;
+        bottom: 10px; 
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.76);
+        color: white;
+        padding: 5px;
+        border-radius: 3px; 
+    }
+
+    .playlist-image {
+        width: 100%;
+        height: auto;
+    }
 </style>
+
+<script>
+    const kick = document.getElementById('ellipsis-icon');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    kick.addEventListener('click', () => {
+        dropdownContent.classList.toggle('show');
+    });
+</script>
 
