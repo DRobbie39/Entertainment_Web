@@ -62,6 +62,9 @@ namespace BackEnd.Migrations
                     b.Property<string>("PlaylistName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("VideoCount")
+                        .HasColumnType("int");
+
                     b.HasKey("PlaylistId");
 
                     b.HasIndex("Id");

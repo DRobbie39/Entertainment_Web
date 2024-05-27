@@ -178,6 +178,7 @@ namespace BackEnd.Migrations
                 {
                     PlaylistId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PlaylistName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VideoCount = table.Column<int>(type: "int", nullable: true),
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>

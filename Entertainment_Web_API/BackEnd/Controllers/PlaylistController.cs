@@ -27,6 +27,11 @@ namespace BackEnd.Controllers
         {          
             var playlists = await _context.Playlist.Where(p => p.Id == userId).ToListAsync();
 
+            foreach (var playlist in playlists)
+            {
+                playlist.VideoCount = await _context.VideoPlaylists.CountAsync(vp => vp.PlaylistId == playlist.PlaylistId);
+            }
+
             if (playlists == null || playlists.Count == 0)
             {
                 return NotFound();
