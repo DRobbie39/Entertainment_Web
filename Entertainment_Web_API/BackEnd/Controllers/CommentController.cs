@@ -92,8 +92,7 @@ namespace BackEnd.Controllers
                     ThumbnailUrl = video.Snippet.Thumbnails.High.Url,
                     VideoUrl = $"https://www.youtube.com/watch?v={video.Id}",
                     VideoViews = (int?)video.Statistics.ViewCount.GetValueOrDefault(),
-                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset,
-                    Id = userId
+                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset
                 };
 
                 // Thêm Video vào cơ sở dữ liệu

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(EntertainmentContext))]
-    [Migration("20240525115732_entertaiment")]
-    partial class entertaiment
+    [Migration("20240527122431_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,10 +80,6 @@ namespace BackEnd.Migrations
                     b.Property<int?>("Dislikes")
                         .HasColumnType("int");
 
-                    b.Property<string>("Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int?>("Likes")
                         .HasColumnType("int");
 
@@ -109,8 +105,6 @@ namespace BackEnd.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("VideoId");
-
-                    b.HasIndex("Id");
 
                     b.HasIndex("VideoCategoryId");
 
@@ -401,17 +395,9 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("BackEnd.Models.Video", b =>
                 {
-                    b.HasOne("BackEnd.Models.AppUser", "AppUser")
-                        .WithMany("Videos")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BackEnd.Models.VideoCategory", "VideoCategory")
                         .WithMany("Videos")
                         .HasForeignKey("VideoCategoryId");
-
-                    b.Navigation("AppUser");
 
                     b.Navigation("VideoCategory");
                 });
@@ -508,8 +494,6 @@ namespace BackEnd.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Playlists");
-
-                    b.Navigation("Videos");
                 });
 #pragma warning restore 612, 618
         }

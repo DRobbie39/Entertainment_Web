@@ -81,16 +81,11 @@
   {
     "ContainingType": "BackEnd.Controllers.PlaylistController",
     "Method": "AddVideoToPlaylist",
-    "RelativePath": "backend/Playlist/AddVideoToPlaylist/{userId}/{playlistId}/{videoId}",
+    "RelativePath": "backend/Playlist/AddVideoToPlaylist/{playlistId}/{videoId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
-      },
       {
         "Name": "playlistId",
         "Type": "System.String",

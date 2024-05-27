@@ -21,9 +21,6 @@ namespace BackEnd.Models
 		public string? VideoCategoryId { get; set; }
 		public virtual VideoCategory? VideoCategory { get; set; }
 
-		[ForeignKey("AppUser")]
-		public string? Id { get; set; }
-        public virtual AppUser? AppUser { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
         public virtual ICollection<VideoPlaylist> VideoPlaylists { get; set; } = new List<VideoPlaylist>();

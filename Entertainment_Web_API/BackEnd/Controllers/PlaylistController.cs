@@ -55,8 +55,8 @@ namespace BackEnd.Controllers
             return Ok(videos);
         }
 
-        [HttpPost("{userId}/{playlistId}/{videoId}")]
-        public async Task<IActionResult> AddVideoToPlaylist(string userId, string playlistId, string videoId)
+        [HttpPost("{playlistId}/{videoId}")]
+        public async Task<IActionResult> AddVideoToPlaylist(string playlistId, string videoId)
         {
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
@@ -84,8 +84,7 @@ namespace BackEnd.Controllers
                     ThumbnailUrl = video.Snippet.Thumbnails.High.Url,
                     VideoUrl = $"https://www.youtube.com/watch?v={video.Id}",
                     VideoViews = (int?)video.Statistics.ViewCount.GetValueOrDefault(),
-                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset,
-                    Id = userId
+                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset
                 };
 
                 // Thêm Video vào cơ sở dữ liệu
@@ -144,8 +143,7 @@ namespace BackEnd.Controllers
                     ThumbnailUrl = video.Snippet.Thumbnails.High.Url,
                     VideoUrl = $"https://www.youtube.com/watch?v={video.Id}",
                     VideoViews = (int?)video.Statistics.ViewCount.GetValueOrDefault(),
-                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset,
-                    Id = userId
+                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset
                 };
 
                 // Thêm Video vào cơ sở dữ liệu

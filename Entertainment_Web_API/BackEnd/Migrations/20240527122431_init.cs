@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BackEnd.Migrations
 {
     /// <inheritdoc />
-    public partial class entertaiment : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -204,18 +204,11 @@ namespace BackEnd.Migrations
                     VideoPostingTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     VideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ThumbnailUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VideoCategoryId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    VideoCategoryId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Videos", x => x.VideoId);
-                    table.ForeignKey(
-                        name: "FK_Videos_AspNetUsers_Id",
-                        column: x => x.Id,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Videos_VideoCategories_VideoCategoryId",
                         column: x => x.VideoCategoryId,
@@ -329,11 +322,6 @@ namespace BackEnd.Migrations
                 name: "IX_VideoPlaylist_PlaylistId",
                 table: "VideoPlaylist",
                 column: "PlaylistId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Videos_Id",
-                table: "Videos",
-                column: "Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Videos_VideoCategoryId",
