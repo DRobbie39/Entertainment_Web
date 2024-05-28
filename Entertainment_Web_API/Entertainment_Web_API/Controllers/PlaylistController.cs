@@ -100,5 +100,19 @@ namespace Entertainment_Web_API.Controllers
                 return Json(new { success = false, message = "Edit playlist failed"});
             }
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeletePlaylist(string playlistId)
+        {
+            HttpResponseMessage response = await _client.DeleteAsync($"{_client.BaseAddress}/Playlist/DeletePlaylist/{playlistId}");
+            if (response.IsSuccessStatusCode)
+            {
+                return Json(new { success = true, message = "Playlist deleted successfully!" });
+            }
+            else
+            {
+                return Json(new { success = false, message = "Delete playlist failed" });
+            }
+        }
     }
 }
