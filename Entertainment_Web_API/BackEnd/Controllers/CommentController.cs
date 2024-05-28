@@ -14,7 +14,7 @@ namespace BackEnd.Controllers
     public class CommentController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyB1jP3WJP2QzQgy4OQDMil-y3neNUD_sD0"; // Api key
+        private readonly string apiKey = "AIzaSyBd7hiJ3o2nzPlAyMb-v5BHg8TB3Nw2OAM"; // Api key
         public CommentController(EntertainmentContext context)
         {
             _context = context;
@@ -36,9 +36,9 @@ namespace BackEnd.Controllers
         }
 
         [HttpPut("{commentId}")]
-        public async Task<IActionResult> UpdateComment(string commentId,Comment model)
+        public async Task<IActionResult> UpdateComment(string commentId, Comment model)
         {
-            if(model == null)
+            if (model == null)
             {
                 return BadRequest();
             }
@@ -52,13 +52,13 @@ namespace BackEnd.Controllers
                 comment.Content = model.Content;
 
                 _context.Comments.Update(comment);
-                
+
             }
             var r = await _context.SaveChangesAsync();
-                if(r <= 0)
-                {
-                    return BadRequest();
-                }
+            if (r <= 0)
+            {
+                return BadRequest();
+            }
             return Ok(comment);
 
         }

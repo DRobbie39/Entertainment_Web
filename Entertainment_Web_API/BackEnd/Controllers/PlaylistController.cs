@@ -14,7 +14,7 @@ namespace BackEnd.Controllers
     public class PlaylistController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyB1jP3WJP2QzQgy4OQDMil-y3neNUD_sD0"; // Api key
+        private readonly string apiKey = "AIzaSyBd7hiJ3o2nzPlAyMb-v5BHg8TB3Nw2OAM"; // Api key
 
         public PlaylistController(EntertainmentContext context)
         {
@@ -220,6 +220,25 @@ namespace BackEnd.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpDelete("{playlistId}/{videoId}")]
+        public async Task<IActionResult> DeleteVideoFromPlaylist(string playlistId, string videoId)
+        {
+            // Tìm video trong playlist
+            var videoPlaylist = await _context.VideoPlaylists.FirstOrDefaultAsync(vp => vp.PlaylistId == playlistId && vp.VideoId == videoId);
+
+            if (videoPlaylist != null)
+            {
+                // Xóa liên kết video-playlist
+                _context.VideoPlaylists.Remove(videoPlaylist);
+
+                await _context.SaveChangesAsync();
+
+                return Ok(); // Xóa thành công
+            }
+
+            return BadRequest(); // Video không tồn tại trong playlist
         }
     }
 }

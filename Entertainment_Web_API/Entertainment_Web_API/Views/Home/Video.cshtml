@@ -90,7 +90,7 @@
                     foreach (var playlist in Model.Playlists)
                     {
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="@playlist.PlaylistId" id="@playlist.PlaylistId">
+                            <input class="form-check-input" type="radio" name="playlist" value="@playlist.PlaylistId" id="@playlist.PlaylistId">
                             <label class="form-check-label" for="@playlist.PlaylistId">
                                 @playlist.PlaylistName
                             </label>
@@ -184,36 +184,36 @@
         overflow: hidden;
     }
 
-        .product__sidebar__comment__item__text ul {
-            margin-bottom: 10px;
-        }
+    .product__sidebar__comment__item__text ul {
+        margin-bottom: 10px;
+    }
 
-            .product__sidebar__comment__item__text ul li {
-                list-style: none;
-                font-size: 10px;
-                color: #ffffff;
-                font-weight: 700;
-                padding: 1px 10px;
-                background: rgba(255, 255, 255, 0.2);
-                border-radius: 50px;
-                display: inline-block;
-            }
+    .product__sidebar__comment__item__text ul li {
+        list-style: none;
+        font-size: 10px;
+        color: #ffffff;
+        font-weight: 700;
+        padding: 1px 10px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        display: inline-block;
+    }
 
-        .product__sidebar__comment__item__text h5 {
-            margin-bottom: 10px;
-        }
+    .product__sidebar__comment__item__text h5 {
+        margin-bottom: 10px;
+    }
 
-            .product__sidebar__comment__item__text h5 a {
-                color: #ffffff;
-                font-weight: 700;
-                line-height: 26px;
-            }
+    .product__sidebar__comment__item__text h5 a {
+        color: #ffffff;
+        font-weight: 700;
+        line-height: 26px;
+    }
 
-        .product__sidebar__comment__item__text span {
-            display: block;
-            font-size: 13px;
-            color: #b7b7b7;
-        }
+    .product__sidebar__comment__item__text span {
+        display: block;
+        font-size: 13px;
+        color: #b7b7b7;
+    }
 
     .mee {
         color: #fff;
@@ -251,26 +251,30 @@
         $('#saveChangesButton').click(function () {
             var videoId = $('#videoId').val();
 
-            // Lấy tất cả các checkbox được chọn
-            $('.form-check-input:checked').each(function () {
-                var playlistId = $(this).val();
+            // Lấy tất cả các radio button được chọn
+            var selectedPlaylistId = $('.form-check-input:checked').val();
 
-                // Gọi action AddVideoToPlaylist với videoId và playlistId
-                $.ajax({
-                    url: '/Playlist/AddVideoToPlaylist', // URL của action trong HomeController
-                    type: 'POST',
-                    data: {
-                        playlistId: playlistId,
-                        videoId: videoId
-                    },
-                    success: function (response) {
-                        if (response.success) {
-                            alert('Added video to playlist successfully!');
-                        } else {
-                            alert('Video already exists in the playlist!');
-                        }
+            // Gọi action AddVideoToPlaylist với videoId và playlistId
+            $.ajax({
+                url: '/Playlist/AddVideoToPlaylist', // URL của action trong HomeController
+                type: 'POST',
+                data: {
+                    playlistId: selectedPlaylistId,
+                    videoId: videoId
+                },
+                success: function (response) {
+                    if (response.success) {
+                        alert('Added video to playlist successfully!');
+                    } else {
+                        alert('Video already exists in the playlist!');
                     }
-                });
+
+                    // Đóng modal
+                    $('#saveToPlaylistModal').modal('hide');
+
+                    // Làm mới trang
+                    window.location.reload();
+                }
             });
         });
     });
@@ -297,6 +301,12 @@
                     } else {
                         alert('Adding playlist failed!');
                     }
+
+                    // Đóng modal
+                    $('#saveToPlaylistModal').modal('hide');
+
+                    // Làm mới trang
+                    window.location.reload();
                 }
             });
         });

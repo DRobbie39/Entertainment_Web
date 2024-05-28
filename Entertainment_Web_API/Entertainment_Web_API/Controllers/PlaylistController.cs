@@ -114,5 +114,19 @@ namespace Entertainment_Web_API.Controllers
                 return Json(new { success = false, message = "Delete playlist failed" });
             }
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteVideoFromPlaylist(string playlistId, string videoId)
+        {
+            HttpResponseMessage response = await _client.DeleteAsync($"{_client.BaseAddress}/Playlist/DeleteVideoFromPlaylist/{playlistId}/{videoId}");
+            if (response.IsSuccessStatusCode)
+            {
+                return Json(new { success = true, message = "Video delete in playlist successfully!" });
+            }
+            else
+            {
+                return Json(new { success = false, message = "Delete video in playlist failed!" });
+            }
+        }
     }
 }

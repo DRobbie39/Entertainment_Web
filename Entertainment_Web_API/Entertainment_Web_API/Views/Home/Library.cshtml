@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<!-- Modal for editing playlist name -->
+<!-- Modal sửa tên ds phát -->
 <div class="modal fade" id="editPlaylistModal" tabindex="-1" role="dialog" aria-labelledby="editPlaylistModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -271,6 +271,12 @@
                     } else {
                         alert('Edit playlist failed!');
                     }
+
+                    // Đóng modal
+                    $('#editPlaylistModal').modal('hide');
+
+                    // Làm mới trang
+                    window.location.reload();
                 }
             });
         });
@@ -296,6 +302,12 @@
                     } else {
                         alert('Delete playlist failed!');
                     }
+
+                    // Đóng modal
+                    $('#confirmDeleteModal').modal('hide');
+
+                    // Làm mới trang
+                    window.location.reload();
                 }
             });
         });
