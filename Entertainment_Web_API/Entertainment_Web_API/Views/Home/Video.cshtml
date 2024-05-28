@@ -31,7 +31,7 @@
                 </h3>
             </div>
             <div class="col-3">
-                <i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Video.Likes</i>
+                <i id="like-button" class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;"> @Model.Video.Likes</i>
                 <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"> @Model.Video.Dislikes</i>
             </div>
             <div class="col-3">
@@ -125,7 +125,7 @@
     }
 
     .comment-input {
-        width: calc(100% - 100px);
+        width: calc(95% - 100px);
         height: 100%;
         padding: 10px;
         box-sizing: border-box;
@@ -148,6 +148,7 @@
         cursor: pointer;
         font-size: 16px;
         margin-bottom: 17px;
+        margin-right:30px !important;
     }
 
         .submit-button:hover {
@@ -309,6 +310,41 @@
                     window.location.reload();
                 }
             });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        let liked = false; 
+
+        $('#like-button').click(function () {
+            let likes = parseInt($(this).text().trim());
+
+            if (!liked) {
+                likes += 1;
+                $(this).css('color', 'blue');
+            } else {
+                likes -= 1;
+                $(this).css('color', '');
+            }
+
+            $(this).text(' ' + likes);
+
+            // Thay đổi trạng thái của nút like
+            liked = !liked;
+
+            // Bạn có thể gửi giá trị lượt like mới về server bằng AJAX nếu cần
+            // $.ajax({
+            //     url: '@Url.Action("UpdateLike", "YourController")',
+            //     method: 'POST',
+            //     data: { likes: likes, videoId: Model.Video.Id },
+            //     success: function(response) {
+            //         console.log("Likes updated successfully.");
+            //     },
+            //     error: function(error) {
+            //         console.log("Error updating likes:", error);
+            //     }
+            // });
         });
     });
 </script>

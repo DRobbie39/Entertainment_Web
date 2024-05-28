@@ -28,14 +28,14 @@
             @foreach (var comment in comments)
             {
                 <div class="col-12 d-flex" style="margin-top:15px">
-                    <div class="d-flex" style="width:100%;">
+                    <div class="d-flex" style="width:95%;">
                         <img class="rounded-circle flex-shrink-0" src="/Uploads/@comment.AppUser.Avtprofile" alt="" style="width: 40px; height: 40px;">
                         <div class="block col-10" style="margin-left:20px">
                             <h5 style="margin-top:3px;margin-left:5px;">@comment.AppUser.FullName</h5>
                             <p style="margin-left:15px;">@comment.Content</p>
                         </div>
                         <div class="col-1 justify-content-start">
-                            <small>@comment.CommentPostingTime</small>
+                            <small style="margin-left:20px;">@comment.CommentPostingTime</small>
                             @if(comment.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
                             {
                                 <form asp-controller="Comment" asp-action="DeleteComment" method="post" class="d-flex">
@@ -44,18 +44,25 @@
                                     <input asp-for="VideoId" value="@videoId" type="hidden" class="form-control" />
                                 </div>
 
-                                <button type="submit" class="">
-                                        @* button update comment *@
-                                    @* <div class="d-flex clsss">
-                                            <i class="bi bi-pencil-square" style="margin-top:5px;margin-right:8px"></i>
-                                            <i class="fa fa-trash" aria-hidden="true" style="margin-top:10px;"></i>
-                                     </div> *@
-                                        <div class="col-1 clsss">
-                                            <i class="bi bi-pencil-square" style="margin-top:5px;"></i>
-                                            <i class="fa fa-trash" aria-hidden="true" style="margin-top:5px;"></i>
-                                        </div>
+                                    <!-- Thêm ID cho nút chỉnh sửa -->
+
+                                @* button delete comment *@
+                                    <button type="submit" style=";border-radius:5px;">
+                                    <div class="d-flex clsss">
+                                            <i class="fa fa-trash" aria-hidden="true" style="padding:5px"></i>
+                                     </div>
                                 </button>
+                                    <button type="submit" id="editButton" style="border-radius:5px;margin-left:3px;">
+                                        @* button update comment *@
+                                        <div class="d-flex clsss">
+                                            <i class="bi bi-pencil-square" style="padding:5px;"></i>
+                                        </div>
+                                    </button>
                             </form>
+                                
+
+                                <!-- Thêm ô văn bản cho việc chỉnh sửa -->
+            @* <textarea id="editedCommentInput" class="comment-input" style="display: none;"></textarea> *@
                             }                           
                         </div>                       
                     </div>    
@@ -65,5 +72,33 @@
             }
         }
     </div>
+    @* <script>
+        // Lắng nghe sự kiện click trên nút chỉnh sửa
+        document.getElementById('editButton').addEventListener('click', function () {
+            // Hiển thị ô văn bản để người dùng nhập lại nội dung bình luận
+            document.getElementById('editedCommentInput').style.display = 'block';
+
+            // Thay đổi văn bản của nút từ "Edit" sang "OK"
+            this.innerHTML = '<div class="d-flex clsss"><i class="bi bi-check-square" style="margin-top:5px;margin-right:8px"></i></div>';
+
+            // Gửi dữ liệu bình luận đã chỉnh sửa lên server bằng AJAX
+            $.ajax({
+                url: '/Comment/UpdateComment', // Thay đổi URL tương ứng với action của bạn
+                type: 'PUT', // Thay đổi method tương ứng với action của bạn
+                data: {
+                    commentId: commentId, // Thay đổi commentId tương ứng
+                    content: editedCommentContent
+                },
+                success: function (response) {
+                    // Xử lý kết quả từ server (thành công)
+                    alert('Bình luận đã được cập nhật thành công!');
+                },
+                error: function () {
+                    // Xử lý kết quả từ server (thất bại)
+                    alert('Cập nhật bình luận thất bại!');
+                }
+            });
+        });
+    </script> *@
 </div>
 <!-- đến đây là kết thúc comment-->

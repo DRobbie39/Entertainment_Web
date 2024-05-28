@@ -72,8 +72,8 @@
       },
       {
         "Name": "model",
-        "Type": "BackEnd.Models.Comment",
-        "IsRequired": true
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
