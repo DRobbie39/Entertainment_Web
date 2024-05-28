@@ -67,7 +67,10 @@
                 <form id="editPlaylistForm">
                     <div class="form-group">
                         <label for="newPlaylistName">New playlist name</label>
-                        <input type="hidden" id="playlistId" name="playlistId" value="@Model.Playlists[0].PlaylistId">
+                        @if (Model.Playlists != null && Model.Playlists.Count > 0)
+                        {
+                            <input type="hidden" id="playlistId" name="playlistId" value="@Model.Playlists[0].PlaylistId">
+                        }
                         <input type="text" class="form-control" id="newPlaylistName" name="newPlaylistName" placeholder="Enter new playlist name">
                     </div>
                 </form>
