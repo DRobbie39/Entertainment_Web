@@ -10,7 +10,7 @@ namespace BackEnd.Controllers
     [ApiController]
     public class VideoController : ControllerBase
     {
-        private readonly string apiKey = "AIzaSyCY6HuLgjaQYb-zrsDAIQ1l5sTmTx5yyQw"; // Api key
+        private readonly string apiKey = "AIzaSyBl_ZIe-m8ry0ajAO3-hvchkDlTT6kkgy0"; // Api key
 
         [HttpGet("{searchTerm}")]
         public async Task<IActionResult> Get(string searchTerm)
@@ -91,17 +91,17 @@ namespace BackEnd.Controllers
                 ApplicationName = this.GetType().ToString()
             });
 
-            // Get the current video's details
+            // Lấy chi tiết video hiện tại
             var videoRequest = youtubeService.Videos.List("snippet");
             videoRequest.Id = videoId;
             var videoResponse = await videoRequest.ExecuteAsync();
             var currentVideo = videoResponse.Items[0];
 
-            // Search for related videos
+            // Tìm kiếm các vid liên quan
             var searchRequest = youtubeService.Search.List("snippet");
-            searchRequest.Q = currentVideo.Snippet.Title; // Use the current video's title as the search term
+            searchRequest.Q = currentVideo.Snippet.Title; // Cho tiêu đề vid hiện tại để tìm kiếm
             searchRequest.MaxResults = 5;
-            searchRequest.Type = "video"; // Only search for videos
+            searchRequest.Type = "video"; // Chỉ tìm các vid
 
             var searchResponse = await searchRequest.ExecuteAsync();
 
@@ -109,7 +109,7 @@ namespace BackEnd.Controllers
 
             foreach (var searchResult in searchResponse.Items)
             {
-                // Skip if the video is the same as the current video
+                // Bỏ qua video nếu trùng
                 if (searchResult.Id.VideoId != videoId)
                 {
                     relatedVideos.Add(new Video

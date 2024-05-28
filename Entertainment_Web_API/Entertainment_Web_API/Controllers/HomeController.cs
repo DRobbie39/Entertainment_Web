@@ -77,7 +77,7 @@ namespace Entertainment_Web_API.Controllers
                 video = JsonConvert.DeserializeObject<Video>(data);
             }
 
-            // Get related videos
+            // Lấy các vid liên quan
             HttpResponseMessage relatedResponse = await _client.GetAsync(_client.BaseAddress + $"/Video/GetRelatedVideos/{id}");
             if (relatedResponse.IsSuccessStatusCode)
             {
@@ -106,7 +106,7 @@ namespace Entertainment_Web_API.Controllers
                 ViewBag.comments = comments;
             }
 
-            // Create a new ViewModel
+            // Tạo ViewModel
             var viewModel = new VideoViewModel
             {
                 Video = video,
@@ -121,19 +121,19 @@ namespace Entertainment_Web_API.Controllers
         {
             var userId = GetCurrentUserId();
 
-            // Get videos in the playlist
-            List<Video> videos = new List<Video>(); // Declare the videos variable here
+            // Lấy các vid trong playlist
+            List<Video> videos = new List<Video>();
             if (userId != null && playlistId != null)
             {
                 HttpResponseMessage videoResponse = await _client.GetAsync(_client.BaseAddress + $"/Playlist/GetPlaylistVideos/{userId}/{playlistId}");
                 if (videoResponse.IsSuccessStatusCode)
                 {
                     string videoData = await videoResponse.Content.ReadAsStringAsync();
-                    videos = JsonConvert.DeserializeObject<List<Video>>(videoData); // Assign value to the videos variable here
+                    videos = JsonConvert.DeserializeObject<List<Video>>(videoData);
                 }
             }
 
-            // Create a new ViewModel
+            // Tạo view model
             var viewModel = new PlaylistViewModel
             {
                 Videos = videos
@@ -167,7 +167,7 @@ namespace Entertainment_Web_API.Controllers
                 }
             }
 
-            // Create a new ViewModel
+            // Tạo view model
             var viewModel = new PlaylistViewModel
             {
                 Playlists = playlists

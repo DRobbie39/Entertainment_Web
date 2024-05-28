@@ -14,7 +14,7 @@ namespace BackEnd.Controllers
     public class CommentController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyCY6HuLgjaQYb-zrsDAIQ1l5sTmTx5yyQw"; // Api key
+        private readonly string apiKey = "AIzaSyBl_ZIe-m8ry0ajAO3-hvchkDlTT6kkgy0"; // Api key
         public CommentController(EntertainmentContext context)
         {
             _context = context;

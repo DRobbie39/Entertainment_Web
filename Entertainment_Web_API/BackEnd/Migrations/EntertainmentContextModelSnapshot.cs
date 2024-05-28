@@ -407,12 +407,14 @@ namespace BackEnd.Migrations
                     b.HasOne("BackEnd.Models.Playlist", "Playlist")
                         .WithMany("VideoPlaylists")
                         .HasForeignKey("PlaylistId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK__VideoPlay__Playl__6B24EA82");
 
                     b.HasOne("BackEnd.Models.Video", "Video")
                         .WithMany("VideoPlaylists")
                         .HasForeignKey("VideoId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK__VideoPlay__Video__6A30C649");
 

@@ -45,12 +45,12 @@ public partial class EntertainmentContext : IdentityDbContext
 
             entity.HasOne(d => d.Video).WithMany(p => p.VideoPlaylists)
                 .HasForeignKey(d => d.VideoId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__VideoPlay__Video__6A30C649");
 
             entity.HasOne(d => d.Playlist).WithMany(p => p.VideoPlaylists)
                 .HasForeignKey(d => d.PlaylistId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__VideoPlay__Playl__6B24EA82");
         });
 
