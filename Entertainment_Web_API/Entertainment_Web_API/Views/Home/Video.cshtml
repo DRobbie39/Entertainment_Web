@@ -39,14 +39,13 @@
                 <i class="fa fa-play-circle" aria-hidden="true" data-toggle="modal" data-target="#saveToPlaylistModal"> Add to playlist</i>
                 <!-- Nút Lưu vào danh sách phát -->
                 @* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveToPlaylistModal">
-                    Add to playlist
+                Add to playlist
                 </button> *@
             </div>
 
             <!-- cop từ chỗ này-->
-            @await Html.PartialAsync("_CommentPartialView", comment, partialViewData);
+            @await Html.PartialAsync("_CommentPartialView", comment, partialViewData)
             <!-- đến đây là kết thúc comment-->
-
         </div>
     </div>
     <div class="col-6 col-md-4">
@@ -151,9 +150,9 @@
         margin-bottom: 17px;
     }
 
-    .submit-button:hover {
-        background-color: #0056b3;
-    }
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
 
     i.fa.fa-thumbs-up {
         cursor: pointer;
@@ -163,7 +162,7 @@
         cursor: pointer;
     }
 
-    i.fa.fa-play-circle{
+    i.fa.fa-play-circle {
         cursor: pointer;
     }
 
@@ -185,36 +184,36 @@
         overflow: hidden;
     }
 
-    .product__sidebar__comment__item__text ul {
-        margin-bottom: 10px;
-    }
+        .product__sidebar__comment__item__text ul {
+            margin-bottom: 10px;
+        }
 
-    .product__sidebar__comment__item__text ul li {
-        list-style: none;
-        font-size: 10px;
-        color: #ffffff;
-        font-weight: 700;
-        padding: 1px 10px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50px;
-        display: inline-block;
-    }
+            .product__sidebar__comment__item__text ul li {
+                list-style: none;
+                font-size: 10px;
+                color: #ffffff;
+                font-weight: 700;
+                padding: 1px 10px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 50px;
+                display: inline-block;
+            }
 
-    .product__sidebar__comment__item__text h5 {
-        margin-bottom: 10px;
-    }
+        .product__sidebar__comment__item__text h5 {
+            margin-bottom: 10px;
+        }
 
-    .product__sidebar__comment__item__text h5 a {
-        color: #ffffff;
-        font-weight: 700;
-        line-height: 26px;
-    }
+            .product__sidebar__comment__item__text h5 a {
+                color: #ffffff;
+                font-weight: 700;
+                line-height: 26px;
+            }
 
-    .product__sidebar__comment__item__text span {
-        display: block;
-        font-size: 13px;
-        color: #b7b7b7;
-    }
+        .product__sidebar__comment__item__text span {
+            display: block;
+            font-size: 13px;
+            color: #b7b7b7;
+        }
 
     .mee {
         color: #fff;
