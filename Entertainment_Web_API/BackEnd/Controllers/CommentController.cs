@@ -20,47 +20,20 @@ namespace BackEnd.Controllers
             _context = context;
         }
 
-        [HttpGet("{videoId}")]
-        public async Task<IActionResult> GetComment(string videoId)
+        [HttpGet("{userId}/{videoId}")]
+        public async Task<IActionResult> GetComments(string userId, string videoId)
         {
-            var video = await _context.Videos.FindAsync(videoId);
-            if (video == null)
+            var comment = await _context.Comments
+                .Include(v => v.Video)
+                .Include(u => u.AppUser)
+                .Where(c => c.Id == userId && c.VideoId == videoId).ToListAsync();
+
+            if (comment == null)
             {
                 return NotFound();
             }
-            var comment = await _context.Comments
-                .Include(c => c.AppUser)
-                .Where(c => c.VideoId == videoId).ToListAsync();
+
             return Ok(comment);
-
-        }
-
-        [HttpPut("{commentId}")]
-        public async Task<IActionResult> UpdateComment(string commentId, string model)
-        {
-            if (model == null)
-            {
-                return BadRequest();
-            }
-            var comment = await _context.Comments.FindAsync(commentId);
-            if (comment == null)
-            {
-                return BadRequest();
-            }
-            if (ModelState.IsValid)
-            {
-                comment.Content = model;
-
-                _context.Comments.Update(comment);
-
-            }
-            var r = await _context.SaveChangesAsync();
-            if (r <= 0)
-            {
-                return BadRequest();
-            }
-            return Ok(comment);
-
         }
 
         [HttpPost("{userId}/{videoId}/{content}")]
@@ -115,6 +88,26 @@ namespace BackEnd.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(newComment);
+        }
+
+        [HttpPut("{commentId}")]
+        public async Task<IActionResult> UpdateComment(string commentId, string content)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingComment = await _context.Comments.FirstOrDefaultAsync(c => c.CommentId == commentId);
+
+                if (existingComment != null)
+                {
+                    existingComment.Content = content;
+
+                    await _context.SaveChangesAsync();
+
+                    return Ok();
+                }
+            }
+
+            return BadRequest();
         }
 
         [HttpDelete("{commentId}")]

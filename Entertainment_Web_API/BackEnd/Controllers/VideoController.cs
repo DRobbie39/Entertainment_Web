@@ -54,8 +54,8 @@ namespace BackEnd.Controllers
             return Ok(videos);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetDetails(string id)
+        [HttpGet("{videoId}")]
+        public async Task<IActionResult> GetDetails(string videoId)
         {
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
@@ -64,7 +64,7 @@ namespace BackEnd.Controllers
             });
 
             var videoRequest = youtubeService.Videos.List("snippet,statistics");
-            videoRequest.Id = id;
+            videoRequest.Id = videoId;
 
             var videoResponse = await videoRequest.ExecuteAsync();
 

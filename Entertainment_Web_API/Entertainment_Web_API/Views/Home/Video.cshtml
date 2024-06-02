@@ -3,17 +3,6 @@
 @{
     ViewData["Title"] = "Video";
     Layout = "~/Views/Shared/_LayoutAccount.cshtml";
-
-    Comment comment = new Comment();
-
-    var r = Model;
-
-
-    var partialViewData = new ViewDataDictionary(ViewData)
-    {
-        { "commentList", ViewBag.comments as List<BackEnd.Models.Comment> },
-        { "videoId", Model.Video.VideoId },
-    };
 }
 
 <div class="row g-0">
@@ -36,19 +25,68 @@
             </div>
             <div class="col-3">
                 @* <i class="fa fa-download" aria-hidden="true">Download</i> *@
-                <i class="fa fa-play-circle" aria-hidden="true" data-toggle="modal" data-target="#saveToPlaylistModal"> Add to playlist</i>
                 <!-- Nút Lưu vào danh sách phát -->
-                @* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveToPlaylistModal">
-                Add to playlist
-                </button> *@
-            </div>
-
-            <!-- cop từ chỗ này-->
-            @await Html.PartialAsync("_CommentPartialView", comment, partialViewData)
-            <!-- đến đây là kết thúc comment-->
+                <i class="fa fa-play-circle" aria-hidden="true" data-toggle="modal" data-target="#saveToPlaylistModal"> Add to playlist</i>
+            </div>           
         </div>
     </div>
-    <div class="col-6 col-md-4">
+
+    <!--Bắt đầu comment-->
+    <div class="comment-box">
+        <!-- Trường ẩn chứa videoId -->
+        <input type="hidden" id="videoId" name="videoId" value="@Model.Video.VideoId">
+        <textarea class="comment-input" id="commentContent" name="commentContent"></textarea>
+        <button type="submit" class="submit-button" id="postComment">Post</button>
+    </div>
+
+    <div class="comment">
+        <div class="row g-0 margin-top:8px d-flex">
+            @if (Model.Comments != null)
+            {
+                @foreach (var comment in Model.Comments)
+                {
+                    <div class="col-12 d-flex" style="margin-top:15px">
+                        <div class="d-flex" style="width:95%;">
+                            <img class="rounded-circle flex-shrink-0" src="/Uploads/@(comment.AppUser.Avtprofile ?? "avtmacdinh.jpg")" alt="" style="width: 40px; height: 40px;">
+                            <div class="block col-10" style="margin-left:20px;">
+                                <h5 style="margin-top:3px; margin-left:5px;">@(comment.AppUser.FullName ?? "User")</h5>
+                                <p style="margin-left:15px;">@comment.Content</p>
+                            </div>
+                            <div class="col-1 justify-content-start">
+                                <small style="margin-left:20px;">@comment.CommentPostingTime</small>
+                                
+                                <div class="form-group" style="margin-left:5px; margin-right:10px;">
+                                    <input value="@comment.CommentId" type="hidden" class="form-control" />
+                                    <input value="" type="hidden" class="form-control" />
+                                </div>
+
+                                @* Button update comment *@
+                                <button type="submit" id="editButton" style="border-radius:5px; margin-left:3px;">
+                                    <div class="d-flex clsss">
+                                        <i class="bi bi-pencil-square" style="padding:5px;"></i>
+                                    </div>
+                                </button>
+
+                                @* Ô văn bản cho việc chỉnh sửa *@
+                                <textarea class="comment-input" id="editedCommentInput" style="display: none;"></textarea>
+                                <textarea class="comment-input" id="commentContent" name="commentContent"></textarea>
+
+                                @* Button delete comment *@
+                                <button type="submit" style="border-radius:5px;">
+                                    <div class="d-flex clsss">
+                                        <i class="fa fa-trash" aria-hidden="true" style="padding:5px;"></i>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @* <div class="comment-box col-1 d-inline"></div> *@
+                }
+            }
+        </div>
+    </div>
+
+    @* <div class="col-6 col-md-4">
         <div class="product__sidebar__comment">
             <div class="section-title" style="margin-top:30px;">
                 <h5>Relate videos</h5>
@@ -59,18 +97,18 @@
                 {
                     <div class="product__sidebar__comment__item">
                         <div class="product__sidebar__comment__item__pic">
-                            <a href="@Url.Action("Video", "Home", new { id = relatedVideo.VideoId })">
+                            <a href="@Url.Action("Video", "Home", new { videoId = relatedVideo.VideoId })">
                                 <img style="width:90px;height:100px;border-radius:15px;" src="@relatedVideo.ThumbnailUrl" alt="">
                             </a>
                         </div>
                         <div class="product__sidebar__comment__item__text">
-                            <h5><a href="@Url.Action("Video", "Home", new { id = relatedVideo.VideoId })">@relatedVideo.Title</a></h5>
+                            <h5><a href="@Url.Action("Video", "Home", new { videoId = relatedVideo.VideoId })">@relatedVideo.Title</a></h5>
                         </div>
                     </div>
                 }
             }
         </div>
-    </div>
+    </div> *@
 </div>
 
 <!-- Modal -->
@@ -91,9 +129,7 @@
                     {
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="playlist" value="@playlist.PlaylistId" id="@playlist.PlaylistId">
-                            <label class="form-check-label" for="@playlist.PlaylistId">
-                                @playlist.PlaylistName
-                            </label>
+                            <label class="form-check-label" for="@playlist.PlaylistId">@playlist.PlaylistName</label>
                         </div>
                     }
                 }
@@ -119,19 +155,26 @@
 
 <style>
     .comment-box {
-        width: 100%;
+        width: 700%;
         height: 70px;
         position: relative;
     }
 
     .comment-input {
         width: calc(95% - 100px);
-        height: 100%;
-        padding: 10px;
+        height: 70%;
+        padding-top:0.5px;
+        height:35px !important;
         box-sizing: border-box;
         border: 1px solid #ccc;
         border-radius: 5px;
         font-size: 16px;
+        margin-top:24px;
+        background-color: #403b3b;
+    }
+
+    .comment-box{
+        margin-bottom:10px;
     }
 
     .submit-button {
@@ -139,7 +182,7 @@
         right: 0;
         bottom: 0;
         width: 90px;
-        height: 40px;
+        height: 39px;
         margin: 5px;
         border: none;
         border-radius: 5px;
@@ -149,11 +192,12 @@
         font-size: 16px;
         margin-bottom: 17px;
         margin-right:30px !important;
+        margin-bottom:10px;
     }
 
-        .submit-button:hover {
-            background-color: #0056b3;
-        }
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
 
     i.fa.fa-thumbs-up {
         cursor: pointer;
@@ -313,6 +357,44 @@
         });
     });
 </script>
+
+<!--Nút đăng bình luận-->
+<script>
+    $(document).ready(function () {
+        // Khi người dùng nhấn nút "Post comment"
+        $('#postComment').click(function () {
+            var videoId = $('#videoId').val();
+            var commentContent = $('#commentContent').val();
+
+            $.ajax({
+                url: '/Comment/AddComment',
+                type: 'POST',
+                data: {
+                    videoId: videoId,
+                    commentContent: commentContent
+                },
+                success: function (response) {
+                    if (response.success) {
+                        // Làm mới trang
+                        window.location.reload();
+                    } else {
+                        alert('Adding comment failed!');
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    const editButton = document.getElementById("editButton");
+    const editedCommentInput = document.getElementById("editedCommentInput");
+
+    editButton.addEventListener("click", () => {
+        editedCommentInput.style.display = "block"; // Hiển thị ô văn bản chỉnh sửa
+    });
+</script>
+
 <script>
     $(document).ready(function () {
         let liked = false; 

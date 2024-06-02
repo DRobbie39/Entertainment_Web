@@ -1,4 +1,5 @@
 ﻿using BackEnd.Models;
+//using Google.Apis.YouTube.v3.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -66,10 +67,12 @@ namespace Entertainment_Web_API.Controllers
         }
 
         //[Authorize]
-        public async Task<IActionResult> Video(string id)
+        public async Task<IActionResult> Video(string videoId)
         {
+            var userId = GetCurrentUserId();
+
             Video video = new Video();
-            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/Video/GetDetails/{id}");
+            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/Video/GetDetails/{videoId}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -78,7 +81,7 @@ namespace Entertainment_Web_API.Controllers
             }
 
             // Lấy các vid liên quan
-            HttpResponseMessage relatedResponse = await _client.GetAsync(_client.BaseAddress + $"/Video/GetRelatedVideos/{id}");
+            HttpResponseMessage relatedResponse = await _client.GetAsync(_client.BaseAddress + $"/Video/GetRelatedVideos/{videoId}");
             if (relatedResponse.IsSuccessStatusCode)
             {
                 string relatedData = await relatedResponse.Content.ReadAsStringAsync();
@@ -86,7 +89,6 @@ namespace Entertainment_Web_API.Controllers
             }
 
             // Get playlists
-            var userId = GetCurrentUserId();
             List<Playlist> playlists = new List<Playlist>(); // Khai báo biến playlists ở đây
             if (userId != null)
             {
@@ -98,19 +100,31 @@ namespace Entertainment_Web_API.Controllers
                 }
             }
 
-            var respone = await _client.GetAsync("https://localhost:7142/backend/Comment/GetComment/" + id);
-            if (respone.IsSuccessStatusCode)
+            // Lấy các comment
+            List<Comment> comments = new List<Comment>(); // Khai báo biến comments ở đây
+            if (userId != null)
             {
-                var jsonstring = await respone.Content.ReadAsStringAsync();
-                var comments = JsonConvert.DeserializeObject<List<CommentModel>>(jsonstring);
-                ViewBag.comments = comments;
+                HttpResponseMessage commentResponse = await _client.GetAsync(_client.BaseAddress + $"/Comment/GetComments/{userId}/{videoId}");
+                if (commentResponse.IsSuccessStatusCode)
+                {
+                    string commentData = await commentResponse.Content.ReadAsStringAsync();
+                    comments = JsonConvert.DeserializeObject<List<Comment>>(commentData); // Gán giá trị cho biến comments ở đây
+
+                    // Load thông tin người dùng cho mỗi comment
+                    foreach (var comment in comments)
+                    {
+                        comment.AppUser.Id = GetCurrentUserId();
+                    }
+                }
             }
+
 
             // Tạo ViewModel
             var viewModel = new VideoViewModel
             {
                 Video = video,
-                Playlists = playlists
+                Playlists = playlists,
+                Comments = comments
             };
 
             return View(viewModel);

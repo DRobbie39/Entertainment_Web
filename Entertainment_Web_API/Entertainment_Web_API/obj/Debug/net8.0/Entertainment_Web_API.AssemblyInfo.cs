@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Entertainment_Web_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc0e4dfc04f79bdfaf8106f717d27ee327b9c4f2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bbb4e3803befd018a36cdec2190f1fc63db9b0ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("Entertainment_Web_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Entertainment_Web_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -7,51 +7,73 @@ namespace Entertainment_Web_API.Controllers
 {
     public class CommentController : Controller
     {
+        Uri baseAddress = new Uri("https://localhost:7142/backend");
+        private readonly HttpClient _client;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetComment(string videoId)
-        //{
-        //    using(var http = new HttpClient())
-        //    {
-
-        //        var respone = await http.GetAsync("https://localhost:7142/backend/Comment/GetComment/" + videoId);
-        //        if (respone.IsSuccessStatusCode)
-        //        {
-        //            var jsonstring = await respone.Content.ReadAsStringAsync();
-        //            var comments = JsonConvert.DeserializeObject<List<Comment>>(jsonstring);
-        //            ViewBag.comments = comments;
-        //        }
-        //        return BadRequest("Comment Not Found");
-        //    }
-        //}
-
-        [HttpPut]
-        public async Task<IActionResult> UpdateComment(string commentId, Comment model, string videoId)
+        public CommentController(IHttpContextAccessor httpContextAccessor)
         {
-            using (var http = new HttpClient())
+            _client = new HttpClient();
+            _httpContextAccessor = httpContextAccessor;
+            _client.BaseAddress = baseAddress;
+
+        }
+
+        private string GetCurrentUserId()
+        {
+            var httpContext = _httpContextAccessor.HttpContext;
+            if (httpContext.User.Identity.IsAuthenticated)
             {
-                var respone = await http.PutAsJsonAsync("https://localhost:7142/backend/Comment/AddComment/", model);
-                if (respone.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Video","Home", new { id = videoId});
-                }
-                return BadRequest("Update fail!");
+                return httpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             }
+            // Nếu người dùng không đăng nhập, trả về null hoặc xử lý tùy theo yêu cầu
+            return null;
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddComment([FromForm]Comment model)
+        public async Task<IActionResult> AddComment(string videoId, string commentContent)
         {
-            using(var http = new HttpClient())
-            {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var respone = await http.PostAsJsonAsync($"https://localhost:7142/backend/Comment/AddComment/{userId}/{model.VideoId}/{model.Content}", new { });
-                if (!respone.IsSuccessStatusCode)
-                {
-                    return BadRequest("Add comment fail!");
+            var userId = GetCurrentUserId();
 
-                }
-                return RedirectToAction("Video","Home", new {id = model.VideoId});
+            // Tạo một đối tượng chứa dữ liệu cần gửi, nó lấy theo dạng form
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("userId", userId),
+                new KeyValuePair<string, string>("videoId", videoId),
+                new KeyValuePair<string, string>("content", commentContent)
+            });
+
+            // Gửi yêu cầu POST đến Web API
+            HttpResponseMessage response = await _client.PostAsync($"{_client.BaseAddress}/Comment/AddComment/{userId}/{videoId}/{commentContent}", content);
+            if (response.IsSuccessStatusCode)
+            {
+                // Nếu thành công, trả về thông báo thành công
+                return Json(new { success = true });
+            }
+            else
+            {
+                // Nếu không thành công, trả về thông báo lỗi
+                return Json(new { success = false, message = "Adding comment failed!" });
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateComment(string commentId, string commentContent)
+        {
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("commentId", commentId),
+                new KeyValuePair<string, string>("content", commentContent)
+            });
+
+            HttpResponseMessage respone = await _client.PutAsync($"{_client.BaseAddress}/Comment/UpdateComment/{commentId}/{commentContent}", content);
+            if (respone.IsSuccessStatusCode)
+            {
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { success = false, message = "Edit comment failed" });
             }
         }
 
