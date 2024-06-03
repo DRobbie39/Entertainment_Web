@@ -2,6 +2,7 @@
 using BackEnd.Models;
 using Newtonsoft.Json;
 using System.Security.Claims;
+using Google.Apis.YouTube.v3.Data;
 
 namespace Entertainment_Web_API.Controllers
 {
@@ -77,18 +78,17 @@ namespace Entertainment_Web_API.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<IActionResult> DeleteComment([FromForm] Comment model)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteComment(string commentId)
         {
-            using(var http = new HttpClient())
+            HttpResponseMessage response = await _client.DeleteAsync($"{_client.BaseAddress}/Comment/DeleteComment/{commentId}");
+            if (response.IsSuccessStatusCode)
             {
-                var respone = await http.DeleteAsync("https://localhost:7142/backend/Comment/DeleteComment/" + model.CommentId);
-                if (!respone.IsSuccessStatusCode)
-                {
-                    return BadRequest("Add comment fail!");
-
-                }
-                return RedirectToAction("Video", "Home", new { id = model.VideoId });
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { success = false, message = "Delete comment failed!" });
             }
         }
     }

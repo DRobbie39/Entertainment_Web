@@ -116,13 +116,14 @@ namespace BackEnd.Controllers
             var comment = await _context.Comments.FindAsync(commentId);
             if (comment == null)
             {
-                return BadRequest("Not found");
+                return BadRequest();
 
             }
+
             _context.Comments.Remove(comment);
             await _context.SaveChangesAsync();
 
-            return Ok("delete successfully!");
+            return Ok();
         }
     }
 }
