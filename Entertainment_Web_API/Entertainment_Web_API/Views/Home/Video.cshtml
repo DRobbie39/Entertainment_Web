@@ -27,66 +27,119 @@
                 @* <i class="fa fa-download" aria-hidden="true">Download</i> *@
                 <!-- Nút Lưu vào danh sách phát -->
                 <i class="fa fa-play-circle" aria-hidden="true" data-toggle="modal" data-target="#saveToPlaylistModal"> Add to playlist</i>
-            </div>           
+            </div>
         </div>
-    </div>
+        <div class="comment-box">
+            <!-- Trường ẩn chứa videoId -->
+            <input type="hidden" id="videoId" name="videoId" value="@Model.Video.VideoId">
+            <textarea class="comment-input" id="commentContent" name="commentContent"></textarea>
+            <button type="submit" class="submit-button" id="postComment">Post</button>
+        </div>
 
-    <!--Bắt đầu comment-->
-    <div class="comment-box">
-        <!-- Trường ẩn chứa videoId -->
-        <input type="hidden" id="videoId" name="videoId" value="@Model.Video.VideoId">
-        <textarea class="comment-input" id="commentContent" name="commentContent"></textarea>
-        <button type="submit" class="submit-button" id="postComment">Post</button>
-    </div>
-
-    <div class="comment">
-        <div class="row g-0 margin-top:8px d-flex">
-            @if (Model.Comments != null)
-            {
-                @foreach (var comment in Model.Comments)
+        <div class="comment">
+            <div class="row g-0 margin-top:8px d-flex">
+                @if (Model.Comments != null)
                 {
-                    <div class="col-12 d-flex" style="margin-top:15px">
-                        <div class="d-flex" style="width:95%;">
-                            <img class="rounded-circle flex-shrink-0" src="/Uploads/@(comment.AppUser.Avtprofile ?? "avtmacdinh.jpg")" alt="" style="width: 40px; height: 40px;">
-                            <div class="block col-10" style="margin-left:20px;">
-                                <h5 style="margin-top:3px; margin-left:5px;">@(comment.AppUser.FullName ?? "User")</h5>
-                                <p style="margin-left:15px;">@comment.Content</p>
-                            </div>
-                            <div class="col-1 justify-content-start">
-                                <small style="margin-left:20px;">@comment.CommentPostingTime</small>
-                                
-                                <div class="form-group" style="margin-left:5px; margin-right:10px;">
-                                    <input value="@comment.CommentId" type="hidden" class="form-control" />
-                                    <input value="" type="hidden" class="form-control" />
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="col-12 d-flex" style="margin-top:15px">
+                            <div class="d-flex" style="width:95%;">
+                                <img class="rounded-circle flex-shrink-0" src="/Uploads/@(comment.AppUser.Avtprofile ?? "avtmacdinh.jpg")" alt="" style="width: 40px; height: 40px;">
+                                <div class="block col-10" style="margin-left:20px;">
+                                    <h5 style="margin-top:3px; margin-left:5px;">@(comment.AppUser.FullName ?? "User")</h5>
+                                    <p style="margin-left:15px;">@comment.Content</p>
+
+                                    <!-- Like Dislike Phản hồi -->
+                                    <div style="display:flex">
+                                        <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 50N</i>
+                                        <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i>
+                                        <p style="cursor: pointer; margin-left:15px;" class="feedbackuser">Phản hồi </p>
+                                    </div>
+
+                                    <!-- Người trả lời cmtt -->
+                                    <p style="cursor: pointer; margin-left:50px;" class="feedback"><i class="bi bi-chevron-bar-down"></i>Số phản hồi </p>
+                                    <div class="comments">
+                                        <!-- Người trả lời cmtt 1 -->
+                                        <div style="display:flex">
+                                            <img class="rounded-circle flex-shrink-0" src="/Uploads/avtmacdinh.jpg" alt="" style="width: 40px; height: 40px;">
+                                            <div class="block col-10" style="margin-left:20px;">
+                                                <h5 style="margin-top:3px; margin-left:5px;">@(comment.AppUser.FullName ?? "User")</h5>
+                                                <p style="margin-left:15px;">@comment.Content</p>
+                                                <div style="display:flex">
+                                                    <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 50N</i>
+                                                    <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i>
+                                                    <p style="cursor: pointer; margin-left:15px;" class="feedbackuser">Phản hồi </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Người trả lời cmtt 2 -->
+                                        <div style="display:flex">
+                                            <img class="rounded-circle flex-shrink-0" src="/Uploads/avtmacdinh.jpg" alt="" style="width: 40px; height: 40px;">
+                                            <div class="block col-10" style="margin-left:20px;">
+                                                <h5 style="margin-top:3px; margin-left:5px;">@(comment.AppUser.FullName ?? "User")</h5>
+                                                <p style="margin-left:15px;">@comment.Content</p>
+                                                <div style="display:flex">
+                                                    <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 50N</i>
+                                                    <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i>
+                                                    <p style="cursor: pointer; margin-left:15px;" class="feedbackuser">Phản hồi </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                @* Button update comment *@
-                                <button type="submit" id="editButton" style="border-radius:5px; margin-left:3px;">
-                                    <div class="d-flex clsss">
-                                        <i class="bi bi-pencil-square" style="padding:5px;"></i>
-                                    </div>
-                                </button>
+                                <div class="cmtfeedback">
+                                    <input type="hidden" id="videoId" name="videoId" value="@Model.Video.VideoId">
+                                    <textarea class="comment-input feed" id="idcommentContent1" name="commentContent">Phản hồi cc</textarea>
+                                    <button type="submit" class="submit-button btnan" id="updateComment1">Post</button>
+                                    <button class="submit-button btnhuy" style="background-color:#e37272">Hủy</button>
+                                </div>
 
-                                @* Ô văn bản cho việc chỉnh sửa *@
-                                <textarea class="comment-input" id="editedCommentInput" style="display: none;"></textarea>
-                                <textarea class="comment-input" id="commentContent" name="commentContent"></textarea>
 
-                                @* Button delete comment *@
-                                <button type="submit" style="border-radius:5px;">
-                                    <div class="d-flex clsss">
-                                        <i class="fa fa-trash" aria-hidden="true" style="padding:5px;"></i>
+                               
+                                <div class="commentan">
+                                    @for (var i = 0; i < Model.Comments.Count; i++)
+                                    {
+                                        <input type="hidden" id="commentId" name="commentId" value="@Model.Comments[i].CommentId">
+                                    }
+
+                                    <textarea class="comment-input cao" id="commentContentMain" name="commentContentMain">@comment.Content</textarea>
+                                    <button type="submit" class="submit-button btnan" id="updateComment">Edit</button>
+                                    <button class="submit-button btnhuy" style="background-color:#e37272">Cancel</button>
+                                </div>
+                                
+                                <div class="col-1 justify-content-start">
+                                    <small style="margin-left:20px;">@comment.CommentPostingTime</small>
+                                    @*<div class="form-group" style="margin-left:5px; margin-right:10px;">
+                                    <input value="@comment.CommentId" type="hidden" class="form-control" />
+                                    <input value="" type="hidden" class="form-control" />
+                                    </div> *@
+
+                                    @* Button update comment *@
+                                    <div class="ngang" style="margin-left:19px;">
+                                        <button type="submit" class="editButton" style="border-radius:13px;">
+                                            <div class="d-flex clsss">
+                                                <i class="bi bi-pencil-square" style="padding:3px;"></i>
+                                            </div>
+                                        </button>
+                                        <button type="submit" style="border-radius:13px;">
+                                            <div class="d-flex clsss">
+                                                <i class="fa fa-trash" aria-hidden="true" style="padding:3px;"></i>
+                                            </div>
+                                        </button>
                                     </div>
-                                </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @* <div class="comment-box col-1 d-inline"></div> *@
+                        @* <div class="comment-box col-1 d-inline"></div> *@
+                    }
                 }
-            }
+            </div>
         </div>
     </div>
 
-    @* <div class="col-6 col-md-4">
+    <!--Tab phải các video liên quan tới video hiện tại-->
+    <div class="col-6 col-md-4">
         <div class="product__sidebar__comment">
             <div class="section-title" style="margin-top:30px;">
                 <h5>Relate videos</h5>
@@ -108,7 +161,7 @@
                 }
             }
         </div>
-    </div> *@
+    </div>
 </div>
 
 <!-- Modal -->
@@ -153,28 +206,40 @@
     </div>
 </div>
 
-<style>
+    <style>
+    .ngang {
+        display: flex;
+    }
+
     .comment-box {
-        width: 700%;
+        width: 100%;
         height: 70px;
         position: relative;
+        margin-left: 10px;
     }
 
     .comment-input {
         width: calc(95% - 100px);
         height: 70%;
-        padding-top:0.5px;
-        height:35px !important;
+        padding-top: 0.5px;
+        height: 55px !important;
         box-sizing: border-box;
         border: 1px solid #ccc;
         border-radius: 5px;
         font-size: 16px;
-        margin-top:24px;
-        background-color: #403b3b;
+        margin-top: 10px;
     }
 
-    .comment-box{
-        margin-bottom:10px;
+    .cao {
+        height: 35px !important;
+    }
+
+    .feed {
+        height: 35px !important;
+    }
+
+    .comment-box {
+        margin-bottom: 10px;
     }
 
     .submit-button {
@@ -191,13 +256,13 @@
         cursor: pointer;
         font-size: 16px;
         margin-bottom: 17px;
-        margin-right:30px !important;
-        margin-bottom:10px;
+        margin-right: 30px !important;
+        margin-bottom: 10px;
     }
 
-    .submit-button:hover {
-        background-color: #0056b3;
-    }
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
 
     i.fa.fa-thumbs-up {
         cursor: pointer;
@@ -229,41 +294,79 @@
         overflow: hidden;
     }
 
-    .product__sidebar__comment__item__text ul {
-        margin-bottom: 10px;
-    }
+        .product__sidebar__comment__item__text ul {
+            margin-bottom: 10px;
+        }
 
-    .product__sidebar__comment__item__text ul li {
-        list-style: none;
-        font-size: 10px;
-        color: #ffffff;
-        font-weight: 700;
-        padding: 1px 10px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50px;
-        display: inline-block;
-    }
+            .product__sidebar__comment__item__text ul li {
+                list-style: none;
+                font-size: 10px;
+                color: #ffffff;
+                font-weight: 700;
+                padding: 1px 10px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 50px;
+                display: inline-block;
+            }
 
-    .product__sidebar__comment__item__text h5 {
-        margin-bottom: 10px;
-    }
+        .product__sidebar__comment__item__text h5 {
+            margin-bottom: 10px;
+        }
 
-    .product__sidebar__comment__item__text h5 a {
-        color: #ffffff;
-        font-weight: 700;
-        line-height: 26px;
-    }
+            .product__sidebar__comment__item__text h5 a {
+                color: #ffffff;
+                font-weight: 700;
+                line-height: 26px;
+            }
 
-    .product__sidebar__comment__item__text span {
-        display: block;
-        font-size: 13px;
-        color: #b7b7b7;
-    }
+        .product__sidebar__comment__item__text span {
+            display: block;
+            font-size: 13px;
+            color: #b7b7b7;
+        }
 
     .mee {
         color: #fff;
         margin-top: 10px;
         margin-left: 20px;
+    }
+
+    .commentan {
+        display: none;
+        position: absolute;
+        width: 40%;
+        margin-left: 67px;
+        margin-top: 15px;
+    }
+
+    .cmtfeedback {
+        display: none;
+        position: absolute;
+        width: 40%;
+        margin-left: 67px;
+        margin-top: 94px;
+    }
+
+    .an {
+        display: none;
+    }
+
+    .btnan {
+        top: 4px !important;
+    }
+
+    .btnhuy {
+        top: 4px !important;
+        left: 600px;
+    }
+
+    .comments {
+        display: none;
+        margin-left: 50px;
+    }
+
+    p.feedbackuser {
+        margin-top: -5px;
     }
 </style>
 
@@ -273,7 +376,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!--Nút xử lý sự kiện đóng/mở modal-->
-<script>
+    <script>
     //Xử lý sự kiện mở modal
     $(document).ready(function () {
         $("#saveToPlaylistButton").on('show.bs.modal', function () {
@@ -290,7 +393,7 @@
 </script>
 
 <!--Nút thêm video vào ds phát-->
-<script>
+    <script>
     $(document).ready(function () {
         // Khi người dùng nhấn nút "Lưu thay đổi"
         $('#saveChangesButton').click(function () {
@@ -326,7 +429,7 @@
 </script>
 
 <!--Nút thêm ds phát-->
-<script>
+    <script>
     $(document).ready(function () {
         // Khi người dùng nhấn nút "Add new playlist"
         $('#addNewPlaylistButton').click(function () {
@@ -359,7 +462,7 @@
 </script>
 
 <!--Nút đăng bình luận-->
-<script>
+    <script>
     $(document).ready(function () {
         // Khi người dùng nhấn nút "Post comment"
         $('#postComment').click(function () {
@@ -386,18 +489,107 @@
     });
 </script>
 
-<script>
-    const editButton = document.getElementById("editButton");
-    const editedCommentInput = document.getElementById("editedCommentInput");
+<!--Nút chỉnh sửa bình luận-->
+    <script>
+    $(document).ready(function () {
+        // Khi người dùng nhấn nút "Update comment"
+        $('#updateComment').click(function () {
+            var commentId = $('#commentId').val();
+            var commentContent = $('#commentContentMain').val();
 
-    editButton.addEventListener("click", () => {
-        editedCommentInput.style.display = "block"; // Hiển thị ô văn bản chỉnh sửa
+            $.ajax({
+                url: '/Comment/UpdateComment',
+                type: 'PUT',
+                data: {
+                    commentId: commentId,
+                    commentContent: commentContent
+                },
+                success: function (response) {
+                    if (response.success) {
+                        // Làm mới trang
+                        window.location.reload();
+                    } else {
+                        alert('Edit comment failed!');
+                    }
+                }
+            });
+        });
     });
 </script>
 
-<script>
+    <script>
+    const editButtons = document.querySelectorAll(".editButton");
+    const editedCommentInputs = document.querySelectorAll(".commentan");
+    const edited = document.querySelectorAll(".ngang");
+
+    editButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            editedCommentInputs[index].style.display = "block"; // Hiển thị ô văn bản chỉnh sửa
+        });
+        button.addEventListener("click", () => {
+            edited[index].style.display = "none"; // Hiển thị ô văn bản chỉnh sửa
+        });
+    });
+</script>
+
+    <script>
+    const feedButtons = document.querySelectorAll(".feedbackuser");
+    const feedCommentInputs = document.querySelectorAll(".cmtfeedback");
+
+    feedButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            feedCommentInputs[index].style.display = "block"; // Hiển thị ô văn bản chỉnh sửa
+        });
+    });
+</script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Chọn tất cả các nút "Hủy"
+        var cancelButtons = document.querySelectorAll(".btnhuy");
+
+        // Thêm sự kiện click cho mỗi nút "Hủy"
+        cancelButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                // Chọn tất cả các phần tử có class "ngang"
+                var ngangElements = document.querySelectorAll(".ngang");
+
+                // Duyệt qua từng phần tử và hiển thị chúng
+                ngangElements.forEach(function (element) {
+                    element.style.display = "block";
+                });
+
+                // Ẩn phần tử cha của nút "Hủy" có class "commentan"
+                this.closest(".commentan").style.display = "none";
+            });
+        });
+    });
+</script>
+
+    <script>
+    const feedbackElements = document.querySelectorAll(".feedback");
+
+    // Lặp qua từng phần tử và thêm sự kiện "click"
+    feedbackElements.forEach((feedback) => {
+        feedback.addEventListener("click", () => {
+            // Lấy phần tử comments liền kề với phần tử feedback hiện tại
+            const comments = feedback.nextElementSibling;
+
+            // Kiểm tra và thay đổi trạng thái hiển thị của phần tử comments
+            if (comments.style.display === "none" || comments.style.display === "") {
+                comments.style.display = "block";
+                feedback.querySelector("i").classList.replace("bi-chevron-bar-down", "bi-chevron-bar-up");
+            } else {
+                comments.style.display = "none";
+                feedback.querySelector("i").classList.replace("bi-chevron-bar-up", "bi-chevron-bar-down");
+            }
+        });
+    });
+</script>
+
+    <script>
     $(document).ready(function () {
-        let liked = false; 
+        let liked = false;
 
         $('#like-button').click(function () {
             let likes = parseInt($(this).text().trim());
