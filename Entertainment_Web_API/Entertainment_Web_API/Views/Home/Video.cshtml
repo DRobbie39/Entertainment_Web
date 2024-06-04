@@ -1,4 +1,5 @@
 ﻿@model BackEnd.Models.VideoViewModel
+@using System.Security.Claims
 
 @{
     List<BackEnd.Models.Comment> commentlist = ViewBag.comments as List<BackEnd.Models.Comment>;
@@ -117,9 +118,9 @@
                             <input value="@comment.CommentId" type="hidden" class="form-control" />
                             <input value="" type="hidden" class="form-control" />
                             </div> *@
-
+                                    @if (comment.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                                    {
                                     <div class="ngang" style="margin-left:19px;">
-
                                         @* Button update comment *@
                                         <button type="submit" class="editButton" style="border-radius:13px;">
                                             <div class="d-flex clsss">
@@ -134,6 +135,7 @@
                                             </div>
                                         </button>
                                     </div>
+                                    }
                                 </div>
                             </div>
                         </div>
