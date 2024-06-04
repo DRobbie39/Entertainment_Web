@@ -14,19 +14,19 @@ namespace BackEnd.Controllers
     public class CommentController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyC-hldqefETpVzbO8cToIsH9v5PmbP1y-0"; // Api key
+        private readonly string apiKey = "AIzaSyB1jP3WJP2QzQgy4OQDMil-y3neNUD_sD0"; // Api key
         public CommentController(EntertainmentContext context)
         {
             _context = context;
         }
 
-        [HttpGet("{userId}/{videoId}")]
-        public async Task<IActionResult> GetComments(string userId, string videoId)
+        [HttpGet("{videoId}")]
+        public async Task<IActionResult> GetComments(string videoId)
         {
             var comment = await _context.Comments
                 .Include(v => v.Video)
                 .Include(u => u.AppUser)
-                .Where(c => c.Id == userId && c.VideoId == videoId).ToListAsync();
+                .Where(c => c.VideoId == videoId).ToListAsync();
 
             if (comment == null)
             {

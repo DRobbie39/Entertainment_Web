@@ -69,7 +69,10 @@
                         <label for="newPlaylistName">New playlist name</label>
                         @if (Model.Playlists != null && Model.Playlists.Count > 0)
                         {
-                            <input type="hidden" id="playlistId" name="playlistId" value="@Model.Playlists[0].PlaylistId">
+                            @for (var i = 0; i < Model.Playlists.Count; i++)
+                            {
+                                <input type="hidden" id="playlistId" name="playlistId" value="@Model.Playlists[i].PlaylistId">
+                            }
                         }
                         <input type="text" class="form-control" id="newPlaylistName" name="newPlaylistName" placeholder="Enter new playlist name">
                     </div>
@@ -91,7 +94,10 @@
                 <h5 class="modal-title" id="confirmDeleteModalLabel" style="color: black;">Confirm deletion of playlist</h5>
                 @if (Model.Playlists != null && Model.Playlists.Count > 0)
                 {
-                    <input type="hidden" id="playlistId" name="playlistId" value="@Model.Playlists[0].PlaylistId">
+                    @for (var i = 0; i < Model.Playlists.Count; i++)
+                            {
+                                <input type="hidden" id="playlistId" name="playlistId" value="@Model.Playlists[i].PlaylistId">
+                            }
                 }
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

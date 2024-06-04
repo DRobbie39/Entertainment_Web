@@ -1,6 +1,7 @@
 ﻿@model BackEnd.Models.VideoViewModel
 
 @{
+    List<BackEnd.Models.Comment> commentlist = ViewBag.comments as List<BackEnd.Models.Comment>;
     ViewData["Title"] = "Video";
     Layout = "~/Views/Shared/_LayoutAccount.cshtml";
 }
@@ -33,6 +34,7 @@
             <!-- Trường ẩn chứa videoId -->
             <input type="hidden" id="videoId" name="videoId" value="@Model.Video.VideoId">
             <textarea class="comment-input" id="commentContent" name="commentContent"></textarea>
+            <!-- button post-->
             <button type="submit" class="submit-button" id="postComment">Post</button>
         </div>
 
@@ -96,26 +98,28 @@
                                 </div>
 
 
-                               
-                                <div class="commentan">
-                                    @for (var i = 0; i < Model.Comments.Count; i++)
-                                    {
-                                        <input type="hidden" id="commentId" name="commentId" value="@Model.Comments[i].CommentId">
-                                    }
 
-                                    <textarea class="comment-input cao" id="commentContentMain" name="commentContentMain">@comment.Content</textarea>
-                                    <button type="submit" class="submit-button btnan" id="updateComment">Edit</button>
+                                <div class="commentan">
+                                    @* @for (var i = 0; i < Model.Comments.Count; i++)
+                            {
+                            <input type="hidden" id="commentId" name="commentId" value="@Model.Comments[i].CommentId">
+
+                            } *@
+                                    <textarea class="comment-input cao" id="content-@comment.CommentId" name="commentContentMain">@comment.Content</textarea>
+                                    <button type="submit" class="submit-button btnan" id="updateComment-@comment.CommentId" onclick="EditComment('@comment.CommentId')">Edit</button>
                                     <button class="submit-button btnhuy" style="background-color:#e37272">Cancel</button>
+
                                 </div>
-                                
+
                                 <div class="col-1 justify-content-start">
                                     <small style="margin-left:20px;">@comment.CommentPostingTime</small>
                                     @*<div class="form-group" style="margin-left:5px; margin-right:10px;">
-                                    <input value="@comment.CommentId" type="hidden" class="form-control" />
-                                    <input value="" type="hidden" class="form-control" />
-                                    </div> *@
+                            <input value="@comment.CommentId" type="hidden" class="form-control" />
+                            <input value="" type="hidden" class="form-control" />
+                            </div> *@
 
                                     <div class="ngang" style="margin-left:19px;">
+
                                         @* Button update comment *@
                                         <button type="submit" class="editButton" style="border-radius:13px;">
                                             <div class="d-flex clsss">
@@ -124,7 +128,7 @@
                                         </button>
 
                                         @* Button delete comment *@
-                                        <button type="submit" style="border-radius:13px;" data-toggle="modal" data-target="#confirmDeleteModal">
+                                        <button type="submit" class="deleteButton" style="border-radius:13px;" data-toggle="modal" data-target="#confirmDeleteModal-@comment.CommentId">
                                             <div class="d-flex clsss">
                                                 <i class="fa fa-trash" aria-hidden="true" style="padding:3px;"></i>
                                             </div>
@@ -134,6 +138,27 @@
                             </div>
                         </div>
                         @* <div class="comment-box col-1 d-inline"></div> *@
+
+                        <!-- Modal xác nhận xóa comment -->
+                        <div class="modal fade" id="confirmDeleteModal-@comment.CommentId" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="confirmDeleteModalLabel" style="color: black;">Confirm deletion of comment</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this comment?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-danger" onclick="DeleteComment('@comment.CommentId')">Yes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     }
                 }
             </div>
@@ -208,35 +233,7 @@
     </div>
 </div>
 
-<!-- Modal xác nhận xóa comment -->
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="confirmDeleteModalLabel" style="color: black;">Confirm deletion of comment</h5>
-                @if (Model.Comments != null && Model.Comments.Count > 0)
-                {
-                    @for (var i = 0; i < Model.Comments.Count; i++)
-                    {
-                        <input type="hidden" id="commentId" name="commentId" value="@Model.Comments[i].CommentId">
-                    }
-                }
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete this comment?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" id="confirmDeleteButton">Yes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-    <style>
+<style>
     .ngang {
         display: flex;
     }
@@ -406,7 +403,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!--Nút xử lý sự kiện đóng/mở modal-->
-    <script>
+<script>
     //Xử lý sự kiện mở modal
     $(document).ready(function () {
         $("#saveToPlaylistButton").on('show.bs.modal', function () {
@@ -423,7 +420,7 @@
 </script>
 
 <!--Nút thêm video vào ds phát-->
-    <script>
+<script>
     $(document).ready(function () {
         // Khi người dùng nhấn nút "Lưu thay đổi"
         $('#saveChangesButton').click(function () {
@@ -459,7 +456,7 @@
 </script>
 
 <!--Nút thêm ds phát-->
-    <script>
+<script>
     $(document).ready(function () {
         // Khi người dùng nhấn nút "Add new playlist"
         $('#addNewPlaylistButton').click(function () {
@@ -492,7 +489,7 @@
 </script>
 
 <!--Nút đăng bình luận-->
-    <script>
+<script>
     $(document).ready(function () {
         // Khi người dùng nhấn nút "Post comment"
         $('#postComment').click(function () {
@@ -520,12 +517,12 @@
 </script>
 
 <!--Nút chỉnh sửa bình luận-->
-    <script>
-    $(document).ready(function () {
-        // Khi người dùng nhấn nút "Update comment"
-        $('#updateComment').click(function () {
-            var commentId = $('#commentId').val();
-            var commentContent = $('#commentContentMain').val();
+<script>
+    function EditComment(commentId) {
+        $(`#updateComment-${commentId}`).click(function () {
+            // var commentId = $('#commentId').val();
+            console.log(commentId);
+            var commentContent = $(`#content-${commentId}`).val();
 
             $.ajax({
                 url: '/Comment/UpdateComment',
@@ -544,16 +541,12 @@
                 }
             });
         });
-    });
+    }
 </script>
 
 <!--Nút xóa bình luận -->
- <script>
-    $(document).ready(function () {
-        // Khi người dùng nhấn nút "Confirm delete button"
-        $('#confirmDeleteButton').click(function () {
-            var commentId = $('#commentId').val();
-
+<script>
+    function DeleteComment(commentId) {
             $.ajax({
                 url: '/Comment/DeleteComment',
                 type: 'DELETE',
@@ -565,21 +558,19 @@
                         // Làm mới trang
                         window.location.reload();
                     } else {
-                        alert('Delete comment failed!');
+                        // Làm mới trang
+                        window.location.reload();
                     }
 
                     // Đóng modal
-                    $('#confirmDeleteModal').modal('hide');
-
-                    // Làm mới trang
-                    window.location.reload();
+                    $(`#confirmDeleteModal-${commentId}`).modal('hide');
                 }
             });
-        });
-    });
+      
+    }
 </script>
 
-    <script>
+<script>
     const editButtons = document.querySelectorAll(".editButton");
     const editedCommentInputs = document.querySelectorAll(".commentan");
     const edited = document.querySelectorAll(".ngang");
@@ -594,7 +585,7 @@
     });
 </script>
 
-    <script>
+<script>
     const feedButtons = document.querySelectorAll(".feedbackuser");
     const feedCommentInputs = document.querySelectorAll(".cmtfeedback");
 
@@ -605,7 +596,7 @@
     });
 </script>
 
-    <script>
+<script>
     document.addEventListener("DOMContentLoaded", function () {
         // Chọn tất cả các nút "Hủy"
         var cancelButtons = document.querySelectorAll(".btnhuy");
@@ -628,7 +619,7 @@
     });
 </script>
 
-    <script>
+<script>
     const feedbackElements = document.querySelectorAll(".feedback");
 
     // Lặp qua từng phần tử và thêm sự kiện "click"
@@ -649,7 +640,7 @@
     });
 </script>
 
-    <script>
+<script>
     $(document).ready(function () {
         let liked = false;
 

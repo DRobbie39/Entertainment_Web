@@ -70,7 +70,10 @@
                 <h5 class="modal-title" id="confirmDeleteModalLabel" style="color: black;">Confirm deletion of video from playlist</h5>
                 @if (Model.Videos != null && Model.Videos.Count > 0)
                 {
-                    <input type="hidden" id="videoId" name="videoId" value="@Model.Videos[0].VideoId">
+                    @for (var i = 0; i < Model.Videos.Count; i++)
+                    {
+                        <input type="hidden" id="videoId" name="videoId" value="@Model.Videos[i].VideoId">
+                    }
                 }
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

@@ -104,7 +104,7 @@ namespace Entertainment_Web_API.Controllers
             List<Comment> comments = new List<Comment>(); // Khai báo biến comments ở đây
             if (userId != null)
             {
-                HttpResponseMessage commentResponse = await _client.GetAsync(_client.BaseAddress + $"/Comment/GetComments/{userId}/{videoId}");
+                HttpResponseMessage commentResponse = await _client.GetAsync(_client.BaseAddress + $"/Comment/GetComments/{videoId}");
                 if (commentResponse.IsSuccessStatusCode)
                 {
                     string commentData = await commentResponse.Content.ReadAsStringAsync();
