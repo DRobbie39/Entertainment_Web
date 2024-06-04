@@ -102,22 +102,20 @@
 
                                 <div class="commentan">
                                     @* @for (var i = 0; i < Model.Comments.Count; i++)
-                            {
-                            <input type="hidden" id="commentId" name="commentId" value="@Model.Comments[i].CommentId">
-
-                            } *@
+                                    {
+                                        <input type="hidden" id="commentId" name="commentId" value="@Model.Comments[i].CommentId">
+                                    } *@
                                     <textarea class="comment-input cao" id="content-@comment.CommentId" name="commentContentMain">@comment.Content</textarea>
                                     <button type="submit" class="submit-button btnan" id="updateComment-@comment.CommentId" onclick="EditComment('@comment.CommentId')">Edit</button>
                                     <button class="submit-button btnhuy" style="background-color:#e37272">Cancel</button>
-
                                 </div>
 
                                 <div class="col-1 justify-content-start">
                                     <small style="margin-left:20px;">@comment.CommentPostingTime</small>
                                     @*<div class="form-group" style="margin-left:5px; margin-right:10px;">
-                            <input value="@comment.CommentId" type="hidden" class="form-control" />
-                            <input value="" type="hidden" class="form-control" />
-                            </div> *@
+                                        <input value="@comment.CommentId" type="hidden" class="form-control" />
+                                        <input value="" type="hidden" class="form-control" />
+                                    </div> *@
                                     @if (comment.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
                                     {
                                     <div class="ngang" style="margin-left:19px;">
@@ -549,26 +547,25 @@
 <!--Nút xóa bình luận -->
 <script>
     function DeleteComment(commentId) {
-            $.ajax({
-                url: '/Comment/DeleteComment',
-                type: 'DELETE',
-                data: {
-                    commentId: commentId
-                },
-                success: function (response) {
-                    if (response.success) {
-                        // Làm mới trang
-                        window.location.reload();
-                    } else {
-                        // Làm mới trang
-                        window.location.reload();
-                    }
-
-                    // Đóng modal
-                    $(`#confirmDeleteModal-${commentId}`).modal('hide');
+        $.ajax({
+            url: '/Comment/DeleteComment',
+            type: 'DELETE',
+            data: {
+                commentId: commentId
+            },
+            success: function (response) {
+                if (response.success) {
+                    // Làm mới trang
+                    window.location.reload();
+                } else {
+                    // Làm mới trang
+                    window.location.reload();
                 }
-            });
-      
+
+                // Đóng modal
+                $(`#confirmDeleteModal-${commentId}`).modal('hide');
+            }
+        });
     }
 </script>
 

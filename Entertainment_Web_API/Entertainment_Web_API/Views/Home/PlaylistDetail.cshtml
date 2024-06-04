@@ -48,43 +48,43 @@
                                             <i class="bi bi-three-dots-vertical ellipsis-icon"></i>
                                             <div class="dropdown-content">
                                                 @* <i class="bi bi-pencil-square" style="margin-top:5px;"></i> *@
-                                                <i class="fa fa-trash" aria-hidden="true" style="margin-top:5px;" data-toggle="modal" data-target="#confirmDeleteModal"></i>
+                                                <i class="fa fa-trash" aria-hidden="true" style="margin-top:5px;" data-toggle="modal" data-target="#confirmDeleteModal-@video.VideoId"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Modal xác nhận xóa video khỏi playlist -->
+                        <div class="modal fade" id="confirmDeleteModal-@video.VideoId" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="confirmDeleteModalLabel" style="color: black;">Confirm deletion of video from playlist</h5>
+                                        @* @if (Model.Videos != null && Model.Videos.Count > 0)
+                                        {
+                                            @for (var i = 0; i < Model.Videos.Count; i++)
+                                            {
+                                                <input type="hidden" id="videoId" name="videoId" value="@Model.Videos[i].VideoId">
+                                            }
+                                        } *@
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to remove this video from the playlist?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-danger" onclick="DeleteVideoFromPlaylist('@video.VideoId')">Yes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     }
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal xác nhận xóa video khỏi playlist -->
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="confirmDeleteModalLabel" style="color: black;">Confirm deletion of video from playlist</h5>
-                @if (Model.Videos != null && Model.Videos.Count > 0)
-                {
-                    @for (var i = 0; i < Model.Videos.Count; i++)
-                    {
-                        <input type="hidden" id="videoId" name="videoId" value="@Model.Videos[i].VideoId">
-                    }
-                }
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to remove this video from the playlist?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" id="confirmDeleteButton">Yes</button>
             </div>
         </div>
     </div>
@@ -275,40 +275,35 @@
 
 <!--Nút xóa video trong ds phát-->
 <script>
-    $(document).ready(function () {
-        // Khi người dùng nhấn nút "Confirm delete button"
-        $('#confirmDeleteButton').click(function () {
-            // Lấy URL hiện tại
-            const currentUrl = window.location.href;
+    function DeleteVideoFromPlaylist(videoId) {
+        // Lấy URL hiện tại
+        const currentUrl = window.location.href;
 
-            // Tách chuỗi URL để lấy playlistId
-            const playlistId = currentUrl.split('=')[1];
+        // Tách chuỗi URL để lấy playlistId
+        const playlistId = currentUrl.split('=')[1];
 
-            var videoId = $('#videoId').val();
-
-            $.ajax({
-                url: '/Playlist/DeleteVideoFromPlaylist',
-                type: 'DELETE',
-                data: {
-                    playlistId: playlistId,
-                    videoId: videoId
-                },
-                success: function (response) {
-                    if (response.success) {
-                        alert('Playlist delete successfully!');
-                    } else {
-                        alert('Delete playlist failed!');
-                    }
-
-                    // Đóng modal
-                    $('#confirmDeleteModal').modal('hide');
-
-                    // Làm mới trang
-                    window.location.reload();
+        $.ajax({
+            url: '/Playlist/DeleteVideoFromPlaylist',
+            type: 'DELETE',
+            data: {
+                playlistId: playlistId,
+                videoId: videoId
+            },
+            success: function (response) {
+                if (response.success) {
+                    alert('Playlist delete successfully!');
+                } else {
+                    alert('Delete playlist failed!');
                 }
-            });
+
+                // Đóng modal
+                $('#confirmDeleteModal').modal('hide');
+
+                // Làm mới trang
+                window.location.reload();
+            }
         });
-    });
+    }
 </script>
 
 <script src="~/js/home.js"></script>
