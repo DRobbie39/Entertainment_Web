@@ -8,6 +8,7 @@ namespace BackEnd.Models
         [Key]
         public string? PlaylistId { get; set; }
         public string? PlaylistName { get; set; }
+        public string? ThumbnailUrl { get; set; }
         public int? VideoCount { get; set; }
 
 		[ForeignKey("AppUser")]

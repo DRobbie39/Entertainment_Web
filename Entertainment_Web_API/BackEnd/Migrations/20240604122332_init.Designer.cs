@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(EntertainmentContext))]
-    [Migration("20240528084340_init")]
+    [Migration("20240604122332_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -63,6 +63,9 @@ namespace BackEnd.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PlaylistName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ThumbnailUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("VideoCount")

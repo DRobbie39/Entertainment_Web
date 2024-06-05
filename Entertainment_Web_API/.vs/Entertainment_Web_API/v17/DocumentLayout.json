@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|d:\\study\\hk2 2023-2024\\api\\entertainment_web\\entertainment_web_api\\entertainment_web_api\\views\\home\\playlistdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|solutionrelative:entertainment_web_api\\views\\home\\playlistdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{5AFAC2F1-D562-456C-8E35-1197A0DF156A}|BackEnd\\BackEnd.csproj|d:\\study\\hk2 2023-2024\\api\\entertainment_web\\entertainment_web_api\\backend\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFAC2F1-D562-456C-8E35-1197A0DF156A}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|d:\\study\\hk2 2023-2024\\api\\entertainment_web\\entertainment_web_api\\entertainment_web_api\\views\\home\\library.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|solutionrelative:entertainment_web_api\\views\\home\\library.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|d:\\study\\hk2 2023-2024\\api\\entertainment_web\\entertainment_web_api\\entertainment_web_api\\views\\home\\playlistdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|solutionrelative:entertainment_web_api\\views\\home\\playlistdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFAC2F1-D562-456C-8E35-1197A0DF156A}|BackEnd\\BackEnd.csproj|d:\\study\\hk2 2023-2024\\api\\entertainment_web\\entertainment_web_api\\backend\\models\\playlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFAC2F1-D562-456C-8E35-1197A0DF156A}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\playlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{534719DD-ED3D-4696-B911-74DCE66666B4}|Entertainment_Web_API\\Entertainment_Web_API.csproj|d:\\study\\hk2 2023-2024\\api\\entertainment_web\\entertainment_web_api\\entertainment_web_api\\views\\home\\video.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -22,8 +30,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Playlist.cs",
+              "DocumentMoniker": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\Models\\Playlist.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\Playlist.cs",
+              "ToolTip": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\Models\\Playlist.cs",
+              "RelativeToolTip": "BackEnd\\Models\\Playlist.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T12:28:50.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlaylistController.cs",
+              "DocumentMoniker": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\Controllers\\PlaylistController.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Controllers\\PlaylistController.cs",
+              "ToolTip": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\Controllers\\PlaylistController.cs",
+              "RelativeToolTip": "BackEnd\\Controllers\\PlaylistController.cs",
+              "ViewState": "AQIAANsAAAAAAAAAAAAYwOIAAABjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T11:55:06.633Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -74,13 +108,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "PlaylistDetail.cshtml",
               "DocumentMoniker": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Home\\PlaylistDetail.cshtml",
               "RelativeDocumentMoniker": "Entertainment_Web_API\\Views\\Home\\PlaylistDetail.cshtml",
               "ToolTip": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Home\\PlaylistDetail.cshtml",
               "RelativeToolTip": "Entertainment_Web_API\\Views\\Home\\PlaylistDetail.cshtml",
-              "ViewState": "AQIAADIAAAAAAAAAAAAAAEcAAAB0AAAA",
+              "ViewState": "AQIAABoAAAAAAAAAAAAAAEUAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-06-04T09:53:05.533Z",
               "EditorCaption": ""
@@ -93,20 +127,20 @@
               "RelativeDocumentMoniker": "Entertainment_Web_API\\Views\\Home\\Library.cshtml",
               "ToolTip": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Home\\Library.cshtml",
               "RelativeToolTip": "Entertainment_Web_API\\Views\\Home\\Library.cshtml",
-              "ViewState": "AQIAAOsAAAAAAAAAAAAAAPUAAAAlAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-06-04T09:16:07.631Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Video.cshtml",
               "DocumentMoniker": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Home\\Video.cshtml",
               "RelativeDocumentMoniker": "Entertainment_Web_API\\Views\\Home\\Video.cshtml",
               "ToolTip": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\Views\\Home\\Video.cshtml",
               "RelativeToolTip": "Entertainment_Web_API\\Views\\Home\\Video.cshtml",
-              "ViewState": "AQIAAB0CAAAAAAAAAAAAAC8CAAAYAAAA",
+              "ViewState": "AQIAAKIBAAAAAAAAAAAAAKgBAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-06-01T06:30:12.35Z",
               "EditorCaption": ""

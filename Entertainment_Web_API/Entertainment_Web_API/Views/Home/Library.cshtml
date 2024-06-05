@@ -31,7 +31,7 @@
                             <a href="@Url.Action("PlaylistDetail", "Home", new { playlistId = playlist.PlaylistId })">
                                 <div class="overlay">
                                     <p class="sovideo">@playlist.VideoCount video(s)</p>
-                                    <img src="/lib/playlist.png" alt="..." class="playlist-image">
+                                    <img src="@playlist.ThumbnailUrl" alt="..." class="playlist-image">
                                 </div>
                             </a>
                             <div class="playlist-info">

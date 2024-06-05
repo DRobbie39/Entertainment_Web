@@ -154,12 +154,13 @@ namespace BackEnd.Controllers
                 // Thêm Video vào cơ sở dữ liệu
                 _context.Videos.Add(newVideo);
             }
-
+           
             // Tạo mới playlist
             var newPlaylist = new Playlist
             {
                 PlaylistId = Guid.NewGuid().ToString(),
                 PlaylistName = playlistName,
+                ThumbnailUrl = existingVideo.ThumbnailUrl, // Lấy thumbnail cho biến ở trên gán cho thuộc tính của Playlist
                 Id = userId
             };
 
@@ -230,6 +231,22 @@ namespace BackEnd.Controllers
 
             if (videoPlaylist != null)
             {
+                // Lấy danh sách video còn tồn tại trong playlist
+                var existingVideos = await _context.Videos.Where(v => v.VideoPlaylists.Any(vp => vp.PlaylistId == playlistId)).ToListAsync();
+
+                // Lấy thumbnail của video còn tồn tại
+                var existingVideo = existingVideos.FirstOrDefault(v => v.VideoId != videoId);
+
+                if (existingVideo != null)
+                {
+                    // Cập nhật thumbnail của playlist bằng thumbnail của video còn tồn tại
+                    var playlistToUpdate = await _context.Playlist.FindAsync(playlistId);
+                    if (playlistToUpdate != null)
+                    {
+                        playlistToUpdate.ThumbnailUrl = existingVideo.ThumbnailUrl;
+                    }
+                }
+
                 // Xóa liên kết video-playlist
                 _context.VideoPlaylists.Remove(videoPlaylist);
 
