@@ -189,5 +189,10 @@ namespace Entertainment_Web_API.Controllers
 
             return View(viewModel);
         }
-    }
+
+		public IActionResult Videolike()
+		{
+			return View();
+		}
+	}
 }
