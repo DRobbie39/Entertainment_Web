@@ -55,6 +55,7 @@ public partial class EntertainmentContext : IdentityDbContext
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__VideoPlay__Playl__6B24EA82");
         });
+
         builder.Entity<ReplyComment>()
             .HasOne(r => r.Comment)
             .WithMany(c => c.Replies)

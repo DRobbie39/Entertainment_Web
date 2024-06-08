@@ -9,8 +9,6 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Security.Claims;
 
-using CommentModel = BackEnd.Models.Comment;
-
 namespace Entertainment_Web_API.Controllers
 {
     public class HomeController : Controller
@@ -124,7 +122,6 @@ namespace Entertainment_Web_API.Controllers
             {
                 for (int i = 0; i < comments.Count; i++)
                 {
-
                     HttpResponseMessage responseReply = await _client.GetAsync($"{_client.BaseAddress}/ReplyComment/GetReplyComment/{comments[i].CommentId}");
                     if (responseReply.IsSuccessStatusCode)
                     {
@@ -146,7 +143,8 @@ namespace Entertainment_Web_API.Controllers
             {
                 Video = video,
                 Playlists = playlists,
-                Comments = comments
+                Comments = comments,
+                ReplyComments = replyComments
             };
 
             return View(viewModel);

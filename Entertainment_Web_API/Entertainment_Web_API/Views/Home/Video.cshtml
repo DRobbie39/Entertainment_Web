@@ -1,5 +1,5 @@
-﻿@model BackEnd.Models.VideoViewModel
-@using System.Security.Claims
+﻿@using System.Security.Claims
+@model BackEnd.Models.VideoViewModel
 
 @{
     List<BackEnd.Models.Comment> commentlist = ViewBag.comments as List<BackEnd.Models.Comment>;
@@ -50,7 +50,7 @@
                                 <img class="rounded-circle flex-shrink-0" src="/Uploads/@(comment.AppUser.Avtprofile ?? "avtmacdinh.jpg")" alt="" style="width: 40px; height: 40px;">
                                 <div class="block col-10" style="margin-left:20px;">
                                     <h5 style="margin-top:3px; margin-left:5px;">@(comment.AppUser.FullName ?? "User")</h5>
-                                    <p style="margin-left:15px;">@comment.Content</p>
+                                    <p style="margin-left:9px;">@comment.Content</p>
 
                                     <!-- Like Dislike Phản hồi -->
                                     <div style="display:flex">
@@ -59,43 +59,78 @@
                                         <p style="cursor: pointer; margin-left:15px;" class="feedbackuser">Phản hồi </p>
                                     </div>
 
-                                    <!-- Người trả lời cmtt -->
+                                    <!-- Người trả lời cmt -->
                                     <p style="cursor: pointer; margin-left:50px;" class="feedback"><i class="bi bi-chevron-bar-down"></i>Số phản hồi </p>
                                     @if (comment.Replies != null)
                                     {
-                                        foreach(var reply in comment.Replies)
+                                        foreach (var reply in comment.Replies)
                                         {
-                                            <div style="display:flex">
-                                                <img class="rounded-circle flex-shrink-0" src="/Uploads/avtmacdinh.jpg" alt="" style="width: 40px; height: 40px;">
-                                                <div class="block col-10" style="margin-left:20px;">
-                                                    <h5 style="margin-top:3px; margin-left:5px;">@(reply.AppUser.FullName ?? "User")</h5>
-                                                    <p style="margin-left:15px;">@reply.ReplyContent</p>
-                                                    <div style="display:flex">
-                                                        <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 50N</i>
-                                                        <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i>
-                                                        <p style="cursor: pointer; margin-left:15px;" class="feedbackuser">Phản hồi </p>
+                                            <div class="sophanhoi" style="display:none;">
+                                                <div style="display:flex">
+                                                    <img class="rounded-circle flex-shrink-0" src="/Uploads/avtmacdinh.jpg" alt="" style="width: 40px; height: 40px;">
+                                                    <div class="block col-11" style="margin-left:20px;">
+                                                        <h5 style="margin-top:3px; margin-left:5px;">@(reply.AppUser.FullName ?? "User")</h5>
+                                                        <p style="margin-left:9px;">@reply.ReplyContent</p>
+
+
+                                                        <div class="commentanfeedback" style="display:none;">
+                                                            <textarea class="comment-input thap">@reply.ReplyContent</textarea>
+                                                            <button type="submit" class="submit-button editcmtfeedback">Edit</button>
+                                                            <button class="submit-button cancelcmtfeedback" style="background-color:#e37272">Cancel</button>
+                                                        </div>
+                                                        <div style="display:flex">
+                                                            <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 50N</i>
+                                                            <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i>
+                                                            <p style="cursor: pointer; margin-left:15px;" class="feedbackuser">Phản hồi </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-1 justify-content-start">
+                                                        <small style="margin-left:13px;">@comment.CommentPostingTime</small>
+                                                        @if (comment.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                                                        {
+                                                            <i class="bi bi-three-dots-vertical ellipsis-icon hienedit" style="margin-left: 40px !important;"></i>
+                                                            <div class="ngang" style="margin-top: -40px; margin-left: 13px; display:none;">
+                                                                <button class="editfeed" style="border-radius:13px;cursor:pointer;position: absolute;">
+                                                                    <div class="d-flex clsss">
+                                                                        <i class="bi bi-pencil-square " style="padding:3px;cursor:pointer;"></i>
+                                                                    </div>
+                                                                </button>
+
+                                                                <button type="submit" class="" style="border-radius:13px;cursor:pointer;position: absolute;margin-top: 37px;">
+                                                                    <div class="d-flex clsss">
+                                                                        <i class="fa fa-trash" aria-hidden="true" style="padding: 7px 4px;cursor:pointer;"></i>
+                                                                    </div>
+                                                                </button>
+                                                            </div>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
                                         }
                                     }
-                                    
                                 </div>
+
+                                @* @if (comment.Replies != null)
+                                {
+                                    foreach (var reply in comment.Replies)
+                                    {
+                                        <!--Ô phản hồi để nhập nội dung-->
+                                        <div class="cmtfeedback">
+                                            <textarea class="comment-input feed" id="replyContent-@comment.CommentId" name="replyContent">@reply.ReplyContent</textarea>
+                                            <button type="submit" class="submit-button btnan" id="replyComment-@comment.CommentId" onclick="ReplyComment('@comment.CommentId')">Reply</button>
+                                            <button class="submit-button huyfeedback" style="background-color:#e37272">Cancel</button>
+                                        </div>
+                                    }
+                                } *@
 
                                 <div class="cmtfeedback">
-                                    <input type="hidden" id="videoId" name="videoId" value="@Model.Video.VideoId">
-                                    <textarea class="comment-input feed" id="idcommentContent1" name="commentContent">Phản hồi cc</textarea>
-                                    <button type="submit" class="submit-button btnan" id="updateComment1">Post</button>
-                                    <button class="submit-button btnhuy" style="background-color:#e37272">Hủy</button>
+                                    <textarea class="comment-input feed" id="replyContent-@comment.CommentId" name="replyContent"></textarea>
+                                    <button type="submit" class="submit-button btnan" id="replyComment-@comment.CommentId" onclick="ReplyComment('@comment.CommentId')">Reply</button>
+                                    <button class="submit-button huyfeedback" style="background-color:#e37272">Cancel</button>
                                 </div>
 
-
-
+                                <!--Edit bình luận gốc-->
                                 <div class="commentan">
-                                    @* @for (var i = 0; i < Model.Comments.Count; i++)
-                                    {
-                                        <input type="hidden" id="commentId" name="commentId" value="@Model.Comments[i].CommentId">
-                                    } *@
                                     <textarea class="comment-input cao" id="content-@comment.CommentId" name="commentContentMain">@comment.Content</textarea>
                                     <button type="submit" class="submit-button btnan" id="updateComment-@comment.CommentId" onclick="EditComment('@comment.CommentId')">Edit</button>
                                     <button class="submit-button btnhuy" style="background-color:#e37272">Cancel</button>
@@ -109,21 +144,22 @@
                                     </div> *@
                                     @if (comment.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
                                     {
-                                    <div class="ngang" style="margin-left:19px;">
-                                        @* Button update comment *@
-                                        <button type="submit" class="editButton" style="border-radius:13px;">
-                                            <div class="d-flex clsss">
-                                                <i class="bi bi-pencil-square" style="padding:3px;"></i>
-                                            </div>
-                                        </button>
+                                        <i class="bi bi-three-dots-vertical ellipsis-icon hien"></i>
+                                        <div class="dropdown-content" style="margin-top: -40px; margin-left: 13px; display:none;">
+                                            @* Button update comment *@
+                                            <button type="submit" class="editButton" style="border-radius:13px;">
+                                                <div class="d-flex clsss">
+                                                    <i class="bi bi-pencil-square" style="padding:3px;"></i>
+                                                </div>
+                                            </button>
 
-                                        @* Button delete comment *@
-                                        <button type="submit" class="deleteButton" style="border-radius:13px;" data-toggle="modal" data-target="#confirmDeleteModal-@comment.CommentId">
-                                            <div class="d-flex clsss">
-                                                <i class="fa fa-trash" aria-hidden="true" style="padding:3px;"></i>
-                                            </div>
-                                        </button>
-                                    </div>
+                                            @* Button delete comment *@
+                                            <button type="submit" class="deleteButton" style="border-radius:13px;" data-toggle="modal" data-target="#confirmDeleteModal-@comment.CommentId">
+                                                <div class="d-flex clsss">
+                                                    <i class="fa fa-trash" aria-hidden="true" style="padding: 7px 4px;"></i>
+                                                </div>
+                                            </button>
+                                        </div>
                                     }
                                 </div>
                             </div>
@@ -225,8 +261,12 @@
 </div>
 
 <style>
-    .ngang {
-        display: flex;
+    .editcmtfeedback {
+        margin-right: 100px !important;
+    }
+
+    .commentanfeedback {
+        position: relative;
     }
 
     .comment-box {
@@ -240,7 +280,7 @@
         width: calc(95% - 100px);
         height: 70%;
         padding-top: 0.5px;
-        height: 55px !important;
+        height: 55px;
         box-sizing: border-box;
         border: 1px solid #ccc;
         border-radius: 5px;
@@ -312,9 +352,9 @@
         overflow: hidden;
     }
 
-    .product__sidebar__comment__item__text ul {
-        margin-bottom: 10px;
-    }
+        .product__sidebar__comment__item__text ul {
+            margin-bottom: 10px;
+        }
 
             .product__sidebar__comment__item__text ul li {
                 list-style: none;
@@ -374,6 +414,11 @@
     }
 
     .btnhuy {
+        top: 60px !important;
+        left: 481px;
+    }
+
+    .huyfeedback {
         top: 4px !important;
         left: 600px;
     }
@@ -385,6 +430,34 @@
 
     p.feedbackuser {
         margin-top: -5px;
+    }
+
+    .thap {
+        position: absolute;
+        z-index: 1;
+        margin-top: -37px;
+        height: 36px !important;
+        top: -10px;
+        margin-left: 9px;
+    }
+
+    .editcmtfeedback {
+        left: 450px;
+    }
+
+    .cancelcmtfeedback {
+        left: 450px;
+        top: -6px;
+    }
+
+    i.bi.bi-three-dots-vertical.ellipsis-icon {
+        margin-left: 50px;
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    .show {
+        display: block;
     }
 </style>
 
@@ -560,11 +633,75 @@
     }
 </script>
 
+<!--Nút phản hồi bình luận-->
+<script>
+    function ReplyComment(commentId) {
+        var replyContent = $(`#replyContent-${commentId}`).val();
+        $.ajax({
+            url: '/ReplyComment/AddReplyComment',
+            type: 'POST',
+            data: {
+                commentId: commentId,
+                content: replyContent
+            },
+            success: function (response) {
+                if (response.success) {
+                    // Làm mới trang
+                    window.location.reload();
+                } else {
+                    alert('Replying comment failed!');
+                }
+            }
+        });
+    }
+</script>
+
+<script>
+    document.querySelectorAll(".hien").forEach((hien, index) => {
+        hien.addEventListener("click", () => {
+            const dropdown = document.querySelectorAll(".dropdown-content")[index];
+            if (dropdown.style.display === "none" || dropdown.style.display === "") {
+                dropdown.style.display = "block";
+            } else {
+                dropdown.style.display = "none";
+            }
+        });
+    });
+</script>
+<script>
+    document.querySelectorAll(".hienedit").forEach((hienedit, index) => {
+        hienedit.addEventListener("click", () => {
+            const dropdown = document.querySelectorAll(".ngang")[index];
+            if (dropdown.style.display === "none" || dropdown.style.display === "") {
+                dropdown.style.display = "block";
+            } else {
+                dropdown.style.display = "none";
+            }
+        });
+    });
+</script>
+<script>
+    document.querySelectorAll(".editfeed").forEach((editfeed, index) => {
+        editfeed.addEventListener("click", () => {
+            const dropdown = document.querySelectorAll(".commentanfeedback")[index];
+            if (dropdown.style.display === "none" || dropdown.style.display === "") {
+                dropdown.style.display = "block";
+            }
+        });
+    });
+    document.querySelectorAll(".cancelcmtfeedback").forEach((cancelcmtfeedback, index) => {
+        cancelcmtfeedback.addEventListener("click", () => {
+            const dropdown = document.querySelectorAll(".commentanfeedback")[index];
+            if (dropdown.style.display === "block" || dropdown.style.display === "") {
+                dropdown.style.display = "none";
+            }
+        });
+    });
+</script>
+
 <script>
     const editButtons = document.querySelectorAll(".editButton");
     const editedCommentInputs = document.querySelectorAll(".commentan");
-    const edited = document.querySelectorAll(".ngang");
-
     editButtons.forEach((button, index) => {
         button.addEventListener("click", () => {
             editedCommentInputs[index].style.display = "block"; // Hiển thị ô văn bản chỉnh sửa
@@ -578,10 +715,15 @@
 <script>
     const feedButtons = document.querySelectorAll(".feedbackuser");
     const feedCommentInputs = document.querySelectorAll(".cmtfeedback");
-
+    const cancelButton = document.querySelectorAll(".huyfeedback");
     feedButtons.forEach((button, index) => {
         button.addEventListener("click", () => {
             feedCommentInputs[index].style.display = "block"; // Hiển thị ô văn bản chỉnh sửa
+        });
+    });
+    cancelButton.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            feedCommentInputs[index].style.display = "none"; // Hiển thị ô văn bản chỉnh sửa
         });
     });
 </script>
@@ -594,15 +736,6 @@
         // Thêm sự kiện click cho mỗi nút "Hủy"
         cancelButtons.forEach(function (button) {
             button.addEventListener("click", function () {
-                // Chọn tất cả các phần tử có class "ngang"
-                var ngangElements = document.querySelectorAll(".ngang");
-
-                // Duyệt qua từng phần tử và hiển thị chúng
-                ngangElements.forEach(function (element) {
-                    element.style.display = "block";
-                });
-
-                // Ẩn phần tử cha của nút "Hủy" có class "commentan"
                 this.closest(".commentan").style.display = "none";
             });
         });
@@ -610,22 +743,9 @@
 </script>
 
 <script>
-    const feedbackElements = document.querySelectorAll(".feedback");
-
-    // Lặp qua từng phần tử và thêm sự kiện "click"
-    feedbackElements.forEach((feedback) => {
-        feedback.addEventListener("click", () => {
-            // Lấy phần tử comments liền kề với phần tử feedback hiện tại
-            const comments = feedback.nextElementSibling;
-
-            // Kiểm tra và thay đổi trạng thái hiển thị của phần tử comments
-            if (comments.style.display === "none" || comments.style.display === "") {
-                comments.style.display = "block";
-                feedback.querySelector("i").classList.replace("bi-chevron-bar-down", "bi-chevron-bar-up");
-            } else {
-                comments.style.display = "none";
-                feedback.querySelector("i").classList.replace("bi-chevron-bar-up", "bi-chevron-bar-down");
-            }
+    $(document).ready(function () {
+        $('.feedback').click(function () {
+            $(this).closest('.block').find('.sophanhoi').toggle();
         });
     });
 </script>

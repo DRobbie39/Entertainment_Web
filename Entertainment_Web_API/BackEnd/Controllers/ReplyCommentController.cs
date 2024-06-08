@@ -11,7 +11,7 @@ namespace BackEnd.Controllers
     public class ReplyCommentController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyBl_ZIe-m8ry0ajAO3-hvchkDlTT6kkgy0";
+        private readonly string apiKey = "AIzaSyC-hldqefETpVzbO8cToIsH9v5PmbP1y-0";
 
         public ReplyCommentController(EntertainmentContext context)
         {
@@ -41,11 +41,13 @@ namespace BackEnd.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             var comment = await _context.Comments.Include(c => c.Replies).FirstOrDefaultAsync(c => c.CommentId == commentId);
             if (comment == null)
             {
                 return BadRequest("Comment not found");
             }
+
             var replycomment = new ReplyComment
             {
                 ReplyId = Guid.NewGuid().ToString(),
@@ -57,6 +59,7 @@ namespace BackEnd.Controllers
 
             comment.Replies.Add(replycomment);
             var result = await _context.SaveChangesAsync();
+
             if (result <= 0)
             {
                 return BadRequest("Save fail");
