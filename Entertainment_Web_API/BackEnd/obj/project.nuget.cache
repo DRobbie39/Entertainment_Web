@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gZ5JFk9lXQA=",
+  "dgSpecHash": "tMBYm14gNXF55Pe6A9GhIXZaSFBBPVKrx9GwSb+LPp88pwssRROg8f0aBBh3X4oG+gwtC0oyeLpMTJZpyvwDcA==",
   "success": true,
-  "projectFilePath": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj",
+  "projectFilePath": "C:\\Users\\ACER\\source\\Entertainment_Web\\Entertainment_Web_API\\BackEnd\\BackEnd.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ACER\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
