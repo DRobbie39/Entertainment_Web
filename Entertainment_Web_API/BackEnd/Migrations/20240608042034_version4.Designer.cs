@@ -4,6 +4,7 @@ using BackEnd.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(EntertainmentContext))]
-    partial class EntertainmentContextModelSnapshot : ModelSnapshot
+    [Migration("20240608042034_version4")]
+    partial class version4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,39 +76,6 @@ namespace BackEnd.Migrations
                     b.HasIndex("Id");
 
                     b.ToTable("Playlist");
-                });
-
-            modelBuilder.Entity("BackEnd.Models.ReplyComment", b =>
-                {
-                    b.Property<string>("ReplyId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CommentId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("DisLike")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Like")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ReplyContent")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly?>("ReplyPostingTime")
-                        .HasColumnType("date");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("ReplyId");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ReplyComments");
                 });
 
             modelBuilder.Entity("BackEnd.Models.Video", b =>
@@ -429,22 +399,6 @@ namespace BackEnd.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("BackEnd.Models.ReplyComment", b =>
-                {
-                    b.HasOne("BackEnd.Models.Comment", "Comment")
-                        .WithMany("Replies")
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("BackEnd.Models.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("Comment");
-                });
-
             modelBuilder.Entity("BackEnd.Models.Video", b =>
                 {
                     b.HasOne("BackEnd.Models.VideoCategory", "VideoCategory")
@@ -524,11 +478,6 @@ namespace BackEnd.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BackEnd.Models.Comment", b =>
-                {
-                    b.Navigation("Replies");
                 });
 
             modelBuilder.Entity("BackEnd.Models.Playlist", b =>

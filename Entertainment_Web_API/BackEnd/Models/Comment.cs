@@ -17,5 +17,6 @@ namespace BackEnd.Models
 		[ForeignKey("AppUser")]
 		public string? Id { get; set; }
         public virtual AppUser? AppUser { get; set; }
+        public virtual ICollection<ReplyComment> Replies { get; set; }
     }
 }

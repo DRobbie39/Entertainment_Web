@@ -29,6 +29,8 @@ public partial class EntertainmentContext : IdentityDbContext
 
     public virtual DbSet<VideoPlaylist> VideoPlaylists { get; set; }
 
+    public virtual DbSet<ReplyComment> ReplyComments { get; set; }
+
     //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
     //        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-UTPMHK27\\SQLEXPRESS;Initial Catalog=Entertainment;Integrated Security=True;Trust Server Certificate=True");
@@ -53,6 +55,11 @@ public partial class EntertainmentContext : IdentityDbContext
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__VideoPlay__Playl__6B24EA82");
         });
+        builder.Entity<ReplyComment>()
+            .HasOne(r => r.Comment)
+            .WithMany(c => c.Replies)
+            .HasForeignKey(r => r.CommentId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         OnModelCreatingPartial(builder);
     }

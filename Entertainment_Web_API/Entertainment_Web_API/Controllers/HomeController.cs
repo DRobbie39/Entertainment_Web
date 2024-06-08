@@ -118,6 +118,28 @@ namespace Entertainment_Web_API.Controllers
                 }
             }
 
+            // Lấy reply comment
+            List<ReplyComment> replyComments = new List<ReplyComment>();
+            if (userId != null)
+            {
+                for (int i = 0; i < comments.Count; i++)
+                {
+
+                    HttpResponseMessage responseReply = await _client.GetAsync($"{_client.BaseAddress}/ReplyComment/GetReplyComment/{comments[i].CommentId}");
+                    if (responseReply.IsSuccessStatusCode)
+                    {
+                        string replycomment = await responseReply.Content.ReadAsStringAsync();
+                        replyComments = JsonConvert.DeserializeObject<List<ReplyComment>>(replycomment);
+                        comments[i].Replies = replyComments;
+
+                        foreach (var reply in replyComments)
+                        {
+                            reply.AppUser.Id = GetCurrentUserId();
+                        }
+                    }
+                }
+            }
+
 
             // Tạo ViewModel
             var viewModel = new VideoViewModel
