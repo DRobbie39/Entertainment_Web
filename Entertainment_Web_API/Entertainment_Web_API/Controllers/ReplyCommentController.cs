@@ -16,6 +16,7 @@ namespace Entertainment_Web_API.Controllers
             _client.BaseAddress = baseAddress;
 
         }
+
         private string GetCurrentUserId()
         {
             var httpContext = _httpContextAccessor.HttpContext;
@@ -25,7 +26,6 @@ namespace Entertainment_Web_API.Controllers
             }
             return null;
         }
-
 
         [HttpPost]
         public async Task<IActionResult> AddReplyComment(string commentId, string content)

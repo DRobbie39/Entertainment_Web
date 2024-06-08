@@ -5,10 +5,8 @@ namespace BackEnd.Models
 {
     public class ReplyComment
     {
-
         [Key]
         public string ReplyId { get; set; }
-
         public string ReplyContent { get; set; }
         public DateOnly? ReplyPostingTime { get; set; }
         public int Like { get; set; }

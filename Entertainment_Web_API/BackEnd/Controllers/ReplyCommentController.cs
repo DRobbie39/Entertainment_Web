@@ -11,11 +11,13 @@ namespace BackEnd.Controllers
     public class ReplyCommentController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyB1jP3WJP2QzQgy4OQDMil-y3neNUD_sD0";
+        private readonly string apiKey = "AIzaSyBl_ZIe-m8ry0ajAO3-hvchkDlTT6kkgy0";
+
         public ReplyCommentController(EntertainmentContext context)
         {
             _context = context;
         }
+
         [HttpGet("{commentId}")]
         public async Task<IActionResult> GetReplyComment(string commentId)
         {
@@ -30,10 +32,7 @@ namespace BackEnd.Controllers
             }
 
             return Ok(replycomment);
-
         }
-
-
 
         [HttpPost("{commentId}/{userId}/{content}")]
         public async Task<IActionResult> AddReplyComment(string commentId, string userId, string content)
@@ -62,8 +61,10 @@ namespace BackEnd.Controllers
             {
                 return BadRequest("Save fail");
             }
+
             return Ok(replycomment);
         }
+
         [HttpPut("{replyId}/{content}")]
         public async Task<IActionResult> UpdateReplyComment(string replyId, string content)
         {
@@ -101,6 +102,7 @@ namespace BackEnd.Controllers
             {
                 return BadRequest("save fail!");
             }
+
             return Ok();
         }
     }
