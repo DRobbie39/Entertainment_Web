@@ -31,6 +31,7 @@ public partial class EntertainmentContext : IdentityDbContext
 
     public virtual DbSet<ReplyComment> ReplyComments { get; set; }
 
+    public virtual DbSet<UserVideoReaction> UserVideoReactions { get; set; }
     //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
     //        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-UTPMHK27\\SQLEXPRESS;Initial Catalog=Entertainment;Integrated Security=True;Trust Server Certificate=True");
@@ -61,6 +62,23 @@ public partial class EntertainmentContext : IdentityDbContext
             .WithMany(c => c.Replies)
             .HasForeignKey(r => r.CommentId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Entity<UserVideoReaction>(entity =>
+        {
+            entity.HasKey(e => new { e.VideoId, e.Id }).HasName("PK__UV__0AC8567A7A214FA3");
+
+            entity.ToTable("UserVideoReaction");
+
+            entity.HasOne(d => d.Video).WithMany(p => p.UserVideoReactions)
+                .HasForeignKey(d => d.VideoId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__UV__Video__6A30C640");
+
+            entity.HasOne(d => d.AppUser).WithMany(p => p.UserVideoReaction)
+                .HasForeignKey(d => d.Id)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__UV__User__6B24EA83");
+        });
 
         OnModelCreatingPartial(builder);
     }

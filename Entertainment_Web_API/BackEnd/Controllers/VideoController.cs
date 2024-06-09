@@ -1,8 +1,10 @@
-﻿using BackEnd.Models;
+﻿using BackEnd.Data;
+using BackEnd.Models;
 using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackEnd.Controllers
 {
@@ -10,7 +12,13 @@ namespace BackEnd.Controllers
     [ApiController]
     public class VideoController : ControllerBase
     {
-        private readonly string apiKey = "AIzaSyC-hldqefETpVzbO8cToIsH9v5PmbP1y-0"; // Api key
+        private readonly EntertainmentContext _context;
+        private readonly string apiKey = "AIzaSyBl_ZIe-m8ry0ajAO3-hvchkDlTT6kkgy0"; // Api key
+
+        public VideoController(EntertainmentContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet("{searchTerm}")]
         public async Task<IActionResult> Get(string searchTerm)
@@ -68,6 +76,9 @@ namespace BackEnd.Controllers
 
             var videoResponse = await videoRequest.ExecuteAsync();
 
+            // Tìm video trong cơ sở dữ liệu
+            var existingVideo = await _context.Videos.FindAsync(videoId);
+
             var video = videoResponse.Items.Select(item => new Video
             {
                 VideoId = item.Id,
@@ -75,8 +86,8 @@ namespace BackEnd.Controllers
                 ThumbnailUrl = item.Snippet.Thumbnails.High.Url,
                 VideoUrl = $"https://www.youtube.com/embed/{item.Id}", // Chỉnh embed để phát được video
                 VideoViews = (int?)item.Statistics.ViewCount.GetValueOrDefault(),
-                Likes = (int?)item.Statistics.LikeCount.GetValueOrDefault(),
-                Dislikes = (int?)item.Statistics.DislikeCount.GetValueOrDefault()
+                Likes = existingVideo != null ? existingVideo.Likes : 0,
+                Dislikes = existingVideo != null ? existingVideo.Dislikes : 0
             }).FirstOrDefault();
 
             return Ok(video);

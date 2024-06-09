@@ -24,5 +24,6 @@ namespace BackEnd.Models
 
         public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
         public virtual ICollection<VideoPlaylist> VideoPlaylists { get; set; } = new List<VideoPlaylist>();
+        public virtual ICollection<UserVideoReaction> UserVideoReactions { get; set; } = new List<UserVideoReaction>();
     }
 }

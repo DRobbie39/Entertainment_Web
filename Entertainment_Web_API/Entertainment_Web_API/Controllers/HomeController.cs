@@ -1,5 +1,4 @@
 ﻿using BackEnd.Models;
-//using Google.Apis.YouTube.v3.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -148,6 +147,62 @@ namespace Entertainment_Web_API.Controllers
             };
 
             return View(viewModel);
+        }
+
+        public async Task<IActionResult> LikeVideo(string videoId)
+        {
+            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/LikeDislike/LikeVideo/{videoId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                var likes = JsonConvert.DeserializeObject<int>(data);
+                return Json(likes); // Trả về số lượt like dưới dạng JSON
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> DislikeVideo(string videoId)
+        {
+            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/LikeDislike/DislikeVideo/{videoId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                var dislikes = JsonConvert.DeserializeObject<int>(data);
+                return Json(dislikes); // Trả về số lượt dislike dưới dạng JSON
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> UndoLikeVideo(string videoId)
+        {
+            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/LikeDislike/UndoLikeVideo/{videoId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                var likes = JsonConvert.DeserializeObject<int>(data);
+                return Json(likes); // Trả về số lượt like dưới dạng JSON
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> UndoDislikeVideo(string videoId)
+        {
+            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/LikeDislike/UndoDislikeVideo/{videoId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                var dislikes = JsonConvert.DeserializeObject<int>(data);
+                return Json(dislikes); // Trả về số lượt dislike dưới dạng JSON
+            }
+
+            return View();
         }
 
         [Authorize]

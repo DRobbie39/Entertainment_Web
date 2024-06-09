@@ -245,6 +245,32 @@ namespace BackEnd.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserVideoReaction",
+                columns: table => new
+                {
+                    VideoId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IsLiked = table.Column<bool>(type: "bit", nullable: false),
+                    IsDisliked = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK__UV__0AC8567A7A214FA3", x => new { x.VideoId, x.Id });
+                    table.ForeignKey(
+                        name: "FK__UV__User__6B24EA83",
+                        column: x => x.Id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK__UV__Video__6A30C640",
+                        column: x => x.VideoId,
+                        principalTable: "Videos",
+                        principalColumn: "VideoId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "VideoPlaylist",
                 columns: table => new
                 {
@@ -361,6 +387,11 @@ namespace BackEnd.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserVideoReaction_Id",
+                table: "UserVideoReaction",
+                column: "Id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_VideoPlaylist_PlaylistId",
                 table: "VideoPlaylist",
                 column: "PlaylistId");
@@ -391,6 +422,9 @@ namespace BackEnd.Migrations
 
             migrationBuilder.DropTable(
                 name: "ReplyComments");
+
+            migrationBuilder.DropTable(
+                name: "UserVideoReaction");
 
             migrationBuilder.DropTable(
                 name: "VideoPlaylist");

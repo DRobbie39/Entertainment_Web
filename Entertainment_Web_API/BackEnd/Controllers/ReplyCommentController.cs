@@ -11,7 +11,7 @@ namespace BackEnd.Controllers
     public class ReplyCommentController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyC-hldqefETpVzbO8cToIsH9v5PmbP1y-0";
+        private readonly string apiKey = "AIzaSyBl_ZIe-m8ry0ajAO3-hvchkDlTT6kkgy0";
 
         public ReplyCommentController(EntertainmentContext context)
         {

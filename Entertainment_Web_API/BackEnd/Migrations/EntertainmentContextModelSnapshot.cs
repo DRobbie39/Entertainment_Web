@@ -108,6 +108,30 @@ namespace BackEnd.Migrations
                     b.ToTable("ReplyComments");
                 });
 
+            modelBuilder.Entity("BackEnd.Models.UserVideoReaction", b =>
+                {
+                    b.Property<string>("VideoId")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnOrder(0);
+
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnOrder(1);
+
+                    b.Property<bool>("IsDisliked")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsLiked")
+                        .HasColumnType("bit");
+
+                    b.HasKey("VideoId", "Id")
+                        .HasName("PK__UV__0AC8567A7A214FA3");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("UserVideoReaction", (string)null);
+                });
+
             modelBuilder.Entity("BackEnd.Models.Video", b =>
                 {
                     b.Property<string>("VideoId")
@@ -445,6 +469,27 @@ namespace BackEnd.Migrations
                     b.Navigation("Comment");
                 });
 
+            modelBuilder.Entity("BackEnd.Models.UserVideoReaction", b =>
+                {
+                    b.HasOne("BackEnd.Models.AppUser", "AppUser")
+                        .WithMany("UserVideoReaction")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK__UV__User__6B24EA83");
+
+                    b.HasOne("BackEnd.Models.Video", "Video")
+                        .WithMany("UserVideoReactions")
+                        .HasForeignKey("VideoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK__UV__Video__6A30C640");
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Video");
+                });
+
             modelBuilder.Entity("BackEnd.Models.Video", b =>
                 {
                     b.HasOne("BackEnd.Models.VideoCategory", "VideoCategory")
@@ -540,6 +585,8 @@ namespace BackEnd.Migrations
                 {
                     b.Navigation("Comments");
 
+                    b.Navigation("UserVideoReactions");
+
                     b.Navigation("VideoPlaylists");
                 });
 
@@ -553,6 +600,8 @@ namespace BackEnd.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Playlists");
+
+                    b.Navigation("UserVideoReaction");
                 });
 #pragma warning restore 612, 618
         }
