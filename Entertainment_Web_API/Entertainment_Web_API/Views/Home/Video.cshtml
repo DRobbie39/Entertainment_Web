@@ -72,12 +72,13 @@
                                                         <h5 style="margin-top:3px; margin-left:5px;">@(reply.AppUser.FullName ?? "User")</h5>
                                                         <p style="margin-left:9px;">@reply.ReplyContent</p>
 
-
+                                                        <!--Edit phản hồi phụ-->
                                                         <div class="commentanfeedback" style="display:none;">
-                                                            <textarea class="comment-input thap">@reply.ReplyContent</textarea>
-                                                            <button type="submit" class="submit-button editcmtfeedback">Edit</button>
+                                                            <textarea class="comment-input thap" id="editSubContent-@reply.ReplyId name="editSubContent">@reply.ReplyContent</textarea>
+                                                            <button type="submit" class="submit-button editcmtfeedback" id="updateSubContent-@reply.ReplyId" onclick="EditSubComment('@reply.ReplyId')">Edit</button>
                                                             <button class="submit-button cancelcmtfeedback" style="background-color:#e37272">Cancel</button>
                                                         </div>
+
                                                         <div style="display:flex">
                                                             <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 50N</i>
                                                             <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i>
@@ -96,7 +97,7 @@
                                                                     </div>
                                                                 </button>
 
-                                                                <button type="submit" class="" style="border-radius:13px;cursor:pointer;position: absolute;margin-top: 37px;">
+                                                                <button type="submit" class="" style="border-radius:13px;cursor:pointer;position: absolute;margin-top: 37px;" data-toggle="modal" data-target="#confirmDeleteSubModal-@reply.ReplyId">
                                                                     <div class="d-flex clsss">
                                                                         <i class="fa fa-trash" aria-hidden="true" style="padding: 7px 4px;cursor:pointer;"></i>
                                                                     </div>
@@ -106,22 +107,30 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <!-- Modal xác nhận xóa comment phụ-->
+                                            <div class="modal fade" id="confirmDeleteSubModal-@reply.ReplyId" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="confirmDeleteModalLabel" style="color: black;">Confirm deletion of comment</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to delete this comment?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                            <button type="button" class="btn btn-danger" onclick="DeleteComment('@reply.ReplyId')">Yes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         }
                                     }
                                 </div>
-
-                                @* @if (comment.Replies != null)
-                                {
-                                    foreach (var reply in comment.Replies)
-                                    {
-                                        <!--Ô phản hồi để nhập nội dung-->
-                                        <div class="cmtfeedback">
-                                            <textarea class="comment-input feed" id="replyContent-@comment.CommentId" name="replyContent">@reply.ReplyContent</textarea>
-                                            <button type="submit" class="submit-button btnan" id="replyComment-@comment.CommentId" onclick="ReplyComment('@comment.CommentId')">Reply</button>
-                                            <button class="submit-button huyfeedback" style="background-color:#e37272">Cancel</button>
-                                        </div>
-                                    }
-                                } *@
 
                                 <div class="cmtfeedback">
                                     <textarea class="comment-input feed" id="replyContent-@comment.CommentId" name="replyContent"></textarea>
@@ -166,7 +175,7 @@
                         </div>
                         @* <div class="comment-box col-1 d-inline"></div> *@
 
-                        <!-- Modal xác nhận xóa comment -->
+                        <!-- Modal xác nhận xóa comment gốc-->
                         <div class="modal fade" id="confirmDeleteModal-@comment.CommentId" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -608,7 +617,7 @@
     }
 </script>
 
-<!--Nút xóa bình luận -->
+<!--Nút xóa bình luận gốc-->
 <script>
     function DeleteComment(commentId) {
         $.ajax({
@@ -651,6 +660,57 @@
                 } else {
                     alert('Replying comment failed!');
                 }
+            }
+        });
+    }
+</script>
+
+<!--Nút chỉnh sửa bình luận phụ-->
+<script>
+    function EditSubComment(replyId) {
+        $(`#updateSubComment-${replyId}`).click(function () {
+            var commentContent = $(`#editSubContent-${replyId}`).val();
+
+            $.ajax({
+                url: '/ReplyComment/UpdateReplyComment',
+                type: 'PUT',
+                data: {
+                    replyId: replyId,
+                    content: commentContent
+                },
+                success: function (response) {
+                    if (response.success) {
+                        // Làm mới trang
+                        window.location.reload();
+                    } else {
+                        alert('Edit comment failed!');
+                    }
+                }
+            });
+        });
+    }
+</script>
+
+<!--Nút xóa bình luận phụ -->
+<script>
+    function DeleteComment(replyId) {
+        $.ajax({
+            url: '/ReplyComment/DeleteReplyComment',
+            type: 'DELETE',
+            data: {
+                replyId: replyId
+            },
+            success: function (response) {
+                if (response.success) {
+                    // Làm mới trang
+                    window.location.reload();
+                } else {
+                    // Làm mới trang
+                    window.location.reload();
+                }
+
+                // Đóng modal
+                $(`#confirmDeleteSubModal-${replyId}`).modal('hide');
             }
         });
     }
