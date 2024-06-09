@@ -79,10 +79,15 @@
                                                  <button type="submit" class="submit-button editcmtfeedback">Edit</button>
                                                  <button class="submit-button cancelcmtfeedback" style="background-color:#e37272">Cancel</button>
                                              </div>
+                                              <div class="commentphanhoilai" style="display:none;">
+                                                 <textarea class="comment-input lun">Phản hồi người lạ =)) </textarea>
+                                                 <button type="submit" class="submit-button cmtfeedbackngla">Edit</button>
+                                                 <button class="submit-button cancelcmtfeedbackngla" style="background-color:#e37272">Cancel</button>
+                                               </div>
                                                     <div style="display:flex">
                                                         <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 50N</i>
                                                         <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i>
-                                                        <p style="cursor: pointer; margin-left:15px;" class="feedbackuser">Phản hồi </p>
+                                                        <p style="cursor: pointer; margin-left:15px;" class="feedbackkhac">Phản hồi </p>
                                                     </div>
                                                 </div>
                                                  <div class="col-1 justify-content-start">
@@ -500,6 +505,36 @@
         background-color: red;
         border-color: red;
     }
+
+    .commentphanhoilai{
+        position:relative;
+    }
+
+    .lun {
+        height: 35px;
+        position: absolute;
+        top: 15px;
+        left: -60px;
+    }
+
+    .cancelcmtfeedbackngla {
+        position: absolute;
+        top: 18px;
+        right: -93px;
+    }
+
+    .cmtfeedbackngla {
+        position: absolute;
+        top: 18px;
+        right: 9px;
+    }
+
+    .lun {
+        height: 37px;
+        position: absolute;
+        top: 15px;
+        left: -10px;
+    }
 </style>
 
 <!-- Thêm jQuery -->
@@ -766,7 +801,7 @@
     });
 </script>
 
-<script>
+    <script>
     const feedButtons = document.querySelectorAll(".feedbackuser");
     const feedCommentInputs = document.querySelectorAll(".cmtfeedback");
     const cancelButton = document.querySelectorAll(".huyfeedback");
@@ -778,6 +813,21 @@
     cancelButton.forEach((button, index) => {
         button.addEventListener("click", () => {
             feedCommentInputs[index].style.display = "none"; // Hiển thị ô văn bản chỉnh sửa
+        });
+    });
+</script>
+    <script>
+    const buttons = document.querySelectorAll(".feedbackkhac");
+    const commentInputs = document.querySelectorAll(".commentphanhoilai");
+    const cancelButtons = document.querySelectorAll(".cancelcmtfeedbackngla");
+    buttons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            commentInputs[index].style.display = commentInputs[index].style.display === "block" ? "none" : "block";
+        });
+    });
+    cancelButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            commentInputs[index].style.display = "none"; // Hiển thị ô văn bản chỉnh sửa
         });
     });
 </script>
