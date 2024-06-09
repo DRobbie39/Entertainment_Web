@@ -63,22 +63,22 @@
                                     </div>
 
                                     <!-- Người trả lời cmt -->
-                                    <p style="cursor: pointer; margin-left:50px;" class="feedback"><i class="bi bi-chevron-bar-down"></i>View replies </p>
+                                    
                                     @if (comment.Replies != null)
-                                    {
+                                    {<p style="cursor: pointer; margin-left:50px;" class="feedback"><i class="bi bi-chevron-bar-down"></i>@comment.Replies.Count replies </p>
                                         foreach (var reply in comment.Replies)
                                         {
                                             <div class="sophanhoi" style="display:none;">
                                                 <div style="display:flex">
-                                                    <img class="rounded-circle flex-shrink-0" src="/Uploads/avtmacdinh.jpg" alt="" style="width: 40px; height: 40px;">
+                                                    <img class="rounded-circle flex-shrink-0" src="/Uploads/@(reply.AppUser.Avtprofile ?? "avtmacdinh.jpg" )" alt="" style="width: 40px; height: 40px;">
                                                     <div class="block col-11" style="margin-left:20px;">
                                                         <h5 style="margin-top:3px; margin-left:5px;">@(reply.AppUser.FullName ?? "User")</h5>
                                                         <p style="margin-left:9px;">@reply.ReplyContent</p>
 
                                                         <!--Edit phản hồi phụ-->
                                                         <div class="commentanfeedback" style="display:none;">
-                                                            <textarea class="comment-input thap" id="editSubContent-@reply.ReplyId name="editSubContent">@reply.ReplyContent</textarea>
-                                                            <button type="submit" class="submit-button editcmtfeedback" id="updateSubContent-@reply.ReplyId" onclick="EditSubComment('@reply.ReplyId')">Edit</button>
+                                                            <textarea class="comment-input thap" id="editSubContent-@reply.ReplyId" name="editSubContent">@reply.ReplyContent</textarea>
+                                                            <button type="submit" class="submit-button editcmtfeedback" id="updateSubComment-@reply.ReplyId" onclick="EditSubComment('@reply.ReplyId')">Edit</button>
                                                             <button class="submit-button cancelcmtfeedback" style="background-color:#e37272">Cancel</button>
                                                         </div>
 
