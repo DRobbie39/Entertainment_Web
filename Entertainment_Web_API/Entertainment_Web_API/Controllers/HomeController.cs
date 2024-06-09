@@ -1,4 +1,5 @@
 ﻿using BackEnd.Models;
+using Entertainment_Web_API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -50,7 +51,7 @@ namespace Entertainment_Web_API.Controllers
         }
 
         //[Authorize]
-        public async Task<IActionResult> Index(string searchTerm = "music")
+        public async Task<IActionResult> Index(string searchTerm = "music", int pageNumber = 1)
         {
             List<Video> videoList = new List<Video>();
             HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/Video/Get/{searchTerm}");
@@ -58,9 +59,13 @@ namespace Entertainment_Web_API.Controllers
             if (response.IsSuccessStatusCode)
             {
                 string data = await response.Content.ReadAsStringAsync();
-                videoList = JsonConvert.DeserializeObject<List<Video>>(data);
+                var videos = JsonConvert.DeserializeObject<List<Video>>(data);
+
+                int pageSize = 8; // Số lượng video trên mỗi trang
+                return View(PaginatedList<Video>.Create(videos, pageNumber, pageSize));
             }
-            return View(videoList);
+
+            return View(PaginatedList<Video>.Create(new List<Video>(), pageNumber, 1));
         }
 
         //[Authorize]
