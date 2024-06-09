@@ -4,6 +4,7 @@ using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackEnd.Controllers
 {
@@ -12,15 +13,15 @@ namespace BackEnd.Controllers
     public class LikeDislikeController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyBl_ZIe-m8ry0ajAO3-hvchkDlTT6kkgy0"; // Api key
+        private readonly string apiKey = "AIzaSyB1jP3WJP2QzQgy4OQDMil-y3neNUD_sD0"; // Api key
 
         public LikeDislikeController(EntertainmentContext context)
         {
             _context = context;
         }
 
-        [HttpGet("{videoId}")]
-        public async Task<IActionResult> LikeVideo(string videoId)
+        [HttpGet("{videoId}/{userId}")]
+        public async Task<IActionResult> LikeVideo(string videoId, string userId)
         {
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
@@ -65,6 +66,30 @@ namespace BackEnd.Controllers
             }
 
             findVideo.Likes += 1;
+
+            // Kiểm tra xem người dùng đã like video này trước đó hay chưa
+            var userVideoReaction = await _context.UserVideoReactions
+                .FirstOrDefaultAsync(uvr => uvr.Id == userId && uvr.VideoId == videoId);
+
+            if (userVideoReaction == null)
+            {
+                // Nếu người dùng chưa like video này trước đó, tạo một UserVideoReaction mới
+                userVideoReaction = new UserVideoReaction
+                {
+                    Id = userId,
+                    VideoId = videoId,
+                    IsLiked = true,
+                    IsDisliked = false
+                };
+                _context.UserVideoReactions.Add(userVideoReaction);
+            }
+            else
+            {
+                // Nếu người dùng đã like video này trước đó, cập nhật trạng thái
+                userVideoReaction.IsLiked = true;
+                userVideoReaction.IsDisliked = false;
+            }
+
             await _context.SaveChangesAsync();
 
             return Ok(findVideo.Likes);
@@ -85,8 +110,8 @@ namespace BackEnd.Controllers
             return Ok(findVideo.Likes);
         }
 
-        [HttpGet("{videoId}")]
-        public async Task<IActionResult> DislikeVideo(string videoId)
+        [HttpGet("{videoId}/{userId}")]
+        public async Task<IActionResult> DislikeVideo(string videoId, string userId)
         {
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
@@ -128,6 +153,30 @@ namespace BackEnd.Controllers
             }
 
             findVideo.Dislikes += 1;
+
+            // Kiểm tra xem người dùng đã dislike video này trước đó hay chưa
+            var userVideoReaction = await _context.UserVideoReactions
+                .FirstOrDefaultAsync(uvr => uvr.Id == userId && uvr.VideoId == videoId);
+
+            if (userVideoReaction == null)
+            {
+                // Nếu người dùng chưa dislike video này trước đó, tạo một UserVideoReaction mới
+                userVideoReaction = new UserVideoReaction
+                {
+                    Id = userId,
+                    VideoId = videoId,
+                    IsLiked = false,
+                    IsDisliked = true
+                };
+                _context.UserVideoReactions.Add(userVideoReaction);
+            }
+            else
+            {
+                // Nếu người dùng đã dislike video này trước đó, cập nhật trạng thái
+                userVideoReaction.IsLiked = false;
+                userVideoReaction.IsDisliked = true;
+            }
+
             await _context.SaveChangesAsync();
 
             return Ok(findVideo.Dislikes);
@@ -146,6 +195,40 @@ namespace BackEnd.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(findVideo.Dislikes);
+        }
+
+        [HttpGet("{videoId}/{userId}")]
+        public async Task<IActionResult> CheckLikeStatus(string videoId, string userId)
+        {
+            // Kiểm tra xem người dùng đã like video này trước đó hay chưa
+            var userVideoReaction = await _context.UserVideoReactions
+                .FirstOrDefaultAsync(uvr => uvr.Id == userId && uvr.VideoId == videoId);
+
+            if (userVideoReaction != null && userVideoReaction.IsLiked)
+            {
+                // Nếu người dùng đã like video này trước đó, trả về true
+                return Ok(true);
+            }
+
+            // Nếu người dùng chưa like video này trước đó, trả về false
+            return Ok(false);
+        }
+
+        [HttpGet("{videoId}/{userId}")]
+        public async Task<IActionResult> CheckDislikeStatus(string videoId, string userId)
+        {
+            // Kiểm tra xem người dùng đã dislike video này trước đó hay chưa
+            var userVideoReaction = await _context.UserVideoReactions
+                .FirstOrDefaultAsync(uvr => uvr.Id == userId && uvr.VideoId == videoId);
+
+            if (userVideoReaction != null && userVideoReaction.IsDisliked)
+            {
+                // Nếu người dùng đã dislike video này trước đó, trả về true
+                return Ok(true);
+            }
+
+            // Nếu người dùng chưa dislike video này trước đó, trả về false
+            return Ok(false);
         }
     }
 }

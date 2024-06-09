@@ -14,7 +14,7 @@ namespace BackEnd.Controllers
     public class CommentController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyBl_ZIe-m8ry0ajAO3-hvchkDlTT6kkgy0"; // Api key
+        private readonly string apiKey = "AIzaSyB1jP3WJP2QzQgy4OQDMil-y3neNUD_sD0"; // Api key
         public CommentController(EntertainmentContext context)
         {
             _context = context;
@@ -65,7 +65,9 @@ namespace BackEnd.Controllers
                     ThumbnailUrl = video.Snippet.Thumbnails.High.Url,
                     VideoUrl = $"https://www.youtube.com/watch?v={video.Id}",
                     VideoViews = (int?)video.Statistics.ViewCount.GetValueOrDefault(),
-                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset
+                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset,
+                    Likes = existingVideo != null ? existingVideo.Likes : 0,
+                    Dislikes = existingVideo != null ? existingVideo.Dislikes : 0
                 };
 
                 // Thêm Video vào cơ sở dữ liệu

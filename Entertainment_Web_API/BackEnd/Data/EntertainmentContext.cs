@@ -74,7 +74,7 @@ public partial class EntertainmentContext : IdentityDbContext
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__UV__Video__6A30C640");
 
-            entity.HasOne(d => d.AppUser).WithMany(p => p.UserVideoReaction)
+            entity.HasOne(d => d.AppUser).WithMany(p => p.UserVideoReactions)
                 .HasForeignKey(d => d.Id)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__UV__User__6B24EA83");

@@ -151,7 +151,9 @@ namespace Entertainment_Web_API.Controllers
 
         public async Task<IActionResult> LikeVideo(string videoId)
         {
-            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/LikeDislike/LikeVideo/{videoId}");
+            var userId = GetCurrentUserId();
+
+            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/LikeDislike/LikeVideo/{videoId}/{userId}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -165,13 +167,47 @@ namespace Entertainment_Web_API.Controllers
 
         public async Task<IActionResult> DislikeVideo(string videoId)
         {
-            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/LikeDislike/DislikeVideo/{videoId}");
+            var userId = GetCurrentUserId();
+
+            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/LikeDislike/DislikeVideo/{videoId}/{userId}");
 
             if (response.IsSuccessStatusCode)
             {
                 string data = await response.Content.ReadAsStringAsync();
                 var dislikes = JsonConvert.DeserializeObject<int>(data);
                 return Json(dislikes); // Trả về số lượt dislike dưới dạng JSON
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> CheckLikeStatus(string videoId)
+        {
+            var userId = GetCurrentUserId(); // Lấy userId
+
+            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/LikeDislike/CheckLikeStatus/{videoId}/{userId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                var isLiked = JsonConvert.DeserializeObject<bool>(data);
+                return Json(isLiked); // Trả về trạng thái "like" dưới dạng JSON
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> CheckDislikeStatus(string videoId)
+        {
+            var userId = GetCurrentUserId(); // Lấy userId
+
+            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/LikeDislike/CheckdislikeStatus/{videoId}/{userId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                var isDisliked = JsonConvert.DeserializeObject<bool>(data);
+                return Json(isDisliked); // Trả về trạng thái "dislike" dưới dạng JSON
             }
 
             return View();

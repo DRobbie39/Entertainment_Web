@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(EntertainmentContext))]
-    [Migration("20240609131126_init")]
+    [Migration("20240609174102_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -475,7 +475,7 @@ namespace BackEnd.Migrations
             modelBuilder.Entity("BackEnd.Models.UserVideoReaction", b =>
                 {
                     b.HasOne("BackEnd.Models.AppUser", "AppUser")
-                        .WithMany("UserVideoReaction")
+                        .WithMany("UserVideoReactions")
                         .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
@@ -604,7 +604,7 @@ namespace BackEnd.Migrations
 
                     b.Navigation("Playlists");
 
-                    b.Navigation("UserVideoReaction");
+                    b.Navigation("UserVideoReactions");
                 });
 #pragma warning restore 612, 618
         }

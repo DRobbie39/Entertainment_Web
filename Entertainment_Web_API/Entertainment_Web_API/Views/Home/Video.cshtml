@@ -148,9 +148,9 @@
                                 <div class="col-1 justify-content-start">
                                     <small style="margin-left:20px;">@comment.CommentPostingTime</small>
                                     @*<div class="form-group" style="margin-left:5px; margin-right:10px;">
-                            <input value="@comment.CommentId" type="hidden" class="form-control" />
-                            <input value="" type="hidden" class="form-control" />
-                            </div> *@
+                                    <input value="@comment.CommentId" type="hidden" class="form-control" />
+                                    <input value="" type="hidden" class="form-control" />
+                                    </div> *@
                                     @if (comment.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
                                     {
                                         <i class="bi bi-three-dots-vertical ellipsis-icon hien"></i>
@@ -190,7 +190,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn btn-danger" onclick="DeleteComment('@comment.CommentId')">Yes</button>
+                                        <button type="button" class="btn btn-danger" onclick="DeleteMainComment('@comment.CommentId')">Yes</button>
                                     </div>
                                 </div>
                             </div>
@@ -619,7 +619,7 @@
 
 <!--Nút xóa bình luận gốc-->
 <script>
-    function DeleteComment(commentId) {
+    function DeleteMainComment(commentId) {
         $.ajax({
             url: '/Comment/DeleteComment',
             type: 'DELETE',
@@ -716,7 +716,7 @@
     }
 </script>
 
-<script>
+@* <script>
     $(document).ready(function () {
         var isLiked = false;
         var isDisliked = false;
@@ -790,6 +790,117 @@
                 $("#like-button").css('color', ''); // Đặt lại màu của nút like
                 isDisliked = true; // Cập nhật trạng thái nút dislike
                 isLiked = false; // Đặt lại trạng thái nút like
+            }
+        });
+    });
+</script>*@
+
+<script>
+    $(document).ready(function () {
+        var isLiked = false;
+        var isDisliked = false;
+        var videoId = $("#like-button").data("video-id"); // Lấy videoId từ thuộc tính data-video-id
+        var videoId1 = $("#dislike-button").data("video-id"); // Lấy videoId từ thuộc tính data-video-id
+
+        // Kiểm tra xem người dùng đã like video này chưa
+        $.ajax({
+            url: '/Home/CheckLikeStatus',
+            type: 'GET',
+            data: {
+                videoId: videoId
+            },
+            success: function (response) {
+                if (response) {
+                    // Nếu người dùng đã like video này, đặt màu của nút like thành xanh dương
+                    $("#like-button").css('color', 'blue');
+                    isLiked = true; // Cập nhật trạng thái nút like
+                }
+            }
+        });
+
+        // Kiểm tra xem người dùng đã dislike video này chưa
+        $.ajax({
+            url: '/Home/CheckDislikeStatus',
+            type: 'GET',
+            data: {
+                videoId: videoId1
+            },
+            success: function (response) {
+                if (response) {
+                    // Nếu người dùng đã dislike video này, đặt màu của nút dislike thành đỏ
+                    $("#dislike-button").css('color', 'red');
+                    isDisliked = true; // Cập nhật trạng thái nút dislike
+                }
+            }
+        });
+
+        $("#like-button").click(function () {
+            if (!isLiked) { // Chỉ thực hiện khi nút like chưa được nhấn
+                $.ajax({
+                    url: '/Home/LikeVideo',
+                    type: 'GET',
+                    data: {
+                        videoId: videoId
+                    },
+                    success: function (response) {
+                        // Cập nhật số lượt like trên UI
+                        var likes = " " + response;
+                        $("#like-count").text(likes);
+                        $("#like-button").css('color', 'blue'); // Thay đổi màu của nút like thành xanh dương
+                        isLiked = true; // Cập nhật trạng thái nút like
+                        if (isDisliked) { // Nếu nút dislike đã được nhấn, giảm số lượt dislike
+                            $.ajax({
+                                url: '/Home/UndoDislikeVideo',
+                                type: 'GET',
+                                data: {
+                                    videoId: videoId
+                                },
+                                success: function (response) {
+                                    // Cập nhật số lượt dislike trên UI
+                                    var dislikes = " " + response;
+                                    $("#dislike-count").text(dislikes);
+                                    $("#dislike-button").css('color', ''); // Đặt lại màu của nút dislike
+                                    isDisliked = false; // Đặt lại trạng thái nút dislike
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
+
+        $("#dislike-button").click(function () {
+            if (!isDisliked) { // Chỉ thực hiện khi nút dislike chưa được nhấn
+                $.ajax({
+                    url: '/Home/DislikeVideo',
+                    type: 'GET',
+                    data: {
+                        videoId: videoId1
+                    },
+                    success: function (response) {
+                        // Cập nhật số lượt dislike trên UI
+                        var dislikes = " " + response;
+                        $("#dislike-count").text(dislikes);
+                        $("#dislike-button").css('color', 'red'); // Thay đổi màu của nút dislike thành màu đỏ
+                        isDisliked = true; // Cập nhật trạng thái nút dislike
+                        if (isLiked) { // Nếu nút like đã được nhấn, giảm số lượt like
+                            $.ajax({
+                                url: '/Home/UndoLikeVideo',
+                                type: 'GET',
+                                data: {
+                                    videoId: videoId1
+                                },
+                                success: function (response) {
+                                    // Cập nhật số lượt like trên UI
+                                    var likes = " " + response;
+                                    $("#like-count").text(likes);
+                                    $("#like-button").css('color', ''); // Đặt lại màu của nút like
+                                    isLiked = false; // Đặt lại trạng thái nút like
+                                }
+                            });
+                        }
+                    }
+                });
             }
         });
     });
