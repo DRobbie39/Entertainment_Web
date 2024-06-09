@@ -10,7 +10,7 @@ namespace BackEnd.Controllers
     [ApiController]
     public class VideoController : ControllerBase
     {
-        private readonly string apiKey = "AIzaSyCObIgaodEFKtbUw1To5drG_wP9tPqUucc"; // Api key
+        private readonly string apiKey = "AIzaSyAmkkKCnZbAklCzXR3s9_kkkFeNLSGitRE"; // Api key
 
         [HttpGet("{searchTerm}")]
         public async Task<IActionResult> Get(string searchTerm)
