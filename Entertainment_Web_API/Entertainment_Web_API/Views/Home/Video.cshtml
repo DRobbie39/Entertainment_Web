@@ -546,15 +546,17 @@
                 success: function (response) {
                     if (response.success) {
                         alert('Playlist added successfully!');
+                        // Đóng modal
+                        $('#saveToPlaylistModal').modal('hide');
+
+                        // Làm mới trang
+                        window.location.reload();
                     } else {
-                        alert('Adding playlist failed!');
+                        // Hiển thị thông báo lỗi từ server
+                        alert(response.message);
+                        // Đóng modal
+                        $('#saveToPlaylistModal').modal('hide');
                     }
-
-                    // Đóng modal
-                    $('#saveToPlaylistModal').modal('hide');
-
-                    // Làm mới trang
-                    window.location.reload();
                 }
             });
         });

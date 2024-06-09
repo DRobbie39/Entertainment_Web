@@ -154,9 +154,18 @@ namespace BackEnd.Controllers
                 // Thêm Video vào cơ sở dữ liệu
                 _context.Videos.Add(newVideo);
             }
-           
-            // Tạo mới playlist
-            var newPlaylist = new Playlist
+
+			// Kiểm tra xem tên playlist đã tồn tại hay chưa
+			var existingPlaylist = await _context.Playlist.FirstOrDefaultAsync(p => p.PlaylistName == playlistName && p.Id == userId);
+
+			if (existingPlaylist != null)
+			{
+				// Nếu tên playlist đã tồn tại, trả về thông báo lỗi
+				return BadRequest("A playlist with this name already exists.");
+			}
+
+			// Tạo mới playlist
+			var newPlaylist = new Playlist
             {
                 PlaylistId = Guid.NewGuid().ToString(),
                 PlaylistName = playlistName,

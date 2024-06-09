@@ -76,9 +76,10 @@ namespace Entertainment_Web_API.Controllers
             }
             else
             {
-                // Nếu không thành công, trả về thông báo lỗi
-                return Json(new { success = false, message = "Adding playlist failed!" });
-            }
+				// Nếu không thành công, trả về thông báo lỗi
+				var errorResponse = await response.Content.ReadAsStringAsync();
+				return Json(new { success = false, message = $"Adding playlist failed! Error: {errorResponse}" });
+			}
         }
 
         [HttpPut]

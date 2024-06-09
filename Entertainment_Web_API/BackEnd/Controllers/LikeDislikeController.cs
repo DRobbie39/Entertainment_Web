@@ -230,5 +230,24 @@ namespace BackEnd.Controllers
             // Nếu người dùng chưa dislike video này trước đó, trả về false
             return Ok(false);
         }
+
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetLikedVideos(string userId)
+        {
+            // Lấy danh sách các UserVideoReaction mà người dùng đã "like"
+            var likedUserVideoReactions = await _context.UserVideoReactions
+                .Where(uvr => uvr.Id == userId && uvr.IsLiked)
+                .ToListAsync();
+
+            // Lấy danh sách các VideoId từ các UserVideoReaction
+            var likedVideoIds = likedUserVideoReactions.Select(uvr => uvr.VideoId).ToList();
+
+            // Lấy danh sách các video từ các VideoId
+            var likedVideos = await _context.Videos
+                .Where(video => likedVideoIds.Contains(video.VideoId))
+                .ToListAsync();
+
+            return Ok(likedVideos);
+        }
     }
 }

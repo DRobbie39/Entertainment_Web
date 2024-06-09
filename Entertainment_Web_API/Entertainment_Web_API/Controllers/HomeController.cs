@@ -301,9 +301,20 @@ namespace Entertainment_Web_API.Controllers
             return View(viewModel);
         }
 
-		public IActionResult Videolike()
-		{
-			return View();
-		}
-	}
+        public async Task<IActionResult> Videolike()
+        {
+            var userId = GetCurrentUserId(); // Lấy userId
+
+            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/LikeDislike/GetLikedVideos/{userId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                var likedVideos = JsonConvert.DeserializeObject<List<Video>>(data);
+                return View(likedVideos); // Trả về view với model là danh sách các video đã like
+            }
+
+            return View();
+        }
+    }
 }

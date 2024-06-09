@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Video>
+
+@{
 	ViewData["Title"] = "Videolike";
 	Layout = "~/Views/Shared/_LayoutAccount.cshtml";
 }
@@ -28,21 +30,56 @@
 	</div>
 
 	<div class="col-xl-8">
-		<div class="product__sidebar__comment__item__pic">
-			<a href="">
-				<img style="width:220px;height:115px;border-radius:15px;" src="/lib/mtp.jpg" alt="">
-			</a>
-			<div style="margin-left:15px;">
-				<h5><a href="#" style="color:#fff">lorem ipsum dolor sit amet consectetuer adipiscing elit sed diam nonummy nibh</a></h5>
-				<div class="ngang">
-					<p>Tên người đăng video</p>
-					<p>560N lượt xem </p>
-					<p>11 tháng trước</p>
+		@foreach (var video in Model)
+		{
+			<div class="product__sidebar__comment__item__pic">
+				<a href="@Url.Action("Video", "Home", new { videoId = video.VideoId })">
+					<img style="width:220px;height:115px;border-radius:15px;" src="@video.ThumbnailUrl" alt="">
+				</a>
+				<div style="margin-left:15px;">
+					<h5><a href="@Url.Action("Video", "Home", new { videoId = video.VideoId })" style="color:#fff">@video.Title</a></h5>
+					<div class="ngang">
+						<p>@video.VideoDescription</p> <!-- Thay đổi này tùy thuộc vào thông tin bạn muốn hiển thị -->
+						<p>@video.VideoViews views</p>
+						<p>@video.VideoPostingTime</p>
+					</div>
 				</div>
 			</div>
-		</div>
+		}
 	</div>
 </div>
+
+@functions {
+	string TimeAgo(DateTimeOffset dateTime)
+	{
+		var timeSpan = DateTimeOffset.Now - dateTime;
+
+		if (timeSpan <= TimeSpan.FromSeconds(60))
+		{
+			return $"{timeSpan.Seconds} second";
+		}
+		else if (timeSpan <= TimeSpan.FromMinutes(60))
+		{
+			return $"{timeSpan.Minutes} minute";
+		}
+		else if (timeSpan <= TimeSpan.FromHours(24))
+		{
+			return $"{timeSpan.Hours} hour";
+		}
+		else if (timeSpan <= TimeSpan.FromDays(30))
+		{
+			return $"{timeSpan.Days} day";
+		}
+		else if (timeSpan <= TimeSpan.FromDays(365))
+		{
+			return $"{Math.Round(timeSpan.Days / 30.0)} month";
+		}
+		else
+		{
+			return $"{Math.Round(timeSpan.Days / 365.0)} year";
+		}
+	}
+}
 
 <script src="~/js/js music/bootstrap.min.js"></script>
 <script src="~/js/js music/jplayerinit.js"></script>
