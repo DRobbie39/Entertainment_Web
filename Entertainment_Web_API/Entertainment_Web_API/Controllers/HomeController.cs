@@ -142,7 +142,6 @@ namespace Entertainment_Web_API.Controllers
                 }
             }
 
-
             // Tạo ViewModel
             var viewModel = new VideoViewModel
             {
@@ -280,8 +279,6 @@ namespace Entertainment_Web_API.Controllers
         //}
 
         [Authorize]
-        //[Authorize(Roles = "Admin, User")]
-        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Library()
         {
             var userId = GetCurrentUserId();
@@ -318,6 +315,22 @@ namespace Entertainment_Web_API.Controllers
                 string data = await response.Content.ReadAsStringAsync();
                 var likedVideos = JsonConvert.DeserializeObject<List<Video>>(data);
                 return View(likedVideos); // Trả về view với model là danh sách các video đã like
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> CommentedVideos()
+        {
+            var userId = GetCurrentUserId(); // Lấy userId
+
+            HttpResponseMessage response = await _client.GetAsync(_client.BaseAddress + $"/Video/GetUserCommentedVideos/{userId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                var commentedVideos = JsonConvert.DeserializeObject<List<Video>>(data);
+                return View(commentedVideos); // Trả về view với model là danh sách các video đã comment
             }
 
             return View();

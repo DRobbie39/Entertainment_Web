@@ -29,7 +29,7 @@
                 <i id="dislike-button" class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;" data-video-id="@Model.Video.VideoId"> <span id="dislike-count">@Model.Video.Dislikes</span></i>
             </div>
             <div class="col-3">
-                @* <i class="fa fa-download" aria-hidden="true">Download</i> *@
+                <i class="fa fa-download" aria-hidden="true">download</i>
                 <!-- Nút Lưu vào danh sách phát -->
                 <i class="fa fa-play-circle" aria-hidden="true" data-toggle="modal" data-target="#saveToPlaylistModal"> Add to playlist</i>
             </div>
@@ -62,7 +62,7 @@
                                         <p style="cursor: pointer; margin-left:15px;" class="feedbackuser">Reply </p>
                                     </div>
 
-                                    <!-- Người trả lời cmt -->                          
+                                    <!-- Người trả lời cmt -->
                                     @if (comment.Replies != null)
                                     {
                                         <p style="cursor: pointer; margin-left:50px;" class="feedback"><i class="bi bi-chevron-bar-down"></i>@comment.Replies.Count replies </p>
@@ -85,7 +85,7 @@
                                                         <div style="display:flex">
                                                             <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 0</i>
                                                             <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i>
-                                                            <p style="cursor: pointer; margin-left:15px;" >Reply </p>
+                                                            <p style="cursor: pointer; margin-left:15px;">Reply </p>
                                                         </div>
                                                     </div>
                                                     <div class="col-1 justify-content-start">
@@ -151,9 +151,9 @@
                                 <div class="col-1 justify-content-start">
                                     <small style="margin-left:20px;">@comment.CommentPostingTime</small>
                                     @*<div class="form-group" style="margin-left:5px; margin-right:10px;">
-                                    <input value="@comment.CommentId" type="hidden" class="form-control" />
-                                    <input value="" type="hidden" class="form-control" />
-                                    </div> *@
+                            <input value="@comment.CommentId" type="hidden" class="form-control" />
+                            <input value="" type="hidden" class="form-control" />
+                            </div> *@
                                     @if (comment.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
                                     {
                                         <i class="bi bi-three-dots-vertical ellipsis-icon hien"></i>
@@ -272,7 +272,7 @@
     </div>
 </div>
 
-    <style>
+<style>
     .editcmtfeedback {
         margin-right: 100px !important;
     }
@@ -501,9 +501,9 @@
         text-decoration: none !important;
     }
 
-     i {
+    i {
         color: #6c7293;
-    } 
+    }
 
     h5 {
         font-weight: 700;

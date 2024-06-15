@@ -134,5 +134,33 @@ namespace BackEnd.Controllers
 
             return Ok(relatedVideos);
         }
+
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetUserCommentedVideos(string userId)
+        {
+            // Lấy danh sách các Comment mà người dùng đã tạo
+            var userComments = await _context.Comments
+                .Where(c => c.Id == userId)
+                .Select(c => c.VideoId)
+                .Distinct()
+                .ToListAsync();
+
+            // Lấy danh sách các ReplyComment mà người dùng đã tạo
+            var userReplyComments = await _context.ReplyComments
+                .Where(rc => rc.UserId == userId)
+                .Select(rc => rc.Comment.VideoId)
+                .Distinct()
+                .ToListAsync();
+
+            // Gộp hai danh sách VideoId và loại bỏ các giá trị trùng lặp
+            var commentedVideoIds = userComments.Union(userReplyComments).ToList();
+
+            // Lấy danh sách các video từ các VideoId
+            var commentedVideos = await _context.Videos
+                .Where(video => commentedVideoIds.Contains(video.VideoId))
+                .ToListAsync();
+
+            return Ok(commentedVideos);
+        }
     }
 }
