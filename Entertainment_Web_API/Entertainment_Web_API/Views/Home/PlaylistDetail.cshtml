@@ -14,10 +14,10 @@
         <div class="bg-secondary rounded h-100 p-4">
             <div class="row" style="background-image: linear-gradient(to bottom, #5c5858, #261515);padding:20px;border-radius:10px;">
                 <div class="col-3">
-                    <img class="img-fluid w-100" src="/lib/mtp.jpg" alt="" style="width:280px;height:280px;border-radius:10px;">
+                    <img class="img-fluid w-100" src="/lib/playlist_icon.jpg" alt="" style="width:280px;height:280px;border-radius:10px;">
                 </div>
                 <div class="col-9" style="margin-top:30px;">
-                    <h6>Playlist</h6>
+                    <h6 style="color: #e8d9d9;">Playlist</h6>
                     <h1 style="font-size:92px;font-weight:700">Lofi beats</h1>
                     <h6 style="color:#e8d9d9;">
                         chill beats, lofi vibes, new tracks every week...
@@ -47,7 +47,6 @@
                                         <div class="dropdown">
                                             <i class="bi bi-three-dots-vertical ellipsis-icon"></i>
                                             <div class="dropdown-content">
-                                                @* <i class="bi bi-pencil-square" style="margin-top:5px;"></i> *@
                                                 <i class="fa fa-trash" aria-hidden="true" style="margin-top:5px;" data-toggle="modal" data-target="#confirmDeleteModal-@video.VideoId"></i>
                                             </div>
                                         </div>
@@ -62,13 +61,6 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="confirmDeleteModalLabel" style="color: black;">Confirm deletion of video from playlist</h5>
-                                        @* @if (Model.Videos != null && Model.Videos.Count > 0)
-                                        {
-                                            @for (var i = 0; i < Model.Videos.Count; i++)
-                                            {
-                                                <input type="hidden" id="videoId" name="videoId" value="@Model.Videos[i].VideoId">
-                                            }
-                                        } *@
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>

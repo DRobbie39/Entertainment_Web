@@ -29,7 +29,7 @@
                 <i id="dislike-button" class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;" data-video-id="@Model.Video.VideoId"> <span id="dislike-count">@Model.Video.Dislikes</span></i>
             </div>
             <div class="col-3">
-                <i class="fa fa-download" aria-hidden="true">download</i>
+                @* <i class="fa fa-download" aria-hidden="true">Download</i> *@
                 <!-- Nút Lưu vào danh sách phát -->
                 <i class="fa fa-play-circle" aria-hidden="true" data-toggle="modal" data-target="#saveToPlaylistModal"> Add to playlist</i>
             </div>
@@ -55,7 +55,7 @@
                                     <h5 style="margin-top:3px; margin-left:5px;">@(comment.AppUser.FullName ?? "User")</h5>
                                     <p style="margin-left:9px;">@comment.Content</p>
 
-                                    <!-- Like Dislike Phản hồi -->
+                                    <!-- Like dislike phản hồi -->
                                     <div style="display:flex">
                                         <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 0</i>
                                         <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i>
@@ -150,10 +150,6 @@
 
                                 <div class="col-1 justify-content-start">
                                     <small style="margin-left:20px;">@comment.CommentPostingTime</small>
-                                    @*<div class="form-group" style="margin-left:5px; margin-right:10px;">
-                            <input value="@comment.CommentId" type="hidden" class="form-control" />
-                            <input value="" type="hidden" class="form-control" />
-                            </div> *@
                                     @if (comment.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
                                     {
                                         <i class="bi bi-three-dots-vertical ellipsis-icon hien"></i>
@@ -176,7 +172,6 @@
                                 </div>
                             </div>
                         </div>
-                        @* <div class="comment-box col-1 d-inline"></div> *@
 
                         <!-- Modal xác nhận xóa comment gốc-->
                         <div class="modal fade" id="confirmDeleteModal-@comment.CommentId" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
