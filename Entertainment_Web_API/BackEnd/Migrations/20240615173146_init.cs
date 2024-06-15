@@ -55,15 +55,22 @@ namespace BackEnd.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "VideoCategories",
+                name: "Videos",
                 columns: table => new
                 {
-                    VideoCategoryId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    VideoCategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    VideoId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VideoDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VideoViews = table.Column<int>(type: "int", nullable: true),
+                    Likes = table.Column<int>(type: "int", nullable: true),
+                    Dislikes = table.Column<int>(type: "int", nullable: true),
+                    VideoPostingTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    VideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ThumbnailUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VideoCategories", x => x.VideoCategoryId);
+                    table.PrimaryKey("PK_Videos", x => x.VideoId);
                 });
 
             migrationBuilder.CreateTable(
@@ -194,36 +201,11 @@ namespace BackEnd.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Videos",
-                columns: table => new
-                {
-                    VideoId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VideoDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VideoViews = table.Column<int>(type: "int", nullable: true),
-                    Likes = table.Column<int>(type: "int", nullable: true),
-                    Dislikes = table.Column<int>(type: "int", nullable: true),
-                    VideoPostingTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    VideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ThumbnailUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VideoCategoryId = table.Column<string>(type: "nvarchar(450)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Videos", x => x.VideoId);
-                    table.ForeignKey(
-                        name: "FK_Videos_VideoCategories_VideoCategoryId",
-                        column: x => x.VideoCategoryId,
-                        principalTable: "VideoCategories",
-                        principalColumn: "VideoCategoryId");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Comments",
                 columns: table => new
                 {
                     CommentId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CommentPostingTime = table.Column<DateOnly>(type: "date", nullable: true),
                     VideoId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false)
@@ -299,7 +281,7 @@ namespace BackEnd.Migrations
                 columns: table => new
                 {
                     ReplyId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ReplyContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReplyContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReplyPostingTime = table.Column<DateOnly>(type: "date", nullable: true),
                     Like = table.Column<int>(type: "int", nullable: false),
                     DisLike = table.Column<int>(type: "int", nullable: false),
@@ -395,11 +377,6 @@ namespace BackEnd.Migrations
                 name: "IX_VideoPlaylist_PlaylistId",
                 table: "VideoPlaylist",
                 column: "PlaylistId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Videos_VideoCategoryId",
-                table: "Videos",
-                column: "VideoCategoryId");
         }
 
         /// <inheritdoc />
@@ -443,9 +420,6 @@ namespace BackEnd.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "VideoCategories");
         }
     }
 }

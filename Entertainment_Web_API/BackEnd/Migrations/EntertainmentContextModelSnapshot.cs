@@ -31,7 +31,6 @@ namespace BackEnd.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Id")
@@ -90,7 +89,6 @@ namespace BackEnd.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ReplyContent")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateOnly?>("ReplyPostingTime")
@@ -149,9 +147,6 @@ namespace BackEnd.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("VideoCategoryId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("VideoDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -166,22 +161,7 @@ namespace BackEnd.Migrations
 
                     b.HasKey("VideoId");
 
-                    b.HasIndex("VideoCategoryId");
-
                     b.ToTable("Videos");
-                });
-
-            modelBuilder.Entity("BackEnd.Models.VideoCategory", b =>
-                {
-                    b.Property<string>("VideoCategoryId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("VideoCategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("VideoCategoryId");
-
-                    b.ToTable("VideoCategories");
                 });
 
             modelBuilder.Entity("BackEnd.Models.VideoPlaylist", b =>
@@ -490,15 +470,6 @@ namespace BackEnd.Migrations
                     b.Navigation("Video");
                 });
 
-            modelBuilder.Entity("BackEnd.Models.Video", b =>
-                {
-                    b.HasOne("BackEnd.Models.VideoCategory", "VideoCategory")
-                        .WithMany("Videos")
-                        .HasForeignKey("VideoCategoryId");
-
-                    b.Navigation("VideoCategory");
-                });
-
             modelBuilder.Entity("BackEnd.Models.VideoPlaylist", b =>
                 {
                     b.HasOne("BackEnd.Models.Playlist", "Playlist")
@@ -588,11 +559,6 @@ namespace BackEnd.Migrations
                     b.Navigation("UserVideoReactions");
 
                     b.Navigation("VideoPlaylists");
-                });
-
-            modelBuilder.Entity("BackEnd.Models.VideoCategory", b =>
-                {
-                    b.Navigation("Videos");
                 });
 
             modelBuilder.Entity("BackEnd.Models.AppUser", b =>

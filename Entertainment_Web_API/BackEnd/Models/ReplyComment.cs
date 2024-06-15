@@ -6,8 +6,8 @@ namespace BackEnd.Models
     public class ReplyComment
     {
         [Key]
-        public string ReplyId { get; set; }
-        public string ReplyContent { get; set; }
+        public string? ReplyId { get; set; }
+        public string? ReplyContent { get; set; }
         public DateOnly? ReplyPostingTime { get; set; }
         public int Like { get; set; }
         public int DisLike { get; set; }
@@ -18,7 +18,6 @@ namespace BackEnd.Models
 
         [ForeignKey("AppUser")]
         public string? UserId { get; set; }
-
         public virtual AppUser? AppUser { get; set; }
     }
 }

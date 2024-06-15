@@ -7,7 +7,7 @@ namespace BackEnd.Models
     public class Video
     {
         [Key] //Set khóa chính bằng data annotations
-        public string VideoId { get; set; }
+        public string? VideoId { get; set; }
         public string? Title { get; set; }
         public string? VideoDescription { get; set; }
         public int? VideoViews { get; set; }
@@ -16,11 +16,6 @@ namespace BackEnd.Models
         public DateTimeOffset? VideoPostingTime { get; set; }
         public string? VideoUrl { get; set; }
         public string? ThumbnailUrl { get; set; }
-
-		[ForeignKey("VideoCategory")] //Set khóa ngoại
-		public string? VideoCategoryId { get; set; }
-		public virtual VideoCategory? VideoCategory { get; set; }
-
 
         public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
         public virtual ICollection<VideoPlaylist> VideoPlaylists { get; set; } = new List<VideoPlaylist>();

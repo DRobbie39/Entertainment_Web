@@ -19,8 +19,6 @@ public partial class EntertainmentContext : IdentityDbContext
 
     public virtual DbSet<Video> Videos { get; set; }
 
-    public virtual DbSet<VideoCategory> VideoCategories { get; set; }
-
     public virtual DbSet<AppUser> AppUser { get; set; }
 
     public virtual DbSet<Comment> Comments { get; set; }

@@ -14,7 +14,7 @@ namespace BackEnd.Controllers
     public class PlaylistController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyDHS537ody72uNsL2el-1VLwJj0yPmBL4k"; // Api key
+        private readonly string apiKey = "AIzaSyAHK-ZURhPgkkphHFT1szmPr6Dhx_zYH1M"; // Api key
 
         public PlaylistController(EntertainmentContext context)
         {

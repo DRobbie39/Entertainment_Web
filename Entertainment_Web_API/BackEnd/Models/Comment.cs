@@ -6,8 +6,8 @@ namespace BackEnd.Models
     public class Comment
     {
 		[Key]
-		public string CommentId { get; set; } = null!;
-        public string Content { get; set; } = null!;
+		public string? CommentId { get; set; }
+        public string? Content { get; set; }
         public DateOnly? CommentPostingTime { get; set; }
 
 		[ForeignKey("Video")]
@@ -17,6 +17,7 @@ namespace BackEnd.Models
 		[ForeignKey("AppUser")]
 		public string? Id { get; set; }
         public virtual AppUser? AppUser { get; set; }
+
         public virtual ICollection<ReplyComment> Replies { get; set; }
     }
 }
