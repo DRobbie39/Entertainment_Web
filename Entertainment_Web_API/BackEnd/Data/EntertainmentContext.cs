@@ -57,10 +57,18 @@ public partial class EntertainmentContext : IdentityDbContext
                 .HasConstraintName("FK__VideoPlay__Playl__6B24EA82");
         });
 
+        // Cấu hình cho phép xóa comment không bị ràng buộc bởi khóa ngoại của reply comment
         builder.Entity<ReplyComment>()
             .HasOne(r => r.Comment)
             .WithMany(c => c.Replies)
             .HasForeignKey(r => r.CommentId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Cấu hình cho phép xóa tài khoản không bị ràng buộc bởi khóa ngoại của reply comment
+        builder.Entity<AppUser>()
+            .HasMany(u => u.Comments)
+            .WithOne(c => c.AppUser)
+            .HasForeignKey(c => c.Id)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.Entity<UserVideoReaction>(entity =>
@@ -83,5 +91,5 @@ public partial class EntertainmentContext : IdentityDbContext
         OnModelCreatingPartial(builder);
     }
 
-    partial void OnModelCreatingPartial(ModelBuilder builder); 
+    partial void OnModelCreatingPartial(ModelBuilder builder);
 }
