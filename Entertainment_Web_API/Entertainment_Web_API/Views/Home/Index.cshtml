@@ -11,7 +11,7 @@
 
 <!-- Form tìm kiếm -->
 <form class="d-none d-md-flex ms-4" method="get" action="@Url.Action("Index", "Home")">
-    <input class="form-control bg-dark border-0" type="search" placeholder="Search video" name="searchTerm">
+    <input class="form-control bg-dark border-0" type="search" placeholder="Search video" name="searchTerm" value="@ViewBag.SearchTerm">
     <button type="submit" class="btn btn-primary">Search</button>
 </form>
 <div class="container-fluid pt-5 pb-3">
@@ -41,7 +41,7 @@
     <div class="pagination">
         @if (Model.HasPreviousPage)
         {
-            <a href="@Url.Action("Index", "Home", new { searchTerm = ViewBag.SearchTerm, pageNumber = Model.PageIndex - 1 })">Previous</a>
+            <a href="@Url.Action("Index", "Home", new { searchTerm = Model.SearchTerm, pageNumber = Model.PageIndex - 1 })">Previous</a>
         }
 
         @for (var i = 1; i <= Model.TotalPages; i++)
@@ -52,13 +52,13 @@
             }
             else
             {
-                <a href="@Url.Action("Index", "Home", new { searchTerm = ViewBag.SearchTerm, pageNumber = i })">@i</a>
+                <a href="@Url.Action("Index", "Home", new { searchTerm = Model.SearchTerm, pageNumber = i })">@i</a>
             }
         }
 
         @if (Model.HasNextPage)
         {
-            <a href="@Url.Action("Index", "Home", new { searchTerm = ViewBag.SearchTerm, pageNumber = Model.PageIndex + 1 })">Next</a>
+            <a href="@Url.Action("Index", "Home", new { searchTerm = Model.SearchTerm, pageNumber = Model.PageIndex + 1 })">Next</a>
         }
     </div>
 </div>

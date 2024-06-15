@@ -62,10 +62,11 @@ namespace Entertainment_Web_API.Controllers
                 var videos = JsonConvert.DeserializeObject<List<Video>>(data);
 
                 int pageSize = 8; // Số lượng video trên mỗi trang
-                return View(PaginatedList<Video>.Create(videos, pageNumber, pageSize));
+                ViewBag.SearchTerm = searchTerm; // Thêm dòng này để lưu lại từ khóa trong ô tìm kiếm
+                return View(PaginatedList<Video>.Create(videos, pageNumber, pageSize, searchTerm));
             }
 
-            return View(PaginatedList<Video>.Create(new List<Video>(), pageNumber, 1));
+            return View(PaginatedList<Video>.Create(new List<Video>(), pageNumber, 1, searchTerm));
         }
 
         //[Authorize]
