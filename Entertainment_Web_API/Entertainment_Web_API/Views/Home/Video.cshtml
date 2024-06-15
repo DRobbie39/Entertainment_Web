@@ -63,13 +63,21 @@
                                     </div>
 
                                     <!-- Người trả lời cmt -->
+<<<<<<< HEAD
+=======
+                                    
+>>>>>>> dc9c4de6815eb08eae37cd9cd76dada749c02593
                                     @if (comment.Replies != null)
                                     {<p style="cursor: pointer; margin-left:50px;" class="feedback"><i class="bi bi-chevron-bar-down"></i>@comment.Replies.Count replies </p>
                                         foreach (var reply in comment.Replies)
                                         {
                                             <div class="sophanhoi" style="display:none;">
                                                 <div style="display:flex">
+<<<<<<< HEAD
                                                     <img class="rounded-circle flex-shrink-0" src="/Uploads/@(reply.AppUser.Avtprofile ?? "avtmacdinh.jpg")" alt="" style="width: 40px; height: 40px;">
+=======
+                                                    <img class="rounded-circle flex-shrink-0" src="/Uploads/@(reply.AppUser.Avtprofile ?? "avtmacdinh.jpg" )" alt="" style="width: 40px; height: 40px;">
+>>>>>>> dc9c4de6815eb08eae37cd9cd76dada749c02593
                                                     <div class="block col-11" style="margin-left:20px;">
                                                         <h5 style="margin-top:3px; margin-left:5px;">@(reply.AppUser.FullName ?? "User")</h5>
                                                         <p style="margin-left:9px;">@reply.ReplyContent</p>
