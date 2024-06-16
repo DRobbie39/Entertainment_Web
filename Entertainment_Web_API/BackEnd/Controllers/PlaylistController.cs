@@ -14,7 +14,7 @@ namespace BackEnd.Controllers
     public class PlaylistController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyAHK-ZURhPgkkphHFT1szmPr6Dhx_zYH1M"; // Api key
+        private readonly string apiKey = "AIzaSyDC_1kCIZGVYaD4NocN-39De0Lk6h40M-M"; // Api key
 
         public PlaylistController(EntertainmentContext context)
         {
@@ -89,7 +89,9 @@ namespace BackEnd.Controllers
                     ThumbnailUrl = video.Snippet.Thumbnails.High.Url,
                     VideoUrl = $"https://www.youtube.com/watch?v={video.Id}",
                     VideoViews = (int?)video.Statistics.ViewCount.GetValueOrDefault(),
-                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset
+                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset,
+                    Likes = existingVideo != null ? existingVideo.Likes : 0,
+                    Dislikes = existingVideo != null ? existingVideo.Dislikes : 0
                 };
 
                 // Thêm Video vào cơ sở dữ liệu
@@ -138,6 +140,9 @@ namespace BackEnd.Controllers
             // Kiểm tra xem video đã tồn tại trong cơ sở dữ liệu hay chưa
             var existingVideo = await _context.Videos.FindAsync(videoId);
 
+            // Biến để lưu ThumbnailUrl
+            string thumbnailUrl = null;
+
             if (existingVideo == null)
             {
                 // Tạo mới Video
@@ -148,15 +153,24 @@ namespace BackEnd.Controllers
                     ThumbnailUrl = video.Snippet.Thumbnails.High.Url,
                     VideoUrl = $"https://www.youtube.com/watch?v={video.Id}",
                     VideoViews = (int?)video.Statistics.ViewCount.GetValueOrDefault(),
-                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset
+                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset,
+                    Likes = existingVideo != null ? existingVideo.Likes : 0,
+                    Dislikes = existingVideo != null ? existingVideo.Dislikes : 0
                 };
 
                 // Thêm Video vào cơ sở dữ liệu
                 _context.Videos.Add(newVideo);
+                await _context.SaveChangesAsync();
+
+                thumbnailUrl = newVideo.ThumbnailUrl; // Gán ThumbnailUrl từ newVideo
+            }
+            else
+            {
+                thumbnailUrl = existingVideo.ThumbnailUrl; // Gán ThumbnailUrl từ existingVideo nếu video đã tồn tại
             }
 
-			// Kiểm tra xem tên playlist đã tồn tại hay chưa
-			var existingPlaylist = await _context.Playlist.FirstOrDefaultAsync(p => p.PlaylistName == playlistName && p.Id == userId);
+            // Kiểm tra xem tên playlist đã tồn tại hay chưa
+            var existingPlaylist = await _context.Playlist.FirstOrDefaultAsync(p => p.PlaylistName == playlistName && p.Id == userId);
 
 			if (existingPlaylist != null)
 			{
@@ -169,7 +183,7 @@ namespace BackEnd.Controllers
             {
                 PlaylistId = Guid.NewGuid().ToString(),
                 PlaylistName = playlistName,
-                ThumbnailUrl = existingVideo.ThumbnailUrl, // Lấy thumbnail cho biến ở trên gán cho thuộc tính của Playlist
+                ThumbnailUrl = thumbnailUrl, // Lấy thumbnail cho biến ở trên gán cho thuộc tính của Playlist
                 Id = userId
             };
 

@@ -13,7 +13,7 @@ namespace BackEnd.Controllers
     public class LikeDislikeController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyAHK-ZURhPgkkphHFT1szmPr6Dhx_zYH1M"; // Api key
+        private readonly string apiKey = "AIzaSyDC_1kCIZGVYaD4NocN-39De0Lk6h40M-M"; // Api key
 
         public LikeDislikeController(EntertainmentContext context)
         {
@@ -50,8 +50,8 @@ namespace BackEnd.Controllers
                     VideoUrl = $"https://www.youtube.com/watch?v={video.Id}",
                     VideoViews = (int?)video.Statistics.ViewCount.GetValueOrDefault(),
                     VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset,
-                    Likes = 0,
-                    Dislikes = 0,
+                    Likes = existingVideo != null ? existingVideo.Likes : 0,
+                    Dislikes = existingVideo != null ? existingVideo.Dislikes : 0
                 };
 
                 // Thêm Video vào cơ sở dữ liệu
@@ -139,7 +139,9 @@ namespace BackEnd.Controllers
                     ThumbnailUrl = video.Snippet.Thumbnails.High.Url,
                     VideoUrl = $"https://www.youtube.com/watch?v={video.Id}",
                     VideoViews = (int?)video.Statistics.ViewCount.GetValueOrDefault(),
-                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset
+                    VideoPostingTime = video.Snippet.PublishedAtDateTimeOffset,
+                    Likes = existingVideo != null ? existingVideo.Likes : 0,
+                    Dislikes = existingVideo != null ? existingVideo.Dislikes : 0
                 };
 
                 // Thêm Video vào cơ sở dữ liệu
