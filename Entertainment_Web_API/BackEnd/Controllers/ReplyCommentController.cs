@@ -11,11 +11,13 @@ namespace BackEnd.Controllers
     public class ReplyCommentController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyDC_1kCIZGVYaD4NocN-39De0Lk6h40M-M";
+        private readonly string apiKey; // Api key
 
-        public ReplyCommentController(EntertainmentContext context)
+        public ReplyCommentController(EntertainmentContext context, IConfiguration configuration)
         {
             _context = context;
+            // Lấy API key từ appsettings.json
+            apiKey = configuration["ApiKeys:Youtube"];
         }
 
         [HttpGet("{commentId}")]

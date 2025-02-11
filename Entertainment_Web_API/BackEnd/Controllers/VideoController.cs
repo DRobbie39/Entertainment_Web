@@ -13,11 +13,13 @@ namespace BackEnd.Controllers
     public class VideoController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyDC_1kCIZGVYaD4NocN-39De0Lk6h40M-M"; // Api key
+        private readonly string apiKey; // Api key
 
-        public VideoController(EntertainmentContext context)
+        public VideoController(EntertainmentContext context, IConfiguration configuration)
         {
             _context = context;
+            // Lấy API key từ appsettings.json
+            apiKey = configuration["ApiKeys:Youtube"];
         }
 
         [HttpGet("{searchTerm}")]

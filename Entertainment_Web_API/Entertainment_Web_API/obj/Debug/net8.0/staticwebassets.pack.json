@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Entertainment_Web_API.bundle.scp.css",
-      "PackagePath": "staticwebassets\\Entertainment_Web_API.bundle.scp.css"
+      "PackagePath": "staticwebassets\\Entertainment_Web_API.ay4ouc6nxt.bundle.scp.css"
     },
     {
       "Id": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\Uploads\\0c14b82c-f6da-4ed4-97e3-a61a85bbbfcc.jpg",
@@ -499,6 +499,10 @@
     {
       "Id": "D:\\Study\\HK2 2023-2024\\API\\Entertainment_Web\\Entertainment_Web_API\\Entertainment_Web_API\\wwwroot\\music\\MTP.mp3",
       "PackagePath": "staticwebassets\\music\\MTP.mp3"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Entertainment_Web_API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Entertainment_Web_API.Microsoft.AspNetCore.StaticWebAssets.props",

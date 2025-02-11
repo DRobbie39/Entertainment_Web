@@ -630,3 +630,8 @@ D:\Study\HK2 2023-2024\API\Entertainment_Web\Entertainment_Web_API\Entertainment
 D:\Study\HK2 2023-2024\API\Entertainment_Web\Entertainment_Web_API\Entertainment_Web_API\obj\Debug\net8.0\Entertainment_Web_API.pdb
 D:\Study\HK2 2023-2024\API\Entertainment_Web\Entertainment_Web_API\Entertainment_Web_API\obj\Debug\net8.0\Entertainment_Web_API.genruntimeconfig.cache
 D:\Study\HK2 2023-2024\API\Entertainment_Web\Entertainment_Web_API\Entertainment_Web_API\obj\Debug\net8.0\ref\Entertainment_Web_API.dll
+D:\Study\HK2 2023-2024\API\Entertainment_Web\Entertainment_Web_API\Entertainment_Web_API\bin\Debug\net8.0\BackEnd.staticwebassets.endpoints.json
+D:\Study\HK2 2023-2024\API\Entertainment_Web\Entertainment_Web_API\Entertainment_Web_API\bin\Debug\net8.0\Entertainment_Web_API.staticwebassets.endpoints.json
+D:\Study\HK2 2023-2024\API\Entertainment_Web\Entertainment_Web_API\Entertainment_Web_API\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\Study\HK2 2023-2024\API\Entertainment_Web\Entertainment_Web_API\Entertainment_Web_API\obj\Debug\net8.0\staticwebassets\msbuild.Entertainment_Web_API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+D:\Study\HK2 2023-2024\API\Entertainment_Web\Entertainment_Web_API\Entertainment_Web_API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

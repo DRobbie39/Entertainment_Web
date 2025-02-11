@@ -43,8 +43,8 @@
   },
   {
     "ContainingType": "BackEnd.Controllers.CommentController",
-    "Method": "GetComment",
-    "RelativePath": "backend/Comment/GetComment/{videoId}",
+    "Method": "GetComments",
+    "RelativePath": "backend/Comment/GetComments/{videoId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -60,7 +60,7 @@
   {
     "ContainingType": "BackEnd.Controllers.CommentController",
     "Method": "UpdateComment",
-    "RelativePath": "backend/Comment/UpdateComment/{commentId}",
+    "RelativePath": "backend/Comment/UpdateComment/{commentId}/{content}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -71,9 +71,141 @@
         "IsRequired": true
       },
       {
-        "Name": "model",
+        "Name": "content",
         "Type": "System.String",
-        "IsRequired": false
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.LikeDislikeController",
+    "Method": "CheckDislikeStatus",
+    "RelativePath": "backend/LikeDislike/CheckDislikeStatus/{videoId}/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.LikeDislikeController",
+    "Method": "CheckLikeStatus",
+    "RelativePath": "backend/LikeDislike/CheckLikeStatus/{videoId}/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.LikeDislikeController",
+    "Method": "DislikeVideo",
+    "RelativePath": "backend/LikeDislike/DislikeVideo/{videoId}/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.LikeDislikeController",
+    "Method": "GetLikedVideos",
+    "RelativePath": "backend/LikeDislike/GetLikedVideos/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.LikeDislikeController",
+    "Method": "LikeVideo",
+    "RelativePath": "backend/LikeDislike/LikeVideo/{videoId}/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.LikeDislikeController",
+    "Method": "UndoDislikeVideo",
+    "RelativePath": "backend/LikeDislike/UndoDislikeVideo/{videoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.LikeDislikeController",
+    "Method": "UndoLikeVideo",
+    "RelativePath": "backend/LikeDislike/UndoLikeVideo/{videoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -221,6 +353,85 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "BackEnd.Controllers.ReplyCommentController",
+    "Method": "AddReplyComment",
+    "RelativePath": "backend/ReplyComment/AddReplyComment/{commentId}/{userId}/{content}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "content",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.ReplyCommentController",
+    "Method": "DeleteReplyComment",
+    "RelativePath": "backend/ReplyComment/DeleteReplyComment/{replyId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "replyId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.ReplyCommentController",
+    "Method": "GetReplyComment",
+    "RelativePath": "backend/ReplyComment/GetReplyComment/{commentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.ReplyCommentController",
+    "Method": "UpdateReplyComment",
+    "RelativePath": "backend/ReplyComment/UpdateReplyComment/{replyId}/{content}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "replyId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "content",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "BackEnd.Controllers.UserController",
     "Method": "Get",
     "RelativePath": "backend/User/Get/{Id}",
@@ -255,13 +466,13 @@
   {
     "ContainingType": "BackEnd.Controllers.VideoController",
     "Method": "GetDetails",
-    "RelativePath": "backend/Video/GetDetails/{id}",
+    "RelativePath": "backend/Video/GetDetails/{videoId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "videoId",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -278,6 +489,22 @@
     "Parameters": [
       {
         "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEnd.Controllers.VideoController",
+    "Method": "GetUserCommentedVideos",
+    "RelativePath": "backend/Video/GetUserCommentedVideos/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
         "Type": "System.String",
         "IsRequired": true
       }

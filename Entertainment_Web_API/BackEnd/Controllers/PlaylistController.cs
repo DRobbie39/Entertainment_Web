@@ -14,11 +14,13 @@ namespace BackEnd.Controllers
     public class PlaylistController : ControllerBase
     {
         private readonly EntertainmentContext _context;
-        private readonly string apiKey = "AIzaSyDC_1kCIZGVYaD4NocN-39De0Lk6h40M-M"; // Api key
+        private readonly string apiKey; // Api key
 
-        public PlaylistController(EntertainmentContext context)
+        public PlaylistController(EntertainmentContext context, IConfiguration configuration)
         {
             _context = context;
+            // Lấy API key từ appsettings.json
+            apiKey = configuration["ApiKeys:Youtube"];
         }
 
         // GET: api/Playlists
