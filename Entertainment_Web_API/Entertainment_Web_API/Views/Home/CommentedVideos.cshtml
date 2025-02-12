@@ -25,13 +25,19 @@
 		@foreach (var video in Model)
 		{
 			<div class="product__sidebar__comment__item__pic">
-				<a href="@Url.Action("Video", "Home", new { videoId = video.VideoId })">
-					<img style="width:220px;height:115px;border-radius:15px;min-width:187px;min-height:126px;" src="@video.ThumbnailUrl" alt="">
-				</a>
-				<div style="margin-left:15px;padding-top:21px;">
+				<div class="video-container position-relative">
+					<a href="@Url.Action("Video", "Home", new { videoId = video.VideoId })">
+						<img class="video-thumbnail" src="@video.ThumbnailUrl" alt="">
+						<div class="video-action">
+							<a class="btn btn-outline-dark btn-square" href="@Url.Action("Video", "Home", new { videoId = video.VideoId })">
+								<i class="fa fa-play-circle"></i>
+							</a>
+						</div>
+					</a>
+				</div>
+				<div class="video-info">
 					<h5><a href="@Url.Action("Video", "Home", new { videoId = video.VideoId })" style="color:#fff">@video.Title</a></h5>
 					<div class="ngang">
-						<p>@video.VideoDescription</p>
 						<p>@video.VideoViews views</p>
 						<p>@video.VideoPostingTime</p>
 					</div>
@@ -122,5 +128,91 @@
 		padding: 5px 20px 5px;
 		border-radius: 45px;
 		margin-right: 15px;
+	}
+
+	.video-container {
+		position: relative;
+		overflow: hidden;
+		border-radius: 15px;
+	}
+
+	.video-thumbnail {
+		width: 220px;
+		height: 115px;
+		min-width: 187px;
+		min-height: 126px;
+		border-radius: 15px;
+		transition: all 0.3s;
+	}
+
+	.video-action {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.5);
+		opacity: 0;
+		transition: all 0.3s;
+	}
+
+	.video-container:hover .video-action {
+		opacity: 1;
+	}
+
+	.video-container:hover .video-thumbnail {
+		transform: scale(1.1);
+	}
+
+	.btn-outline-dark {
+		color: #ffffff;
+		border-color: #ffffff;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.btn-outline-dark.btn-square {
+		width: 50px;
+		height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 2px solid #ffffff;
+		border-radius: 50%;
+		background: transparent;
+		transition: all 0.3s;
+	}
+
+	.btn-outline-dark.btn-square:hover {
+		background: #ffffff;
+	}
+
+	.btn-outline-dark.btn-square .fa-play-circle {
+		font-size: 30px;
+		color: #ffffff;
+	}
+
+	.btn-outline-dark.btn-square:hover .fa-play-circle {
+		color: #000000;
+	}
+
+	.btn-outline-dark:hover {
+		background: #ffffff;
+		color: #000000;
+	}
+
+	.video-info {
+		margin-left: 15px;
+		padding-top: 21px;
+	}
+
+	.fa-play-circle {
+		font-size: 20px;
 	}
 </style>

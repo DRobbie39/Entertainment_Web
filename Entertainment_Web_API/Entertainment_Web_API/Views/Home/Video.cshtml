@@ -210,9 +210,14 @@
                 @foreach (var relatedVideo in ViewBag.RelatedVideos)
                 {
                     <div class="product__sidebar__comment__item">
-                        <div class="product__sidebar__comment__item__pic">
+                        <div class="video-container position-relative">
                             <a href="@Url.Action("Video", "Home", new { videoId = relatedVideo.VideoId })">
-                                <img style="width:90px;height:100px;border-radius:15px;" src="@relatedVideo.ThumbnailUrl" alt="">
+                                <img class="video-thumbnail" src="@relatedVideo.ThumbnailUrl" alt="">
+                                <div class="video-action">
+                                    <a class="btn btn-outline-dark btn-square" href="@Url.Action("Video", "Home", new { videoId = relatedVideo.VideoId })">
+                                        <i class="fa fa-play-circle"></i>
+                                    </a>
+                                </div>
                             </a>
                         </div>
                         <div class="product__sidebar__comment__item__text">
@@ -346,6 +351,8 @@
     }
 
     .product__sidebar__comment__item {
+        display: flex;
+        align-items: flex-start;
         margin-bottom: 20px;
         overflow: hidden;
     }
@@ -356,6 +363,8 @@
     }
 
     .product__sidebar__comment__item__text {
+        margin-left: 15px;
+        flex: 1;
         overflow: hidden;
     }
 
@@ -524,6 +533,66 @@
 
     .product__sidebar__comment__item__text {
         margin-top: 20px;
+    }
+
+    .product__sidebar__comment__item .video-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+    }
+
+    .product__sidebar__comment__item .video-thumbnail {
+        width: 90px;
+        height: 100px;
+        border-radius: 15px;
+        transition: all 0.3s;
+    }
+
+    .product__sidebar__comment__item .video-action {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: all 0.3s;
+    }
+
+    .product__sidebar__comment__item .video-container:hover .video-action {
+        opacity: 1;
+    }
+
+    .product__sidebar__comment__item .video-container:hover .video-thumbnail {
+        transform: scale(1.1);
+    }
+
+    .product__sidebar__comment__item .btn-outline-dark.btn-square {
+        width: 35px; /* Giảm kích thước nút cho phù hợp với thumbnail nhỏ hơn */
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        background: transparent;
+        transition: all 0.3s;
+    }
+
+    .product__sidebar__comment__item .btn-outline-dark.btn-square:hover {
+        background: #ffffff;
+    }
+
+    .product__sidebar__comment__item .btn-outline-dark.btn-square .fa-play-circle {
+        font-size: 20px; /* Giảm kích thước icon */
+        color: #ffffff;
+    }
+
+    .product__sidebar__comment__item .btn-outline-dark.btn-square:hover .fa-play-circle {
+        color: #000000;
     }
 </style>
 
