@@ -17,6 +17,7 @@
     <link href="~/css/stylecustom.css" rel="stylesheet" />
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 </head>
+
 <body>
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
@@ -142,8 +143,8 @@
     <script src="~/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 <style>
-    /* Thêm vào phần style của bạn */
     .sidebar .navbar-nav .nav-link {
         font-family: "Roboto", sans-serif !important;
         font-weight: 700;
@@ -151,9 +152,9 @@
         transition: all 0.3s ease;
     }
 
-        .sidebar .navbar-nav .nav-link:hover {
-            color: #ffffff !important; /* Màu chữ khi hover giống như trong video */
-        }
+    .sidebar .navbar-nav .nav-link:hover {
+        color: #ffffff !important;
+    }
 
     .sidebar .thuvien a {
         font-family: "Roboto", sans-serif !important;
@@ -162,11 +163,10 @@
         transition: all 0.3s ease;
     }
 
-        .sidebar .thuvien a:hover {
-            color: #ffffff !important;
-        }
+    .sidebar .thuvien a:hover {
+        color: #ffffff !important;
+    }
 
-    /* Style cho các icon trong sidebar */
     .sidebar .nav-item i,
     .sidebar .thuvien i {
         color: #6c7293;
@@ -178,19 +178,16 @@
         color: #ffffff;
     }
 
-    /* Style cho phần Premium users */
     .sidebar .navbar-brand h2 {
         font-family: "Roboto", sans-serif !important;
         font-weight: 700;
     }
 
-    /* Style cho tên người dùng trong phần Premium */
     .sidebar .navbar-nav .nav-link.active {
         color: #ffffff !important;
         background-color: rgba(255, 255, 255, 0.1);
     }
 
-    /* Style cho playlist section */
     .thuvienanh .danhsach li {
         font-family: "Roboto", sans-serif !important;
         font-weight: 700;
@@ -212,26 +209,26 @@
         border-radius: 15px;
     }
 
-        nav.navbar.bg-secondary.navbar-dark.passs {
-            height: 35%;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
-            min-height: 0;
-            flex-direction: column;
-            width: 100%;
-            -webkit-box-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            padding-bottom: 0px;
-            padding-right: 8px;
-        }
+    nav.navbar.bg-secondary.navbar-dark.passs {
+        height: 35%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        min-height: 0;
+        flex-direction: column;
+        width: 100%;
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding-bottom: 0px;
+        padding-right: 8px;
+    }
 
     .nutpam {
         color: #fff;
@@ -248,18 +245,18 @@
         display: flex;
     }
 
-        .thuvien i {
-            align-content: space-between;
-            width: 40px;
-            height: 60px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .thuvien i {
+        align-content: space-between;
+        width: 40px;
+        height: 60px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        .thuvien a {
-            color: #6c7293;
-        }
+    .thuvien a {
+        color: #6c7293;
+    }
 
     .danhsach li {
         list-style-type: none;
