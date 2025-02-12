@@ -57,15 +57,15 @@
 
                                     <!-- Like dislike phản hồi -->
                                     <div style="display:flex">
-                                        <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 0</i>
-                                        <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i>
+                                        @* <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 0</i> *@
+                                        @* <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i> *@
                                         <p style="cursor: pointer; margin-left:15px;" class="feedbackuser">Reply </p>
                                     </div>
 
                                     <!-- Người trả lời cmt -->
                                     @if (comment.Replies != null)
                                     {
-                                        <p style="cursor: pointer; margin-left:50px;" class="feedback"><i class="bi bi-chevron-bar-down"></i>@comment.Replies.Count replies </p>
+                                        <p style="cursor: pointer; margin-left:50px;" class="feedback"><i class="bi bi-chevron-bar-down"></i> @comment.Replies.Count replies</p>
                                         foreach (var reply in comment.Replies)
                                         {
                                             <div class="sophanhoi" style="display:none;">
@@ -82,11 +82,11 @@
                                                             <button class="submit-button cancelcmtfeedback" style="background-color:#e37272">Cancel</button>
                                                         </div>
 
-                                                        <div style="display:flex">
-                                                            <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 0</i>
-                                                            <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i>
-                                                            <p style="cursor: pointer; margin-left:15px;">Reply </p>
-                                                        </div>
+                                                        @* <div style="display:flex"> *@
+                                                        @*     <i class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;margin-left:20px;"> 0</i> *@
+                                                        @*     <i class="fa fa-thumbs-down" aria-hidden="true" style="margin-left:20px;"></i> *@
+                                                        @*     <p style="cursor: pointer; margin-left:15px;">Reply </p> *@
+                                                        @* </div> *@
                                                     </div>
                                                     <div class="col-1 justify-content-start">
                                                         <small style="margin-left:13px;">@comment.CommentPostingTime</small>
