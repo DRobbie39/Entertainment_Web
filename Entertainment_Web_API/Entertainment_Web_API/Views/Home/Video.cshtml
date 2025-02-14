@@ -18,7 +18,7 @@
             <div class="col-6">
                 <h5 style="color:#6c7293">
                     @{
-                        var viewsCount = Model.Video.VideoViews.GetValueOrDefault(); // Nếu null, trả về 0
+                        var viewsCount = Model.Video.VideoViews.GetValueOrDefault();
                         string views = viewsCount >= 1_000_000_000 ? $"{viewsCount / 1_000_000_000.0:F1}B" :
                         viewsCount >= 1_000_000 ? $"{viewsCount / 1_000_000.0:F1}M" :
                         viewsCount >= 1_000 ? $"{viewsCount / 1_000.0:F1}K" :

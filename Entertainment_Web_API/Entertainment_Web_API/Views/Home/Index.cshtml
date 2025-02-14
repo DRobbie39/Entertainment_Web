@@ -34,11 +34,11 @@
                             <i class="bi bi-clock">
                                 @{
                                     var timeSpan = DateTimeOffset.Now - video.VideoPostingTime.GetValueOrDefault();
-                                    string timeAgo = timeSpan.TotalMinutes < 1 ? $"{timeSpan.Seconds} s" :
-                                    timeSpan.TotalHours < 1 ? $"{timeSpan.Minutes} m" :
-                                    timeSpan.TotalDays < 1 ? $"{timeSpan.Hours} h" :
-                                    timeSpan.TotalDays < 30 ? $"{timeSpan.Days} d" :
-                                    timeSpan.TotalDays < 365 ? $"{Math.Round(timeSpan.TotalDays / 30)} mo" :
+                                    string timeAgo = timeSpan.TotalMinutes < 1 ? $"{timeSpan.Seconds} s ago" :
+                                    timeSpan.TotalHours < 1 ? $"{timeSpan.Minutes} m ago" :
+                                    timeSpan.TotalDays < 1 ? $"{timeSpan.Hours} h ago" :
+                                    timeSpan.TotalDays < 30 ? $"{timeSpan.Days} d ago" :
+                                    timeSpan.TotalDays < 365 ? $"{Math.Round(timeSpan.TotalDays / 30)} mo ago" :
                                     $"{Math.Round(timeSpan.TotalDays / 365)} y";
                                 }
                                 @timeAgo
@@ -121,7 +121,7 @@
     }
 
     i.bi.bi-clock {
-        margin: 7px 15px;
+        margin: 7px 4px;
     }
 
     .product-action {
