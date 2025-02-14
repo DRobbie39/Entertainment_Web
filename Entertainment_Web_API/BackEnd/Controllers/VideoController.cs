@@ -85,6 +85,7 @@ namespace BackEnd.Controllers
             {
                 VideoId = item.Id,
                 Title = item.Snippet.Title,
+                VideoDescription = item.Snippet.Description,
                 ThumbnailUrl = item.Snippet.Thumbnails.High.Url,
                 VideoUrl = $"https://www.youtube.com/embed/{item.Id}", // Chỉnh embed để phát được video
                 VideoViews = (int?)item.Statistics.ViewCount.GetValueOrDefault(),

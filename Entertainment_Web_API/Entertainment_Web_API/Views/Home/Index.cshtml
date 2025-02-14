@@ -43,7 +43,16 @@
                                 }
                                 @timeAgo
                             </i>
-                            <i class="fa fa-eye" aria-hidden="true">  @video.VideoViews</i>
+                            <i class="fa fa-eye" aria-hidden="true">
+                                @{
+                                    var viewsCount = video.VideoViews.GetValueOrDefault();
+                                    string views = viewsCount >= 1_000_000_000 ? $"{viewsCount / 1_000_000_000.0:F1} B" :
+                                    viewsCount >= 1_000_000 ? $"{viewsCount / 1_000_000.0:F1} M" :
+                                    viewsCount >= 1_000 ? $"{viewsCount / 1_000.0:F1} K" :
+                                    viewsCount.ToString();
+                                }
+                                @views views
+                            </i>
                         </div>
                     </div>
                 </div>

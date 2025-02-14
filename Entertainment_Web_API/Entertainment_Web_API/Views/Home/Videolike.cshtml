@@ -38,8 +38,8 @@
 				<div class="video-info">
 					<h5><a href="@Url.Action("Video", "Home", new { videoId = video.VideoId })" style="color:#fff">@video.Title</a></h5>
 					<div class="ngang">
-						<p>@video.VideoViews views</p>
 						<p>
+							<i class="bi bi-clock"></i>
 							@{
 								var timeSpan = DateTimeOffset.Now - video.VideoPostingTime.GetValueOrDefault();
 								string timeAgo = timeSpan.TotalMinutes < 1 ? $"{timeSpan.Seconds} s" :
@@ -49,7 +49,18 @@
 								timeSpan.TotalDays < 365 ? $"{Math.Round(timeSpan.TotalDays / 30)} mo" :
 								$"{Math.Round(timeSpan.TotalDays / 365)} y";
 							}
-							@timeAgo
+							<span>@timeAgo</span>
+						</p>
+						<p>
+							<i class="fa fa-eye" aria-hidden="true"></i>
+							@{
+								var viewsCount = video.VideoViews.GetValueOrDefault();
+								string views = viewsCount >= 1_000_000_000 ? $"{viewsCount / 1_000_000_000.0:F1} B" :
+								viewsCount >= 1_000_000 ? $"{viewsCount / 1_000_000.0:F1} M" :
+								viewsCount >= 1_000 ? $"{viewsCount / 1_000.0:F1} K" :
+								viewsCount.ToString();
+							}
+							<span>@views views</span>
 						</p>
 					</div>
 				</div>
