@@ -249,6 +249,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <p>Your current playlist</p>
                 <!-- Danh sách các playlist hiện có -->
                 @if (Model.Playlists != null)
                 {
@@ -274,7 +275,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveChangesButton">Save the chosen playlist</button>
+                <button type="button" class="btn btn-primary" id="saveChangesButton">Save the video in chosen playlist</button>
             </div>
         </div>
     </div>
@@ -637,6 +638,12 @@
 
             // Lấy tất cả các radio button được chọn
             var selectedPlaylistId = $('.form-check-input:checked').val();
+
+            // Kiểm tra nếu chưa chọn playlist nào
+            if (!selectedPlaylistId) {
+                alert('Please select a playlist first!');
+                return; // Dừng thực thi function nếu chưa chọn playlist
+            }
 
             // Gọi action AddVideoToPlaylist với videoId và playlistId
             $.ajax({
