@@ -26,11 +26,6 @@
                     }
                     @views Views
                 </h5>
-                <p>@Model.Video.Title</p>
-                <p>@Model.Video.VideoDescription</p>
-                <h3 style="color:#dbc9c9">
-                    Comments
-                </h3>
             </div>
             <div class="col-3">
                 <i id="like-button" class="fa fa-thumbs-up" aria-hidden="true" style="cursor: pointer;" data-video-id="@Model.Video.VideoId"> <span id="like-count">@Model.Video.Likes</span></i>
@@ -41,6 +36,14 @@
                 <!-- Nút Lưu vào danh sách phát -->
                 <i class="fa fa-play-circle" aria-hidden="true" data-toggle="modal" data-target="#saveToPlaylistModal"> Add to playlist</i>
             </div>
+            <div>
+                <p>@Model.Video.Title</p>
+                <p class="video-description">@Model.Video.VideoDescription</p>
+                <span class="show-more">Xem thêm</span>
+            </div>
+            <h3 style="color:#dbc9c9">
+                Comments
+            </h3>
         </div>
         <div class="comment-box">
             <!-- Trường ẩn chứa videoId -->
@@ -603,6 +606,31 @@
     .product__sidebar__comment__item .btn-outline-dark.btn-square:hover .fa-play-circle {
         color: #000000;
     }
+
+    .video-description {
+        display: -webkit-box;
+        -webkit-line-clamp: 5; /* Giới hạn 5 dòng */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 3px;
+    }
+
+    .show-more {
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(to left, #000 70%, transparent);
+        padding: 2px 8px;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+    /* Thêm class này khi click vào nút Xem thêm */
+    .video-description.expanded {
+        -webkit-line-clamp: unset;
+    }
 </style>
 
 <!-- Thêm jQuery -->
@@ -613,7 +641,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 <!--Nút xử lý sự kiện đóng/mở modal-->
-<script>
+    <script>
     //Xử lý sự kiện mở modal
     $(document).ready(function () {
         $("#saveToPlaylistButton").on('show.bs.modal', function () {
@@ -627,7 +655,7 @@
             $("#saveToPlaylistModal").modal('hide');
         });
     });
-</script>
+    </script>
 
 <!--Nút thêm video vào ds phát-->
 <script>
@@ -1129,4 +1157,22 @@
             $(this).closest('.block').find('.sophanhoi').toggle();
         });
     });
+
+        document.addEventListener("DOMContentLoaded", function () {
+        const description = document.querySelector(".video-description");
+        const showMore = document.querySelector(".show-more");
+
+        if (description.scrollHeight > description.clientHeight) {
+            showMore.style.display = "inline";
+        }
+
+        showMore.addEventListener("click", function () {
+            description.style.display = "block";
+            description.style.overflow = "visible";
+            description.style.webkitLineClamp = "unset";
+            showMore.style.display = "none";
+        });
+    });
 </script>
+
+     
