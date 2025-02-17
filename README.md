@@ -32,6 +32,30 @@
 5. That's it. Run the code and enjoy the website.
 
 # Some images for features
+  Account login interface
+  
+  ![Screenshot 2025-02-17 185656](https://github.com/user-attachments/assets/5151e480-26a8-4d21-8ef3-625f3345c3ca)
+
+  Home interface
+
+  ![Screenshot 2025-02-17 185831](https://github.com/user-attachments/assets/9dcc4c92-905d-40a4-9ff2-1ee0d927b793)
+
+  Video viewing interface
+
+  ![Screenshot 2025-02-17 185921](https://github.com/user-attachments/assets/47416ede-2d9f-40e2-b76d-8df11324de2f)
+
+  User comments section
+
+  ![Screenshot 2025-02-17 190447](https://github.com/user-attachments/assets/3ec09bad-3719-41fc-8178-657aefc3fc94)
+
+  Playlist interface, where users' favorite videos are stored
+
+  ![Screenshot 2025-02-17 190648](https://github.com/user-attachments/assets/518bdf59-6bda-465b-b6e6-3e2deb54d417)
+
+  ![Screenshot 2025-02-17 190811](https://github.com/user-attachments/assets/f04292dc-caea-4790-a217-21ad4ab2b8a0)
+
+
+  
 
 
    
