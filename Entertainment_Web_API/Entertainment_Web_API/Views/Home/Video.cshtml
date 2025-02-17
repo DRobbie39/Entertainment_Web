@@ -38,8 +38,9 @@
             </div>
             <div>
                 <p>@Model.Video.Title</p>
+                <p>@(Model.Video.VideoPostingTime?.DateTime.ToString("dd/MM/yyyy") ?? "No date posted")</p>
                 <p class="video-description">@Model.Video.VideoDescription</p>
-                <span class="show-more">Xem thêm</span>
+                <span class="show-more">Show more</span>
             </div>
             <h3 style="color:#dbc9c9">
                 Comments
@@ -641,7 +642,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 <!--Nút xử lý sự kiện đóng/mở modal-->
-    <script>
+<script>
     //Xử lý sự kiện mở modal
     $(document).ready(function () {
         $("#saveToPlaylistButton").on('show.bs.modal', function () {
@@ -655,7 +656,7 @@
             $("#saveToPlaylistModal").modal('hide');
         });
     });
-    </script>
+</script>
 
 <!--Nút thêm video vào ds phát-->
 <script>
@@ -1157,22 +1158,28 @@
             $(this).closest('.block').find('.sophanhoi').toggle();
         });
     });
+</script>
 
-        document.addEventListener("DOMContentLoaded", function () {
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
         const description = document.querySelector(".video-description");
-        const showMore = document.querySelector(".show-more");
+        const toggleButton = document.querySelector(".show-more");
 
+        // Kiểm tra nếu nội dung bị cắt thì mới hiển thị nút "Xem thêm"
         if (description.scrollHeight > description.clientHeight) {
-            showMore.style.display = "inline";
+            toggleButton.style.display = "inline";
+        } else {
+            toggleButton.style.display = "none"; // Ẩn nếu không cần thiết
         }
 
-        showMore.addEventListener("click", function () {
-            description.style.display = "block";
-            description.style.overflow = "visible";
-            description.style.webkitLineClamp = "unset";
-            showMore.style.display = "none";
+        toggleButton.addEventListener("click", function () {
+            if (description.classList.contains("expanded")) {
+                description.classList.remove("expanded");
+                toggleButton.textContent = "Show more";
+            } else {
+                description.classList.add("expanded");
+                toggleButton.textContent = "Show less";
+            }
         });
     });
 </script>
-
-     
