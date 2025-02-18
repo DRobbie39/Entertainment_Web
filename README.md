@@ -1,4 +1,4 @@
-# Entertainment web (BackEnd: C#, ASP .NET Core Web Application, ASP .NET Core Web API, Entity Framework, SQL Server)
+# Entertainment web (C#, ASP .NET Core Web Application, ASP .NET Core Web API, Entity Framework, SQL Server)
 
 # Group information
   + Phan Gia Đạt
