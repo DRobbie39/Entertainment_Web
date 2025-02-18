@@ -1,5 +1,5 @@
-# Entertainment web (C#, ASP .NET Core Web Application, ASP .NET Core Web API, Entity Framework, SQL Server)
-
+# Entertainment website (C#, ASP .NET Core Web Application, ASP .NET Core Web API, Entity Framework, SQL Server)
+An entertainment website can help you watch your favorite videos related to music.
 # Group information
   + Phan Gia Đạt
   + Lê Trung Quyền
